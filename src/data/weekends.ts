@@ -27,7 +27,7 @@ export const weekends: Weekend[] = [
     category: 'optional',
     project: 'Nuclear Homework',
     summary:
-      'An optional, hands-on warm-up weekend covering the practical Python stack used throughout the course — NumPy, scikit-learn, PyTorch, Pandas and visualization — so everyone starts from a common foundation.',
+      'An optional, hands-on warm-up weekend covering the practical Python stack used throughout the course: NumPy, scikit-learn, PyTorch, Pandas and visualization.',
     friday: [
       { time: '08:00', title: 'Numpy Matrix and Vector Operations', type: 'lecture', who: 'Carlos' },
       { time: '09:00', title: 'Mini Recommender System', type: 'exercise' },

@@ -15,8 +15,7 @@ export function HomePage() {
             <p className="hero__lead">
               An intensive, hands-on programme across eight weekends — from the Python and machine
               learning foundations through to security, reinforcement learning, retrieval-augmented
-              generation, agentic and large-scale AI. Each weekend lists its topics, the full Friday
-              and Saturday schedule, and resources.
+              generation, agentic and large-scale AI.
             </p>
             <dl className="hero__meta">
               <div>
