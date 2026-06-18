@@ -1,0 +1,38 @@
+export type SessionType = 'lecture' | 'exercise' | 'break' | 'project';
+
+export type WeekendCategory = 'optional' | 'preparatory' | 'mandatory';
+
+export interface Session {
+  time: string;
+  title: string;
+  type: SessionType;
+  /** Instructor / TA name(s) from the master spreadsheet, if assigned. */
+  who?: string;
+}
+
+export interface Resource {
+  label: string;
+  url: string;
+}
+
+export interface Weekend {
+  /** Stable slug used in the URL, e.g. "we3". */
+  id: string;
+  number: number;
+  title: string;
+  /** Short theme / subtitle. */
+  theme: string;
+  /** Human-readable date range, e.g. "26–27 June 2026". */
+  dates: string;
+  /** ISO date of the Friday the weekend starts on (Saturday is the next day). */
+  startISO: string;
+  /** Participation category — drives the coloured tag. */
+  category: WeekendCategory;
+  /** Project / homework assigned at this weekend, if any. */
+  project?: string;
+  /** Authored 1–2 sentence description of the weekend. */
+  summary: string;
+  friday: Session[];
+  saturday: Session[];
+  resources: Resource[];
+}
