@@ -5,6 +5,8 @@ import {
   eventsOnDay,
   type CourseEvent,
 } from '../data/calendar';
+import { getWeekend } from '../data/weekends';
+import { SchedulePeek } from '../components/SchedulePeek';
 import { downloadICS, googleCalendarUrl } from '../lib/ics';
 import {
   MONTH_NAMES,
@@ -56,15 +58,17 @@ function MonthGrid({ year, month0 }: { year: number; month0: number }) {
             if (day === null) return <div key={`b${i}`} className="cal-cell cal-cell--blank" />;
             const iso = toISO(year, month0, day);
             const events = eventsOnDay(iso);
-            const isWeekend = events.some((e) => e.type === 'weekend');
+            const weekendEvent = events.find((e) => e.type === 'weekend' && e.weekendId);
+            const weekend = weekendEvent ? getWeekend(weekendEvent.weekendId!) : undefined;
             return (
-              <div key={iso} className={`cal-cell${isWeekend ? ' cal-cell--weekend' : ''}`}>
+              <div key={iso} className={`cal-cell${weekend ? ' cal-cell--weekend' : ''}`}>
                 <span className="cal-cell__day">{day}</span>
                 <div className="cal-cell__events">
                   {events.map((e) => (
                     <EventChip key={e.uid + iso} event={e} />
                   ))}
                 </div>
+                {weekend && <SchedulePeek weekend={weekend} />}
               </div>
             );
           })}
@@ -125,33 +129,36 @@ export function CalendarPage() {
             Each homework / project is assigned at its weekend and due ahead of the next one.
           </p>
           <ul className="agenda__list">
-            {allEvents.map((e) => (
-              <li key={e.uid} className={`agenda__item agenda__item--${e.type}`}>
-                <div className="agenda__when">
-                  <span className="agenda__date">{formatLongDate(e.start)}</span>
-                  {e.end !== e.start && (
-                    <span className="agenda__date agenda__date--end">
-                      → {formatLongDate(e.end)}
-                    </span>
-                  )}
-                </div>
-                <div className="agenda__what">
-                  {e.type === 'weekend' && e.weekendId ? (
-                    <Link to={`/weekend/${e.weekendId}`}>{e.title}</Link>
-                  ) : (
-                    <span>{e.title}</span>
-                  )}
-                </div>
-                <a
-                  className="agenda__google"
-                  href={googleCalendarUrl(e)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  + Google
-                </a>
-              </li>
-            ))}
+            {allEvents.map((e) => {
+              const weekend = e.weekendId ? getWeekend(e.weekendId) : undefined;
+              return (
+                <li key={e.uid} className={`agenda__item agenda__item--${e.type}`}>
+                  <div className="agenda__when">
+                    <span className="agenda__date">{formatLongDate(e.start)}</span>
+                    {e.end !== e.start && (
+                      <span className="agenda__date agenda__date--end">
+                        → {formatLongDate(e.end)}
+                      </span>
+                    )}
+                  </div>
+                  <div className="agenda__what">
+                    {weekend ? (
+                      <Link to={`/weekend/${weekend.id}`}>{e.title}</Link>
+                    ) : (
+                      <span>{e.title}</span>
+                    )}
+                  </div>
+                  <a
+                    className="agenda__google"
+                    href={googleCalendarUrl(e)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    + Google
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </section>
       </div>

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import type { Weekend } from '../types';
 import { CategoryBadge } from './CategoryBadge';
+import { SchedulePeek } from './SchedulePeek';
 
 export function WeekendCard({ weekend }: { weekend: Weekend }) {
   return (
@@ -15,6 +16,8 @@ export function WeekendCard({ weekend }: { weekend: Weekend }) {
         <CategoryBadge category={weekend.category} />
       </div>
       <span className="wcard__cta">View schedule</span>
+
+      <SchedulePeek weekend={weekend} />
     </Link>
   );
 }
