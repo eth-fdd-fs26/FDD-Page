@@ -29,6 +29,25 @@ Each weekend has a title, theme, dates, summary, a `friday` and `saturday` sched
 
 No other files need to change to update content.
 
+## Office hours booking
+
+The **Office hours** page (`/#/office-hours`) shows a weekly grid — configurable days
+(default Mon/Wed/Fri) × 30-minute slots (default 18:00–20:00). Participants enter their
+name, click a free slot to book it, and anyone can cancel any booking. Because the site
+is static, a small **Google Apps Script Web App** sits in front of a Google Sheet and
+performs the reads/writes — no credentials are ever exposed in the browser.
+
+**Setup (one-time):**
+
+1. In the Sheet: **Extensions → Apps Script**, paste `google-apps-script/office-hours.gs`,
+   and **Deploy → New deployment → Web app** (*Execute as: Me*, *Who has access: Anyone*).
+   The script auto-creates a `Bookings` tab (`Timestamp | Date | Time | Name | Email`).
+2. Copy the deployed Web app URL into `OFFICE_HOURS_API_URL` in `src/data/officeHours.ts`.
+3. (Optional) Adjust the days, times, first week and number of weeks in the same file.
+
+Until the URL is set, the page shows a "not configured yet" notice instead of the grid.
+Full API + deployment notes live in `google-apps-script/office-hours.gs`.
+
 ## Deployment
 
 Deployment is automatic via GitHub Actions (`.github/workflows/deploy.yml`): every push to
