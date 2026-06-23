@@ -205,10 +205,12 @@ export function OfficeHoursPage() {
             </div>
 
             {error && <p className="oh-msg oh-msg--err oh-banner">{error}</p>}
-            {loading && bookings.length === 0 && <p className="resources__note">Loading…</p>}
 
             {/* Slot grid */}
-            <div className="oh-grid-wrap">
+            <div
+              className={`oh-grid-area${loading ? ' oh-grid-area--loading' : ''}`}
+              aria-busy={loading}
+            >
               <table className="oh-grid">
                 <thead>
                   <tr>
@@ -250,7 +252,7 @@ export function OfficeHoursPage() {
                                   className="oh-tile__cancel"
                                   type="button"
                                   onClick={() => handleCancel(date, time, booking.name)}
-                                  disabled={busy}
+                                  disabled={busy || loading}
                                   aria-label={`Cancel booking by ${booking.name}`}
                                   title="Cancel this booking"
                                 >
@@ -266,7 +268,7 @@ export function OfficeHoursPage() {
                               className="oh-tile oh-tile--book"
                               type="button"
                               onClick={() => handleBook(date, time)}
-                              disabled={busy}
+                              disabled={busy || loading}
                             >
                               <span className="oh-tile__book-label">
                                 {busy ? 'Booking…' : 'Book'}
@@ -279,6 +281,13 @@ export function OfficeHoursPage() {
                   ))}
                 </tbody>
               </table>
+
+              {loading && (
+                <div className="oh-loading" role="status">
+                  <span className="oh-spinner" aria-hidden="true" />
+                  <span className="oh-loading__text">Loading bookings…</span>
+                </div>
+              )}
             </div>
 
             <div className="oh-legend">
