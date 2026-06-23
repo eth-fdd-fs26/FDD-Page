@@ -1268,6 +1268,58 @@ textarea.field__input {
   background: #fff;
 }
 
+/* TAs on duty — two assignable slots per day, petrol accent */
+.oh-ta-row > * {
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--line);
+  vertical-align: middle;
+}
+.oh-grid__time--ta {
+  color: var(--eth-petrol);
+}
+.oh-ta-cell {
+  vertical-align: top;
+}
+.oh-ta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.oh-tile--ta-book,
+.oh-tile--ta-taken {
+  min-height: 36px;
+  padding: 5px 10px;
+}
+.oh-tile--ta-book {
+  cursor: pointer;
+  color: var(--eth-petrol);
+  background: #fff;
+  border-color: var(--line);
+  transition: background 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+}
+.oh-tile--ta-book:hover:not(:disabled) {
+  background: var(--eth-petrol);
+  border-color: var(--eth-petrol);
+  color: #fff;
+}
+.oh-tile--ta-book:hover:not(:disabled) .oh-tile__book-label {
+  opacity: 1;
+}
+.oh-tile--ta-book:disabled {
+  cursor: default;
+  color: var(--ink-faint);
+}
+.oh-tile--ta-taken {
+  position: relative;
+  background: #e6f1f4; /* faint petrol tint */
+  border-color: #bfdde4;
+  padding: 5px 24px 5px 10px;
+}
+.oh-tile--ta-taken .oh-tile__name {
+  font-size: 0.82rem;
+  color: #00586b;
+}
+
 /* Loading phase — block interaction until data is in */
 .oh-grid-area {
   position: relative;
@@ -1343,6 +1395,10 @@ textarea.field__input {
 .oh-legend__swatch--mine {
   background: var(--eth-blue);
   border-color: var(--eth-blue);
+}
+.oh-legend__swatch--ta {
+  background: #e6f1f4;
+  border-color: #bfdde4;
 }
 .oh-legend__hint {
   color: var(--ink-faint);

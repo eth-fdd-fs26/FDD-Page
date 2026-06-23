@@ -18,6 +18,9 @@ export const officeHourWeekdays: number[] = [1, 3, 5];
 /** 30-minute slot start times ("HH:mm", 24h). Default: four slots, 18:00–20:00. */
 export const officeHourTimes: string[] = ['18:00', '18:30', '19:00', '19:30'];
 
+/** Number of TA "on duty" slots shown at the top of each day. */
+export const officeHourTAsPerDay = 2;
+
 /** Monday (ISO `YYYY-MM-DD`) of the first bookable week. */
 export const officeHourFirstMonday = '2026-06-22';
 

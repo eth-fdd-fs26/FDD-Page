@@ -3,6 +3,7 @@ import {
   OFFICE_HOURS_API_URL,
   SLOT_MINUTES,
   officeHourFirstMonday,
+  officeHourTAsPerDay,
   officeHourTimes,
   officeHourWeekdays,
   officeHourWeeks,
@@ -15,6 +16,9 @@ const POLL_MS = 20_000;
 
 const NAME_KEY = 'fdd-oh-name';
 const slotKey = (date: string, time: string): string => `${date} ${time}`;
+
+/** Internal slot keys for the per-day TA "on duty" assignments (stored like bookings). */
+const taSlots = Array.from({ length: officeHourTAsPerDay }, (_, i) => `TA${i + 1}`);
 
 /** Offset in days from the week's Monday for a JS weekday (0=Sun…6=Sat). */
 const offsetFromMonday = (weekday: number): number => (weekday - 1 + 7) % 7;
@@ -141,8 +145,9 @@ export function OfficeHoursPage() {
           <p className="eyebrow">ETH Zürich · Summer 2026</p>
           <h2 style={{ fontSize: '1.9rem' }}>Office hours booking</h2>
           <p>
-            Pick a free 30-minute slot below. Enter your name first, then click an open slot to book
-            it. The grid updates automatically for everyone; anyone can cancel a booking.
+            Enter your name first, then click an open slot to book it — or add yourself as a TA on
+            duty for a day (two per day). The grid updates automatically for everyone; anyone can
+            cancel a booking.
           </p>
         </div>
 
@@ -230,6 +235,57 @@ export function OfficeHoursPage() {
                   </tr>
                 </thead>
                 <tbody>
+                  {/* TAs on duty — two assignable slots per day */}
+                  {taSlots.length > 0 && (
+                    <tr className="oh-ta-row">
+                      <th className="oh-grid__time oh-grid__time--ta" scope="row">
+                        TAs on duty
+                      </th>
+                      {days.map((date) => (
+                        <td key={`ta-${date}`} className="oh-cell oh-ta-cell">
+                          <div className="oh-ta">
+                            {taSlots.map((ta) => {
+                              const key = slotKey(date, ta);
+                              const booking = bySlot.get(key);
+                              const busy = acting === key;
+                              if (booking) {
+                                return (
+                                  <div key={key} className="oh-tile oh-tile--ta-taken">
+                                    <span className="oh-tile__name" title={booking.name}>
+                                      {booking.name}
+                                    </span>
+                                    <button
+                                      className="oh-tile__cancel"
+                                      type="button"
+                                      onClick={() => handleCancel(date, ta, booking.name)}
+                                      disabled={busy || loading}
+                                      aria-label={`Remove TA ${booking.name}`}
+                                      title="Remove this TA"
+                                    >
+                                      {busy ? '…' : '✕'}
+                                    </button>
+                                  </div>
+                                );
+                              }
+                              return (
+                                <button
+                                  key={key}
+                                  className="oh-tile oh-tile--ta-book"
+                                  type="button"
+                                  onClick={() => handleBook(date, ta)}
+                                  disabled={busy || loading}
+                                >
+                                  <span className="oh-tile__book-label">
+                                    {busy ? 'Saving…' : '+ TA'}
+                                  </span>
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </td>
+                      ))}
+                    </tr>
+                  )}
                   {officeHourTimes.map((time) => (
                     <tr key={time}>
                       <th className="oh-grid__time" scope="row">
@@ -299,6 +355,9 @@ export function OfficeHoursPage() {
               </span>
               <span className="oh-legend__item">
                 <span className="oh-legend__swatch oh-legend__swatch--mine" /> Your booking
+              </span>
+              <span className="oh-legend__item">
+                <span className="oh-legend__swatch oh-legend__swatch--ta" /> TA on duty
               </span>
               <span className="oh-legend__hint">Anyone can cancel any booking.</span>
             </div>
