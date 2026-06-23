@@ -49,7 +49,21 @@ export const weekends: Weekend[] = [
       { time: '11:00', title: 'Visualization', type: 'exercise' },
       { time: '12:00', title: 'Intro Exercise & Homework', type: 'project', who: 'Adrian' },
     ],
-    resources: placeholderResources(),
+    resources: [
+      {
+        label: 'Block 1 — NumPy & Course Recommender (exercise, open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/01_numpy_course_recommender_student_additional.ipynb',
+      },
+      {
+        label: 'Block 2 — Python Classes, Part 1 (exercise, open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/02a_python_classes_intro.ipynb',
+      },
+      {
+        label: 'Block 3 — scikit-learn Churn Prediction (exercise, open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/03_sklearn_churn_prop_students.ipynb',
+      },
+      { label: 'Lecture slides — to be added', url: '#' },
+    ],
   },
   {
     id: 'we1',
