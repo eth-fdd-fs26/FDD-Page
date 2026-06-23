@@ -8,6 +8,8 @@ export interface Session {
   type: SessionType;
   /** Instructor / TA name(s) from the master spreadsheet, if assigned. */
   who?: string;
+  /** Optional link for this session (e.g. a notebook opened in Colab). */
+  url?: string;
 }
 
 export interface Resource {

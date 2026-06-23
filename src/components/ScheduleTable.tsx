@@ -19,7 +19,21 @@ export function ScheduleTable({ day, date, sessions }: Props) {
           <div key={i} className={`srow${s.type === 'break' ? ' srow--break' : ''}`}>
             <div className="srow__time">{s.time}</div>
             <div className="srow__body">
-              <span className="srow__title">{s.title}</span>
+              {s.url ? (
+                <a
+                  className="srow__title srow__title--link"
+                  href={s.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {s.title}
+                  <span className="srow__ext" aria-hidden="true">
+                    ↗
+                  </span>
+                </a>
+              ) : (
+                <span className="srow__title">{s.title}</span>
+              )}
               {s.type !== 'break' && (
                 <span className="srow__meta">
                   <SessionTypeChip type={s.type} />

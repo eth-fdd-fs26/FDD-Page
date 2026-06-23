@@ -622,6 +622,17 @@ h3 {
   font-weight: 400;
   color: var(--ink-faint);
 }
+a.srow__title--link {
+  color: var(--eth-blue);
+}
+a.srow__title--link:hover {
+  text-decoration: underline;
+}
+.srow__ext {
+  font-size: 0.78em;
+  margin-left: 5px;
+  color: var(--eth-blue);
+}
 .srow__meta {
   display: flex;
   align-items: center;
