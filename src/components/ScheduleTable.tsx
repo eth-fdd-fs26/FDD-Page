@@ -15,7 +15,10 @@ export function ScheduleTable({ day, date, sessions }: Props) {
         <span className="day__date">{date}</span>
       </div>
       <div className="schedule">
-        {sessions.map((s, i) => (
+        {sessions.map((s, i) => {
+          // Coding exercises are prefixed with "CX" to match the course convention.
+          const title = s.type === 'exercise' ? `CX ${s.title}` : s.title;
+          return (
           <div key={i} className={`srow${s.type === 'break' ? ' srow--break' : ''}`}>
             <div className="srow__time">{s.time}</div>
             <div className="srow__body">
@@ -26,23 +29,38 @@ export function ScheduleTable({ day, date, sessions }: Props) {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {s.title}
+                  {title}
                   <span className="srow__ext" aria-hidden="true">
                     ↗
                   </span>
                 </a>
               ) : (
-                <span className="srow__title">{s.title}</span>
+                <span className="srow__title">{title}</span>
               )}
               {s.type !== 'break' && (
                 <span className="srow__meta">
                   <SessionTypeChip type={s.type} />
                   {s.who && <span className="srow__who">{s.who}</span>}
+                  {s.links?.map((l, j) => (
+                    <a
+                      key={j}
+                      className="srow__link"
+                      href={l.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {l.label}
+                      <span className="srow__ext" aria-hidden="true">
+                        ↗
+                      </span>
+                    </a>
+                  ))}
                 </span>
               )}
             </div>
           </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

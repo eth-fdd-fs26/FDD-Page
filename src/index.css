@@ -633,6 +633,24 @@ a.srow__title--link:hover {
   margin-left: 5px;
   color: var(--eth-blue);
 }
+.srow__link {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--eth-blue);
+  border: 1px solid var(--line);
+  padding: 2px 9px;
+}
+.srow__link:hover {
+  text-decoration: none;
+  border-color: var(--eth-blue);
+  background: var(--bg-tint);
+}
+.srow__link .srow__ext {
+  margin-left: 4px;
+}
 .srow__meta {
   display: flex;
   align-items: center;
@@ -659,7 +677,9 @@ a.srow__title--link:hover {
   color: var(--type-lecture);
 }
 .chip--exercise {
-  color: var(--type-exercise);
+  color: #fff;
+  background: var(--type-exercise);
+  border-color: var(--type-exercise);
 }
 .chip--project {
   color: var(--type-project);

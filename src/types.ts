@@ -8,8 +8,10 @@ export interface Session {
   type: SessionType;
   /** Instructor / TA name(s) from the master spreadsheet, if assigned. */
   who?: string;
-  /** Optional link for this session (e.g. a notebook opened in Colab). */
+  /** Optional single link for this session (e.g. one notebook opened in Colab). */
   url?: string;
+  /** Optional multiple labelled links, e.g. a multi-part exercise (Part 1 / Part 2). */
+  links?: Resource[];
 }
 
 export interface Resource {

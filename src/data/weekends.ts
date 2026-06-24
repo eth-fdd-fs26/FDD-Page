@@ -37,14 +37,18 @@ export const weekends: Weekend[] = [
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/01_numpy_course_recommender_student_additional.ipynb',
       },
       { time: '10:00', title: 'Coffee break', type: 'break' },
+      { time: '10:30', title: 'Python Classes', type: 'lecture', who: 'Daniele' },
       {
-        time: '10:30',
-        title: 'Python Classes',
-        type: 'lecture',
-        who: 'Daniele',
-        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/02a_python_classes_intro.ipynb',
+        time: '11:00',
+        title: 'Light Gradient Descent — Linear Regression',
+        type: 'exercise',
+        links: [
+          {
+            label: 'Part 1',
+            url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/02a_python_classes_intro.ipynb',
+          },
+        ],
       },
-      { time: '11:00', title: 'Light Gradient Descent — Linear Regression', type: 'exercise' },
       { time: '12:00', title: 'Scikit-learn Machine Learning', type: 'lecture', who: 'Carlos' },
       { time: '13:00', title: 'Lunch break', type: 'break' },
       {
@@ -55,7 +59,12 @@ export const weekends: Weekend[] = [
       },
       { time: '15:00', title: 'Coffee break', type: 'break' },
       { time: '15:30', title: 'Types of Visualization + Dataframes (Pandas)', type: 'lecture', who: 'Adrian' },
-      { time: '16:00', title: 'Visualization', type: 'exercise' },
+      {
+        time: '16:00',
+        title: 'Visualization',
+        type: 'exercise',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/04_dataframes_and_visualizations_student.ipynb',
+      },
     ],
     saturday: [
       { time: '08:00', title: 'PyTorch NNs, Tensors + NN Visualization', type: 'lecture', who: 'Dimitrios' },
@@ -77,6 +86,10 @@ export const weekends: Weekend[] = [
       {
         label: 'Block 3 — scikit-learn Churn Prediction (exercise, open in Colab)',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/03_sklearn_churn_prop_students.ipynb',
+      },
+      {
+        label: 'Block 4 — Dataframes & Visualization (exercise, open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/04_dataframes_and_visualizations_student.ipynb',
       },
       { label: 'Lecture slides — to be added', url: '#' },
     ],
