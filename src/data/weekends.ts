@@ -47,6 +47,10 @@ export const weekends: Weekend[] = [
             label: 'Part 1',
             url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/02a_python_classes_intro.ipynb',
           },
+          {
+            label: 'Part 2',
+            url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/02b_OOP_light_gd_students.ipynb',
+          },
         ],
       },
       { time: '12:00', title: 'Scikit-learn Machine Learning', type: 'lecture', who: 'Carlos' },
@@ -87,6 +91,10 @@ export const weekends: Weekend[] = [
       {
         label: 'Block 2 — Python Classes, Part 1 (exercise, open in Colab)',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/02a_python_classes_intro.ipynb',
+      },
+      {
+        label: 'Block 2 — OOP & Light Gradient Descent, Part 2 (exercise, open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/02b_OOP_light_gd_students.ipynb',
       },
       {
         label: 'Block 3 — scikit-learn Churn Prediction (exercise, open in Colab)',
