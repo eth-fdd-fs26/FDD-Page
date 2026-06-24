@@ -68,10 +68,15 @@ export const weekends: Weekend[] = [
     ],
     saturday: [
       { time: '08:00', title: 'PyTorch NNs, Tensors + NN Visualization', type: 'lecture', who: 'Dimitrios' },
-      { time: '09:00', title: 'PyTorch Part 2', type: 'exercise' },
+      { time: '09:00', title: 'PyTorch Part 1', type: 'exercise' },
       { time: '10:00', title: 'Coffee break', type: 'break' },
       { time: '10:30', title: 'PyTorch Part 2: Specifics + Useful Libraries', type: 'lecture', who: 'Juan' },
-      { time: '11:00', title: 'PyTorch Part 2', type: 'exercise' },
+      {
+        time: '11:00',
+        title: 'PyTorch Part 2',
+        type: 'exercise',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/06_pytorch_training_hazards_student.ipynb',
+      },
       { time: '12:00', title: 'Intro Exercise & Homework', type: 'project', who: 'Adrian' },
     ],
     resources: [
@@ -90,6 +95,10 @@ export const weekends: Weekend[] = [
       {
         label: 'Block 4 — Dataframes & Visualization (exercise, open in Colab)',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/04_dataframes_and_visualizations_student.ipynb',
+      },
+      {
+        label: 'Block 6 — PyTorch Training Hazards (exercise, open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/06_pytorch_training_hazards_student.ipynb',
       },
       { label: 'Lecture slides — to be added', url: '#' },
     ],
