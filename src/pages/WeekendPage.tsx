@@ -17,11 +17,18 @@ function ResourceLink({ resource }: { resource: Resource }) {
       </li>
     );
   }
+  const isPdf = resource.url.toLowerCase().endsWith('.pdf');
   return (
     <li>
-      <a className="reslink" href={resource.url} target="_blank" rel="noopener noreferrer">
+      <a
+        className="reslink"
+        href={resource.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        {...(isPdf ? { download: '' } : {})}
+      >
         {resource.label}
-        <span className="reslink__arrow">↗</span>
+        <span className="reslink__arrow">{isPdf ? 'PDF ↓' : '↗'}</span>
       </a>
     </li>
   );

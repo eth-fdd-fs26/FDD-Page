@@ -81,7 +81,13 @@ export const weekends: Weekend[] = [
         type: 'exercise',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/06_pytorch_training_hazards_student.ipynb',
       },
-      { time: '12:00', title: 'Intro Exercise & Homework', type: 'project', who: 'Adrian' },
+      {
+        time: '12:00',
+        title: 'Intro Exercise & Homework',
+        type: 'project',
+        who: 'Adrian',
+        url: 'https://github.com/eth-fdd-fs26/FDD-WE0-public',
+      },
     ],
     resources: [
       {
@@ -107,6 +113,14 @@ export const weekends: Weekend[] = [
       {
         label: 'Block 6 — PyTorch Training Hazards (exercise, open in Colab)',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/06_pytorch_training_hazards_student.ipynb',
+      },
+      {
+        label: 'Exercise repository — FDD-WE0-public (GitHub)',
+        url: 'https://github.com/eth-fdd-fs26/FDD-WE0-public',
+      },
+      {
+        label: 'Nuclear Central Manager Workshop — homework guide',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/Nuclear_Central_Manager_Workshop.pdf',
       },
       { label: 'Lecture slides — to be added', url: '#' },
     ],
