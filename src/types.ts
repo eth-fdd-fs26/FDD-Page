@@ -36,6 +36,10 @@ export interface Weekend {
   project?: string;
   /** Authored 1–2 sentence description of the weekend. */
   summary: string;
+  /** Room / location for the Friday schedule, if known. */
+  fridayRoom?: string;
+  /** Room / location for the Saturday schedule, if known. */
+  saturdayRoom?: string;
   friday: Session[];
   saturday: Session[];
   resources: Resource[];

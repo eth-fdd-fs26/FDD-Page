@@ -92,8 +92,8 @@ export function WeekendPage() {
         </header>
 
         <div className="days">
-          <ScheduleTable day="Friday" date={friDate.trim()} sessions={weekend.friday} />
-          <ScheduleTable day="Saturday" date={satDate.trim()} sessions={weekend.saturday} />
+          <ScheduleTable day="Friday" date={friDate.trim()} sessions={weekend.friday} room={weekend.fridayRoom} />
+          <ScheduleTable day="Saturday" date={satDate.trim()} sessions={weekend.saturday} room={weekend.saturdayRoom} />
         </div>
 
         <section className="resources">
