@@ -37,7 +37,15 @@ export const weekends: Weekend[] = [
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/01_numpy_course_recommender_student_additional.ipynb',
       },
       { time: '10:00', title: 'Coffee break', type: 'break' },
-      { time: '10:30', title: 'Python Classes', type: 'lecture', who: 'Daniele' },
+      {
+        time: '10:30',
+        title: 'Python Classes',
+        type: 'lecture',
+        who: 'Daniele',
+        links: [
+          { label: 'Slides', url: 'https://polybox.ethz.ch/index.php/s/Jse9MGr8sWj9gcw/download' },
+        ],
+      },
       {
         time: '11:00',
         title: 'Light Gradient Descent — Linear Regression',
@@ -122,7 +130,10 @@ export const weekends: Weekend[] = [
         label: 'Nuclear Central Manager Workshop — homework guide',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/Nuclear_Central_Manager_Workshop.pdf',
       },
-      { label: 'Lecture slides — to be added', url: '#' },
+      {
+        label: 'Python Classes — lecture slides (Daniele, PDF)',
+        url: 'https://polybox.ethz.ch/index.php/s/Jse9MGr8sWj9gcw/download',
+      },
     ],
   },
   {
