@@ -159,7 +159,7 @@ export const weekends: Weekend[] = [
       },
       {
         label: 'Python Classes — lecture slides (Daniele, PDF)',
-        url: 'https://polybox.ethz.ch/index.php/s/Jse9MGr8sWj9gcw/download',
+        url: 'https://polybox.ethz.ch/index.php/s/qCfFoMN9YrjE2bi',
       },
       {
         label: 'NumPy & Linear Algebra — lecture slides (Carlos, PDF)',
