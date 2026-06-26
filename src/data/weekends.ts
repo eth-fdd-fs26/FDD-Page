@@ -30,7 +30,18 @@ export const weekends: Weekend[] = [
       'An optional, hands-on warm-up weekend covering the practical Python stack used throughout the course: NumPy, scikit-learn, PyTorch, Pandas and visualization.',
     fridayRoom: 'HG D 1.1',
     friday: [
-      { time: '08:00', title: 'Numpy Matrix and Vector Operations', type: 'lecture', who: 'Carlos' },
+      {
+        time: '08:00',
+        title: 'Numpy Matrix and Vector Operations',
+        type: 'lecture',
+        who: 'Carlos',
+        links: [
+          {
+            label: 'Slides',
+            url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/slides/01_numpy-linalg-slides.pdf',
+          },
+        ],
+      },
       {
         time: '09:00',
         title: 'Mini Recommender System',
@@ -62,7 +73,18 @@ export const weekends: Weekend[] = [
           },
         ],
       },
-      { time: '12:00', title: 'Scikit-learn Machine Learning', type: 'lecture', who: 'Carlos' },
+      {
+        time: '12:00',
+        title: 'Scikit-learn Machine Learning',
+        type: 'lecture',
+        who: 'Carlos',
+        links: [
+          {
+            label: 'Slides',
+            url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/slides/03_sklearn-slides.pdf',
+          },
+        ],
+      },
       { time: '13:00', title: 'Lunch break', type: 'break' },
       {
         time: '14:00',
@@ -132,8 +154,20 @@ export const weekends: Weekend[] = [
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/Nuclear_Central_Manager_Workshop.pdf',
       },
       {
+        label: 'Intro — lecture slides (PDF)',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/slides/00_intro-slides.pdf',
+      },
+      {
         label: 'Python Classes — lecture slides (Daniele, PDF)',
         url: 'https://polybox.ethz.ch/index.php/s/Jse9MGr8sWj9gcw/download',
+      },
+      {
+        label: 'NumPy & Linear Algebra — lecture slides (Carlos, PDF)',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/slides/01_numpy-linalg-slides.pdf',
+      },
+      {
+        label: 'scikit-learn — lecture slides (Carlos, PDF)',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/slides/03_sklearn-slides.pdf',
       },
     ],
   },
