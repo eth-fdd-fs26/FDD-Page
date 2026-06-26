@@ -55,7 +55,7 @@ export const weekends: Weekend[] = [
         type: 'lecture',
         who: 'Daniele',
         links: [
-          { label: 'Slides', url: 'https://polybox.ethz.ch/index.php/s/Jse9MGr8sWj9gcw/download' },
+          { label: 'Slides', url: 'https://polybox.ethz.ch/index.php/s/qCfFoMN9YrjE2bi' },
         ],
       },
       {
