@@ -93,7 +93,18 @@ export const weekends: Weekend[] = [
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/03_sklearn_churn_prop_students.ipynb',
       },
       { time: '15:00', title: 'Coffee break', type: 'break' },
-      { time: '15:30', title: 'Types of Visualization + Dataframes (Pandas)', type: 'lecture', who: 'Adrian' },
+      {
+        time: '15:30',
+        title: 'Types of Visualization + Dataframes (Pandas)',
+        type: 'lecture',
+        who: 'Adrian',
+        links: [
+          {
+            label: 'Slides',
+            url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/slides/04_Data%20and%20Visualization.pdf',
+          },
+        ],
+      },
       {
         time: '16:00',
         title: 'Visualization',
@@ -168,6 +179,10 @@ export const weekends: Weekend[] = [
       {
         label: 'scikit-learn — lecture slides (Carlos, PDF)',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/slides/03_sklearn-slides.pdf',
+      },
+      {
+        label: 'Data & Visualization — lecture slides (Adrian, PDF)',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/slides/04_Data%20and%20Visualization.pdf',
       },
     ],
   },
