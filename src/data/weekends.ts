@@ -249,6 +249,10 @@ export const weekends: Weekend[] = [
         label: 'PyTorch, Part 2 — lecture slides (Juan, PDF)',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/slides/06_PyTorch_Part2.pdf',
       },
+      {
+        label: 'Homework Presentation — slides (PDF)',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/slides/Homework%20Presentation.pdf',
+      },
     ],
   },
   {
