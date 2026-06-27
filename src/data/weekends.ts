@@ -113,10 +113,37 @@ export const weekends: Weekend[] = [
       },
     ],
     saturday: [
-      { time: '08:00', title: 'PyTorch NNs, Tensors + NN Visualization', type: 'lecture', who: 'Dimitrios' },
-      { time: '09:00', title: 'PyTorch Part 1', type: 'exercise' },
+      {
+        time: '08:00',
+        title: 'PyTorch NNs, Tensors + NN Visualization',
+        type: 'lecture',
+        who: 'Dimitrios',
+        links: [
+          {
+            label: 'Slides',
+            url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/slides/05_intro_to_pytorch_p1.pdf',
+          },
+        ],
+      },
+      {
+        time: '09:00',
+        title: 'PyTorch Part 1',
+        type: 'exercise',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/05_pytorch_tensors_nn_student.ipynb',
+      },
       { time: '10:00', title: 'Coffee break', type: 'break' },
-      { time: '10:30', title: 'PyTorch Part 2: Specifics + Useful Libraries', type: 'lecture', who: 'Juan' },
+      {
+        time: '10:30',
+        title: 'PyTorch Part 2: Specifics + Useful Libraries',
+        type: 'lecture',
+        who: 'Juan',
+        links: [
+          {
+            label: 'Slides',
+            url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/slides/06_PyTorch_Part2.pdf',
+          },
+        ],
+      },
       {
         time: '11:00',
         title: 'PyTorch Part 2',
@@ -128,7 +155,21 @@ export const weekends: Weekend[] = [
         title: 'Intro Exercise & Homework',
         type: 'project',
         who: 'Adrian',
-        url: 'https://github.com/eth-fdd-fs26/FDD-WE0-public',
+        links: [
+          { label: 'Repository', url: 'https://github.com/eth-fdd-fs26/FDD-WE0-public' },
+          {
+            label: 'Homework Part 1',
+            url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/workshop/homework/HW1_pump_cleaning_fitting_student.ipynb',
+          },
+          {
+            label: 'Homework Part 2',
+            url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/workshop/homework/HW2_basin_temperature_student.ipynb',
+          },
+          {
+            label: 'Homework Part 3',
+            url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/workshop/homework/HW3_clustering_waste_student.ipynb',
+          },
+        ],
       },
     ],
     resources: [
@@ -153,8 +194,24 @@ export const weekends: Weekend[] = [
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/04_dataframes_and_visualizations_student.ipynb',
       },
       {
+        label: 'Block 5 — PyTorch Tensors & NNs (exercise, open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/05_pytorch_tensors_nn_student.ipynb',
+      },
+      {
         label: 'Block 6 — PyTorch Training Hazards (exercise, open in Colab)',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/06_pytorch_training_hazards_student.ipynb',
+      },
+      {
+        label: 'Homework Part 1 — Pump Cleaning & Fitting (open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/workshop/homework/HW1_pump_cleaning_fitting_student.ipynb',
+      },
+      {
+        label: 'Homework Part 2 — Basin Temperature (open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/workshop/homework/HW2_basin_temperature_student.ipynb',
+      },
+      {
+        label: 'Homework Part 3 — Clustering Waste (open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/workshop/homework/HW3_clustering_waste_student.ipynb',
       },
       {
         label: 'Exercise repository — FDD-WE0-public (GitHub)',
@@ -183,6 +240,14 @@ export const weekends: Weekend[] = [
       {
         label: 'Data & Visualization — lecture slides (Adrian, PDF)',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/slides/04_Data%20and%20Visualization.pdf',
+      },
+      {
+        label: 'Intro to PyTorch, Part 1 — lecture slides (Dimitrios, PDF)',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/slides/05_intro_to_pytorch_p1.pdf',
+      },
+      {
+        label: 'PyTorch, Part 2 — lecture slides (Juan, PDF)',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/slides/06_PyTorch_Part2.pdf',
       },
     ],
   },
