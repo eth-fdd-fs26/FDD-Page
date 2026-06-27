@@ -17,6 +17,13 @@ export interface Session {
 export interface Resource {
   label: string;
   url: string;
+  /**
+   * Optional sub-section heading on the weekend's Resources list, e.g.
+   * "Exercises", "Lecture slides", "Homework". Resources sharing a group are
+   * rendered together under that heading; groups appear in first-seen order.
+   * Resources without a group render as a single flat list (default).
+   */
+  group?: string;
 }
 
 export interface Weekend {

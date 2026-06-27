@@ -64,6 +64,18 @@ export function WeekendPage() {
 
   const hasRealResources = weekend.resources.some((r) => r.url !== '#');
 
+  // Group resources by their optional `group`, preserving first-seen order.
+  const resourceGroups: { name?: string; items: Resource[] }[] = [];
+  for (const r of weekend.resources) {
+    let g = resourceGroups.find((x) => x.name === r.group);
+    if (!g) {
+      g = { name: r.group, items: [] };
+      resourceGroups.push(g);
+    }
+    g.items.push(r);
+  }
+  const isGrouped = resourceGroups.some((g) => g.name);
+
   return (
     <article className="section">
       <div className="container">
@@ -103,11 +115,24 @@ export function WeekendPage() {
               ? 'Slides, notebooks and other materials for this weekend.'
               : 'Materials for this weekend will be linked here once available.'}
           </p>
-          <ul className="reslist">
-            {weekend.resources.map((r, i) => (
-              <ResourceLink key={i} resource={r} />
-            ))}
-          </ul>
+          {isGrouped ? (
+            resourceGroups.map((g, gi) => (
+              <div className="resgroup" key={gi}>
+                {g.name && <h3 className="resgroup__title">{g.name}</h3>}
+                <ul className="reslist">
+                  {g.items.map((r, i) => (
+                    <ResourceLink key={i} resource={r} />
+                  ))}
+                </ul>
+              </div>
+            ))
+          ) : (
+            <ul className="reslist">
+              {weekend.resources.map((r, i) => (
+                <ResourceLink key={i} resource={r} />
+              ))}
+            </ul>
+          )}
         </section>
 
         <nav className="wnav">

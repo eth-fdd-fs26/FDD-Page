@@ -174,84 +174,104 @@ export const weekends: Weekend[] = [
     ],
     resources: [
       {
+        group: 'Exercises',
         label: 'Block 1 — NumPy & Course Recommender (exercise, open in Colab)',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/01_numpy_course_recommender_student_additional.ipynb',
       },
       {
+        group: 'Exercises',
         label: 'Block 2 — Python Classes, Part 1 (exercise, open in Colab)',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/02a_python_classes_intro.ipynb',
       },
       {
+        group: 'Exercises',
         label: 'Block 2 — OOP & Light Gradient Descent, Part 2 (exercise, open in Colab)',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/02b_OOP_light_gd_students.ipynb',
       },
       {
+        group: 'Exercises',
         label: 'Block 3 — scikit-learn Churn Prediction (exercise, open in Colab)',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/03_sklearn_churn_prop_students.ipynb',
       },
       {
+        group: 'Exercises',
         label: 'Block 4 — Dataframes & Visualization (exercise, open in Colab)',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/04_dataframes_and_visualizations_student.ipynb',
       },
       {
+        group: 'Exercises',
         label: 'Block 5 — PyTorch Tensors & NNs (exercise, open in Colab)',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/05_pytorch_tensors_nn_student.ipynb',
       },
       {
+        group: 'Exercises',
         label: 'Block 6 — PyTorch Training Hazards (exercise, open in Colab)',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/06_pytorch_training_hazards_student.ipynb',
       },
       {
-        label: 'Homework Part 1 — Pump Cleaning & Fitting (open in Colab)',
-        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/workshop/homework/HW1_pump_cleaning_fitting_student.ipynb',
-      },
-      {
-        label: 'Homework Part 2 — Basin Temperature (open in Colab)',
-        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/workshop/homework/HW2_basin_temperature_student.ipynb',
-      },
-      {
-        label: 'Homework Part 3 — Clustering Waste (open in Colab)',
-        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/workshop/homework/HW3_clustering_waste_student.ipynb',
-      },
-      {
+        group: 'Exercises',
         label: 'Exercise repository — FDD-WE0-public (GitHub)',
         url: 'https://github.com/eth-fdd-fs26/FDD-WE0-public',
       },
       {
-        label: 'Nuclear Central Manager Workshop — homework guide',
-        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/Nuclear_Central_Manager_Workshop.pdf',
-      },
-      {
+        group: 'Lecture slides',
         label: 'Intro — lecture slides (PDF)',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/slides/00_intro-slides.pdf',
       },
       {
+        group: 'Lecture slides',
         label: 'Python Classes — lecture slides (Daniele, PDF)',
         url: 'https://polybox.ethz.ch/index.php/s/qCfFoMN9YrjE2bi',
       },
       {
+        group: 'Lecture slides',
         label: 'NumPy & Linear Algebra — lecture slides (Carlos, PDF)',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/slides/01_numpy-linalg-slides.pdf',
       },
       {
+        group: 'Lecture slides',
         label: 'scikit-learn — lecture slides (Carlos, PDF)',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/slides/03_sklearn-slides.pdf',
       },
       {
+        group: 'Lecture slides',
         label: 'Data & Visualization — lecture slides (Adrian, PDF)',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/slides/04_Data%20and%20Visualization.pdf',
       },
       {
+        group: 'Lecture slides',
         label: 'Intro to PyTorch, Part 1 — lecture slides (Dimitrios, PDF)',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/slides/05_intro_to_pytorch_p1.pdf',
       },
       {
+        group: 'Lecture slides',
         label: 'PyTorch, Part 2 — lecture slides (Juan, PDF)',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/slides/06_PyTorch_Part2.pdf',
       },
       {
+        group: 'Homework',
+        label: 'Homework Part 1 — Pump Cleaning & Fitting (open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/workshop/homework/HW1_pump_cleaning_fitting_student.ipynb',
+      },
+      {
+        group: 'Homework',
+        label: 'Homework Part 2 — Basin Temperature (open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/workshop/homework/HW2_basin_temperature_student.ipynb',
+      },
+      {
+        group: 'Homework',
+        label: 'Homework Part 3 — Clustering Waste (open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/workshop/homework/HW3_clustering_waste_student.ipynb',
+      },
+      {
+        group: 'Homework',
         label: 'Homework Presentation — slides (PDF)',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/slides/Homework%20Presentation.pdf',
+      },
+      {
+        group: 'Homework',
+        label: 'Nuclear Central Manager Workshop — homework guide',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/Nuclear_Central_Manager_Workshop.pdf',
       },
     ],
   },
