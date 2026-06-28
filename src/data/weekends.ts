@@ -214,6 +214,41 @@ export const weekends: Weekend[] = [
         url: 'https://github.com/eth-fdd-fs26/FDD-WE0-public',
       },
       {
+        group: 'Solutions',
+        label: 'Block 1 — NumPy & Course Recommender (solution, open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/solutions/01_numpy_course_recommender_solution_additional.ipynb',
+      },
+      {
+        group: 'Solutions',
+        label: 'Block 2 — Python Classes, Part 1 (solution, open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/solutions/02a_python_classes_solution.ipynb',
+      },
+      {
+        group: 'Solutions',
+        label: 'Block 2 — OOP & Light Gradient Descent, Part 2 (solution, open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/solutions/02b_OOP_light_gd_solution.ipynb',
+      },
+      {
+        group: 'Solutions',
+        label: 'Block 3 — scikit-learn Churn Prediction (solution, open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/solutions/03_sklearn_churn_solution_prop.ipynb',
+      },
+      {
+        group: 'Solutions',
+        label: 'Block 4 — Dataframes & Visualization (solution, open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/solutions/04_dataframes_and_visualizations_solution.ipynb',
+      },
+      {
+        group: 'Solutions',
+        label: 'Block 5 — PyTorch Tensors & NNs (solution, open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/solutions/05_pytorch_tensors_nn_solution.ipynb',
+      },
+      {
+        group: 'Solutions',
+        label: 'Block 6 — PyTorch Training Hazards (solution, open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/exercises/solutions/06_pytorch_training_hazards_solution.ipynb',
+      },
+      {
         group: 'Lecture slides',
         label: 'Intro — lecture slides (PDF)',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/slides/00_intro-slides.pdf',
