@@ -31,6 +31,16 @@ export function HomePage() {
                 <dd>Lectures, coding exercises &amp; projects</dd>
               </div>
             </dl>
+            <div className="hero__cta">
+              <a
+                className="btn btn--ghost"
+                href="https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/slides/00_intro-slides.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Course intro &amp; administration slides (PDF)
+              </a>
+            </div>
           </div>
         </div>
       </section>

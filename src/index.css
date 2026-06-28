@@ -203,6 +203,9 @@ h3 {
   font-weight: 700;
   font-size: 0.98rem;
 }
+.hero__cta {
+  margin-top: 28px;
+}
 
 /* ---------- Section ---------- */
 .section {
