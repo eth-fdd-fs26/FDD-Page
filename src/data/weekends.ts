@@ -40,6 +40,10 @@ export const weekends: Weekend[] = [
             label: 'Slides',
             url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/slides/01_numpy-linalg-slides.pdf',
           },
+          {
+            label: 'Annotated',
+            url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/slides/01_numpy-linalg-slides-annotated.pdf',
+          },
         ],
       },
       {
@@ -82,6 +86,10 @@ export const weekends: Weekend[] = [
           {
             label: 'Slides',
             url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/slides/03_sklearn-slides.pdf',
+          },
+          {
+            label: 'Annotated',
+            url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/slides/03_sklearn-slides-annotated.pdf',
           },
         ],
       },
@@ -265,8 +273,18 @@ export const weekends: Weekend[] = [
       },
       {
         group: 'Lecture slides',
+        label: 'NumPy & Linear Algebra, annotated lecture slides (Carlos, PDF)',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/slides/01_numpy-linalg-slides-annotated.pdf',
+      },
+      {
+        group: 'Lecture slides',
         label: 'scikit-learn — lecture slides (Carlos, PDF)',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/slides/03_sklearn-slides.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'scikit-learn, annotated lecture slides (Carlos, PDF)',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE0-public/main/slides/03_sklearn-slides-annotated.pdf',
       },
       {
         group: 'Lecture slides',
