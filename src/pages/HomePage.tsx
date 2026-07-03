@@ -40,7 +40,21 @@ export function HomePage() {
               >
                 Course intro &amp; administration slides (PDF)
               </a>
+              <a
+                className="btn btn--ghost"
+                href="https://video.ethz.ch/lectures/d-infk/2026/autumn/275-0005-00L"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Lecture recordings (video.ethz.ch)
+              </a>
             </div>
+            <p className="hero__note">
+              Recordings are password-protected. Access credentials were sent to participants
+              by email. If you need them, contact{' '}
+              <a href="mailto:avalica@student.ethz.ch">Adrian Valica</a> or{' '}
+              <a href="mailto:ddekas@student.ethz.ch">Dimitrios Dekas</a>.
+            </p>
           </div>
         </div>
       </section>
