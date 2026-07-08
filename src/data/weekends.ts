@@ -360,7 +360,15 @@ export const weekends: Weekend[] = [
       { time: '11:00', title: 'Kaggle + Competitive ML (preprocessing, …)', type: 'exercise' },
       { time: '12:00', title: 'Intro to Project', type: 'project', who: 'Francesco' },
     ],
-    resources: placeholderResources(),
+    resources: [
+      {
+        group: 'Setup',
+        label: 'Installation guide — VS Code + Claude Code',
+        url: 'guides/installation-guide.html',
+      },
+      { label: 'Lecture slides — to be added', url: '#' },
+      { label: 'Exercise notebooks — to be added', url: '#' },
+    ],
   },
   {
     id: 'we2',

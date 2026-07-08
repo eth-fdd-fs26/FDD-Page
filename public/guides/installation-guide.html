@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Installation Guide: VS Code + Claude Code — FDD 2026</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <style>
+    :root {
+      --eth-blue: #215caf;
+      --eth-blue-dark: #14386b;
+      --eth-petrol: #007a92;
+      --eth-red: #b7352d;
+      --ink: #1a1a1a;
+      --ink-soft: #3c3c3c;
+      --ink-faint: #6f6f6f;
+      --line: #d9d9d9;
+      --line-soft: #ececec;
+      --bg: #ffffff;
+      --bg-tint: #f4f4f4;
+      --font: 'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', sans-serif;
+      --mono: 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.55;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a { color: var(--eth-blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .topbar {
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar__inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 14px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+    }
+    .topbar__brand {
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+    .topbar__back { font-size: 0.9rem; }
+
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 40px 32px 72px;
+    }
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.75rem;
+      color: var(--eth-blue);
+      font-weight: 700;
+      margin: 0 0 8px;
+    }
+    h1 {
+      font-size: 2rem;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin: 0 0 12px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      letter-spacing: -0.01em;
+      margin: 2.2em 0 0.5em;
+      padding-top: 1.1em;
+      border-top: 1px solid var(--line-soft);
+    }
+    h3 {
+      font-size: 1.05rem;
+      margin: 1.6em 0 0.4em;
+    }
+    .lede {
+      color: var(--ink-soft);
+      margin: 0 0 4px;
+    }
+    .meta {
+      color: var(--ink-faint);
+      font-size: 0.9rem;
+      margin: 0 0 8px;
+    }
+
+    ul, ol { padding-left: 1.4em; margin: 0.5em 0 1em; }
+    li { margin: 0.3em 0; }
+
+    code {
+      font-family: var(--mono);
+      font-size: 0.88em;
+      background: var(--bg-tint);
+      border: 1px solid var(--line-soft);
+      padding: 1px 5px;
+    }
+    pre {
+      background: var(--bg-tint);
+      border: 1px solid var(--line-soft);
+      padding: 12px 16px;
+      overflow-x: auto;
+      margin: 0.6em 0 1.2em;
+    }
+    pre code {
+      background: none;
+      border: none;
+      padding: 0;
+      font-size: 0.88rem;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 0.6em 0 1.2em;
+      font-size: 0.95rem;
+    }
+    th, td {
+      text-align: left;
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--line-soft);
+      vertical-align: top;
+    }
+    th {
+      border-bottom: 2px solid var(--ink);
+      font-weight: 700;
+    }
+
+    .note {
+      border-left: 3px solid var(--eth-petrol);
+      background: var(--bg-tint);
+      padding: 10px 16px;
+      margin: 0.8em 0 1.2em;
+      color: var(--ink-soft);
+    }
+    .warn {
+      border-left: 3px solid var(--eth-red);
+      background: var(--bg-tint);
+      padding: 10px 16px;
+      margin: 0.8em 0 1.2em;
+      color: var(--ink-soft);
+    }
+
+    figure {
+      margin: 1em 0 1.4em;
+    }
+    figure img {
+      max-width: 100%;
+      display: block;
+      border: 1px solid var(--line);
+    }
+    figcaption {
+      font-size: 0.85rem;
+      color: var(--ink-faint);
+      margin-top: 6px;
+    }
+
+    .checklist { list-style: none; padding-left: 0; }
+    .checklist li {
+      padding-left: 1.6em;
+      position: relative;
+    }
+    .checklist li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.35em;
+      width: 0.75em;
+      height: 0.75em;
+      border: 1.5px solid var(--ink-faint);
+    }
+
+    .trouble dt {
+      font-weight: 700;
+      margin-top: 1em;
+    }
+    .trouble dd {
+      margin: 0.2em 0 0 0;
+      color: var(--ink-soft);
+    }
+
+    @media (max-width: 640px) {
+      .topbar__inner, main { padding-left: 20px; padding-right: 20px; }
+      h1 { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar__inner">
+      <span class="topbar__brand">FDD 2026 — From Data to Decisions</span>
+      <a class="topbar__back" href="../#/weekend/we1">&larr; Back to Weekend 1</a>
+    </div>
+  </div>
+
+  <main>
+    <p class="eyebrow">Weekend 1 · Setup</p>
+    <h1>Installation Guide: VS Code + Claude Code</h1>
+    <p class="meta"><strong>Time:</strong> ~15–20 minutes &nbsp;|&nbsp; <strong>You'll end up with:</strong> VS Code installed, Claude Code installed, and a working terminal session where you've successfully talked to Claude.</p>
+    <p class="lede">This guide has no prior assumptions. If you've never opened a terminal before, that's fine — every step is spelled out.</p>
+
+    <h2 id="before-you-start">Before you start</h2>
+    <ul>
+      <li>A laptop (Windows, Mac, or Linux) with an internet connection</li>
+      <li>A Claude account with a paid plan: <strong>Pro, Max, Team, or Enterprise</strong></li>
+    </ul>
+    <p><strong>How to obtain a Claude account?</strong> Sign up at <a href="https://claude.ai">claude.ai</a> using your institutional account, in the format <code>ETHusername@ethz.ch</code>, because we have provided you with a Claude Pro licence. If you have any problems setting up your account, please send an email to <a href="mailto:fcaperna@ethz.ch">fcaperna@ethz.ch</a>.</p>
+    <div class="warn"><strong>Important:</strong> <code>ETHusername@ethz.ch</code> (not @student or personal one!)</div>
+    <p>There are two things we're installing:</p>
+    <ol>
+      <li><strong>VS Code</strong> — the code editor (where you'll see and edit files)</li>
+      <li><strong>Claude Code</strong> — the AI coding assistant (runs in a terminal, and plugs into VS Code)</li>
+    </ol>
+
+    <h2>Part 1 — Install VS Code</h2>
+    <p>Go to <a href="https://code.visualstudio.com/download">code.visualstudio.com/download</a>. The page detects your operating system and shows you the right button — just click the big blue download button for your platform.</p>
+
+    <h3>Windows</h3>
+    <ol>
+      <li>Click the <strong>Windows</strong> download button (this gets the "User Installer" — the normal option, no admin rights needed).</li>
+      <li>Open the downloaded <code>.exe</code> file and run through the installer.</li>
+      <li>On the "Select Additional Tasks" screen, make sure <strong>"Add to PATH"</strong> is checked (it is by default). Leave everything else as-is and click <strong>Next</strong> → <strong>Install</strong>.</li>
+      <li>Launch VS Code from the Start menu when it finishes.</li>
+    </ol>
+
+    <h3>macOS</h3>
+    <ol>
+      <li>Click the <strong>Mac</strong> download button (choose "Apple Silicon" if you have an M-series Mac — 2020 or later — or "Intel chip" for an older Mac; if unsure, "Universal" works on both).</li>
+      <li>Open the downloaded <code>.zip</code> — it extracts to <code>Visual Studio Code.app</code>.</li>
+      <li>Drag <code>Visual Studio Code.app</code> into your <strong>Applications</strong> folder.</li>
+      <li>Open it from Applications (or Spotlight: <code>Cmd+Space</code>, type "Visual Studio Code").</li>
+    </ol>
+
+    <h3>Linux</h3>
+    <ol>
+      <li>On the download page, pick the package for your distribution: <code>.deb</code> for Ubuntu/Debian, <code>.rpm</code> for Fedora/RHEL, or install via <strong>Snap Store</strong> if you prefer.</li>
+      <li>For <code>.deb</code>: double-click the file to open it in your software installer, or run <code>sudo apt install ./&lt;file&gt;.deb</code> in a terminal.</li>
+      <li>For <code>.rpm</code>: <code>sudo dnf install ./&lt;file&gt;.rpm</code> (Fedora) or your distro's equivalent.</li>
+    </ol>
+
+    <h2>Part 2 — Open a terminal</h2>
+    <p>Claude Code is installed and run from a terminal. Here's how to open one:</p>
+    <table>
+      <thead>
+        <tr><th>OS</th><th>How to open it</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Windows</strong></td><td>Click <strong>Start</strong>, type <code>PowerShell</code>, press Enter on <strong>Windows PowerShell</strong></td></tr>
+        <tr><td><strong>macOS</strong></td><td>Press <code>Cmd+Space</code>, type <code>Terminal</code>, press Enter</td></tr>
+        <tr><td><strong>Linux</strong></td><td><code>Ctrl+Alt+T</code>, or search "Terminal" in your app menu</td></tr>
+      </tbody>
+    </table>
+    <p>You'll see a blinking cursor waiting for a command. That's normal — it's just waiting for you to type something.</p>
+    <div class="note"><strong>Windows tip:</strong> make sure your prompt looks like <code>PS C:\Users\YourName&gt;</code> (starts with <code>PS</code>). If it just says <code>C:\Users\YourName&gt;</code> with no <code>PS</code>, you're in the older Command Prompt instead — close it and open <strong>PowerShell</strong> as above.</div>
+
+    <h2>Part 3 — Install Claude Code</h2>
+    <p>Copy the command for your OS, paste it into the terminal you just opened, and press Enter.</p>
+    <div class="note">To paste into a terminal: <strong>Windows/Linux</strong> — right-click, or <code>Ctrl+Shift+V</code>. <strong>Mac</strong> — <code>Cmd+V</code>.</div>
+
+    <h3>Windows (PowerShell)</h3>
+    <pre><code>irm https://claude.ai/install.ps1 | iex</code></pre>
+
+    <h3>macOS</h3>
+    <pre><code>curl -fsSL https://claude.ai/install.sh | bash</code></pre>
+
+    <h3>Linux</h3>
+    <pre><code>curl -fsSL https://claude.ai/install.sh | bash</code></pre>
+
+    <p>This downloads and installs Claude Code, and updates itself automatically in the background from now on — nothing more to do after this.</p>
+
+    <h3>Verify it worked</h3>
+    <p>In the same terminal, type:</p>
+    <pre><code>claude --version</code></pre>
+    <p>If you see a version number (e.g. <code>2.1.89</code>), it worked. If you get an error like <code>command not found</code> or <code>'claude' is not recognized</code>, <strong>close the terminal window completely and open a new one</strong> (this refreshes the terminal's knowledge of newly installed programs), then try again.</p>
+
+    <h2>Part 4 — Sign in</h2>
+    <p>Still in the terminal, type:</p>
+    <pre><code>claude</code></pre>
+    <p>and press Enter. This launches Claude Code and opens your browser to log in. Sign in with the same Claude account you use at claude.ai (must be Pro, Max, Team, or Enterprise — see <a href="#before-you-start">Before you start</a>). Once you approve access in the browser, come back to the terminal — you should see a Claude Code welcome screen.</p>
+    <p>Type <code>exit</code> (or press <code>Ctrl+C</code> twice) to leave for now.</p>
+
+    <h2>Part 5 — Connect Claude Code to VS Code</h2>
+    <p>This is the easiest part — it happens automatically.</p>
+    <ol>
+      <li>
+        <p>Open VS Code.</p>
+      </li>
+      <li>
+        <p><strong>Open a folder.</strong> From the Welcome tab, click <strong>Open Folder...</strong> under "Start" (or use <strong>File → Open Folder...</strong> from the menu bar), then pick or create a project folder to work in.</p>
+        <figure>
+          <img src="images/open-folder.png" alt="Open Folder highlighted on the VS Code Welcome screen" loading="lazy" />
+        </figure>
+      </li>
+      <li>
+        <p><strong>Create a file in that folder.</strong> Use <strong>File → New File...</strong> (or the shortcut shown in the menu) and save it into the folder you just opened.</p>
+        <figure>
+          <img src="images/new-file.png" alt="New File highlighted in the VS Code File menu" loading="lazy" />
+        </figure>
+      </li>
+      <li>
+        <p><strong>Open the built-in terminal</strong>: <strong>View → Terminal</strong> in the menu bar (or the shortcut <code>Ctrl+`</code> on Windows/Linux, <code>Cmd+`</code> on Mac).</p>
+        <figure>
+          <img src="images/open-terminal.png" alt="Terminal highlighted in the VS Code View menu" loading="lazy" />
+          <figcaption>Screenshot shown is from Windows — on macOS/Linux the menu is in the same place, just with different keyboard shortcuts.</figcaption>
+        </figure>
+      </li>
+      <li>
+        <p>In that terminal (inside VS Code), type <code>claude</code> and press Enter.</p>
+      </li>
+    </ol>
+    <p>The first time you do this, VS Code automatically installs the <strong>Claude Code extension</strong>, which gives you a nice chat panel alongside your files, inline diffs when Claude edits code, and more. Look for the <strong>✱ spark icon</strong> in the top-right corner of any open file, or in the left sidebar — click it to open the Claude panel.</p>
+    <p>That's it — you're set up.</p>
+
+    <h2>Quick checklist</h2>
+    <ul class="checklist">
+      <li>VS Code installed and opens</li>
+      <li>Terminal opens (PowerShell / Terminal)</li>
+      <li><code>claude --version</code> shows a version number</li>
+      <li><code>claude</code> launches and you're signed in</li>
+      <li>Spark icon (✱) visible in VS Code</li>
+    </ul>
+
+    <h2>Troubleshooting</h2>
+    <dl class="trouble">
+      <dt><code>irm</code> is not recognized</dt>
+      <dd>You're in Command Prompt, not PowerShell. Close it and reopen via Start menu → search "PowerShell".</dd>
+      <dt><code>'claude' is not recognized</code> / <code>command not found</code>, even after installing</dt>
+      <dd>Close <em>all</em> terminal and VS Code windows and reopen them. The install adds <code>claude</code> to your system PATH, but only newly-opened windows pick that up.</dd>
+      <dt>Nothing happens when I paste the install command</dt>
+      <dd>Make sure you pressed Enter after pasting — pasting alone doesn't run it.</dd>
+      <dt>Browser doesn't open for sign-in</dt>
+      <dd>Copy the URL printed in the terminal and paste it into your browser manually.</dd>
+      <dt>Still stuck</dt>
+      <dd>Ask your instructor, or see the official docs at <a href="https://code.claude.com/docs">code.claude.com/docs</a> and <a href="https://code.visualstudio.com/docs">code.visualstudio.com/docs</a>.</dd>
+    </dl>
+  </main>
+</body>
+</html>
