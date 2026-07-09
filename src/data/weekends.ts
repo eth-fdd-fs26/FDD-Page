@@ -340,12 +340,29 @@ export const weekends: Weekend[] = [
     summary:
       'From the mathematical foundations of information theory and Gaussian processes to the practical craft of winning ML competitions with ensembles and strong preprocessing.',
     friday: [
-      { time: '08:00', title: 'Gaussian Distributions & Gaussian Processes', type: 'lecture', who: 'Carlos' },
+      {
+        time: '08:00',
+        title: 'Gaussian Distributions & Gaussian Processes',
+        type: 'lecture',
+        who: 'Carlos',
+        links: [
+          { label: 'Roadmap', url: 'https://fdd-hs26.github.io/projects/w1-intro-roadmap-slides.pdf' },
+          { label: 'Slides', url: 'https://fdd-hs26.github.io/projects/w1-gaussian-processes-slides.pdf' },
+        ],
+      },
       { time: '09:00', title: 'Gaussian Exercises', type: 'exercise' },
       { time: '10:00', title: 'Coffee break', type: 'break' },
       { time: '10:30', title: 'Information Theory — Entropy & Kullback–Leibler Divergence', type: 'lecture', who: 'Matina' },
       { time: '11:00', title: 'Information Theory', type: 'exercise' },
-      { time: '12:00', title: 'IT Active Learning & Bayesian Optimization', type: 'lecture', who: 'Carlos' },
+      {
+        time: '12:00',
+        title: 'IT Active Learning & Bayesian Optimization',
+        type: 'lecture',
+        who: 'Carlos',
+        links: [
+          { label: 'Slides', url: 'https://fdd-hs26.github.io/projects/w1-active-learning-slides.pdf' },
+        ],
+      },
       { time: '13:00', title: 'Lunch break', type: 'break' },
       { time: '14:00', title: 'Info-theoretic Active Learning', type: 'exercise' },
       { time: '15:00', title: 'Coffee break', type: 'break' },
