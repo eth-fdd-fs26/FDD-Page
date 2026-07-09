@@ -372,10 +372,24 @@ export const weekends: Weekend[] = [
         ],
       },
       { time: '13:00', title: 'Lunch break', type: 'break' },
-      { time: '14:00', title: 'Info-theoretic Active Learning', type: 'exercise' },
+      {
+        time: '14:00',
+        title: 'Info-theoretic Active Learning',
+        type: 'exercise',
+        links: [
+          { label: 'Part 1: Bayesian Optimization', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE1-public/blob/main/exercises/03a_cx_bo_student.ipynb'},
+        ],
+      },
       { time: '15:00', title: 'Coffee break', type: 'break' },
       { time: '15:30', title: 'Claude Code', type: 'lecture', who: 'Francesco, Deli' },
-      { time: '16:00', title: 'Claude Code', type: 'exercise' },
+      {
+        time: '16:00',
+        title: 'Claude Code',
+        type: 'exercise',
+        links: [
+          { label: 'Operation Midnight Launch (brief)', url: 'https://github.com/eth-fdd-fs26/FDD-WE1-public/blob/main/exercises/04_operation-midnight-launch.md' },
+        ],
+      },
     ],
     saturday: [
       { time: '08:00', title: 'Ensembles: XGBoost + Random Forests', type: 'lecture', who: 'Deli' },
@@ -396,8 +410,51 @@ export const weekends: Weekend[] = [
         label: 'Installation guide — VS Code + Claude Code',
         url: 'guides/installation-guide.html',
       },
-      { label: 'Lecture slides — to be added', url: '#' },
-      { label: 'Exercise notebooks — to be added', url: '#' },
+      {
+        group: 'Exercises',
+        label: 'Block 1 — Gaussian Distributions (exercise, open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE1-public/blob/main/exercises/01a_cx_gaussian_distributions_student.ipynb',
+      },
+      {
+        group: 'Exercises',
+        label: 'Block 1 — Gaussian Process (exercise, open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE1-public/blob/main/exercises/01b_cx_gaussian_process_student.ipynb',
+      },
+      {
+        group: 'Exercises',
+        label: 'Block 3 — Bayesian Optimization (exercise, open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE1-public/blob/main/exercises/03a_cx_bo_student.ipynb',
+      },
+      {
+        group: 'Exercises',
+        label: 'Block 4 — Claude Code: Operation Midnight Launch (brief, GitHub)',
+        url: 'https://github.com/eth-fdd-fs26/FDD-WE1-public/blob/main/exercises/04_operation-midnight-launch.md',
+      },
+      {
+        group: 'Exercises',
+        label: 'Block 5 — Ensembles: XGBoost & Random Forests (exercise, open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE1-public/blob/main/exercises/05_cx_ensembles_student.ipynb',
+      },
+      {
+        group: 'Exercises',
+        label: 'Exercise repository — FDD-WE1-public (GitHub)',
+        url: 'https://github.com/eth-fdd-fs26/FDD-WE1-public',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'Gaussian Processes — intro & roadmap slides (PDF)',
+        url: 'https://fdd-hs26.github.io/projects/w1-intro-roadmap-slides.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'Gaussian Distributions & Gaussian Processes — lecture slides (Carlos, PDF)',
+        url: 'https://fdd-hs26.github.io/projects/w1-gaussian-processes-slides.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'IT Active Learning & Bayesian Optimization — lecture slides (Carlos, PDF)',
+        url: 'https://fdd-hs26.github.io/projects/w1-active-learning-slides.pdf',
+      },
     ],
   },
   {
