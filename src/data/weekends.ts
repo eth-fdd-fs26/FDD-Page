@@ -350,7 +350,14 @@ export const weekends: Weekend[] = [
           { label: 'Slides', url: 'https://fdd-hs26.github.io/projects/w1-gaussian-processes-slides.pdf' },
         ],
       },
-      { time: '09:00', title: 'Gaussian Exercises', type: 'exercise' },
+      { 
+        time: '09:00', 
+        title: 'Gaussian Exercises', 
+        type: 'exercise',
+        links: [
+          { label: 'Part 1: Gaussian Distributions', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE1-public/blob/main/exercises/01a_cx_gaussian_distributions_student.ipynb'},
+        ],
+      },
       { time: '10:00', title: 'Coffee break', type: 'break' },
       { time: '10:30', title: 'Information Theory — Entropy & Kullback–Leibler Divergence', type: 'lecture', who: 'Matina' },
       { time: '11:00', title: 'Information Theory', type: 'exercise' },
