@@ -361,7 +361,12 @@ export const weekends: Weekend[] = [
       },
       { time: '10:00', title: 'Coffee break', type: 'break' },
       { time: '10:30', title: 'Information Theory — Entropy & Kullback–Leibler Divergence', type: 'lecture', who: 'Matina' },
-      { time: '11:00', title: 'Information Theory', type: 'exercise' },
+      {
+        time: '11:00',
+        title: 'Information Theory',
+        type: 'exercise',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE1-public/blob/main/exercises/02_cx_information_theory_student.ipynb',
+      },
       {
         time: '12:00',
         title: 'IT Active Learning & Bayesian Optimization',
@@ -378,6 +383,7 @@ export const weekends: Weekend[] = [
         type: 'exercise',
         links: [
           { label: 'Part 1: Bayesian Optimization', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE1-public/blob/main/exercises/03a_cx_bo_student.ipynb'},
+          { label: 'Part 2: Active Learning', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE1-public/blob/main/exercises/03b_cx_active_learning_student.ipynb'},
         ],
       },
       { time: '15:00', title: 'Coffee break', type: 'break' },
@@ -422,8 +428,18 @@ export const weekends: Weekend[] = [
       },
       {
         group: 'Exercises',
+        label: 'Block 2 — Information Theory (exercise, open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE1-public/blob/main/exercises/02_cx_information_theory_student.ipynb',
+      },
+      {
+        group: 'Exercises',
         label: 'Block 3 — Bayesian Optimization (exercise, open in Colab)',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE1-public/blob/main/exercises/03a_cx_bo_student.ipynb',
+      },
+      {
+        group: 'Exercises',
+        label: 'Block 3 — Active Learning (exercise, open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE1-public/blob/main/exercises/03b_cx_active_learning_student.ipynb',
       },
       {
         group: 'Exercises',
