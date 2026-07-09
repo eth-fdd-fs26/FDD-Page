@@ -378,7 +378,12 @@ export const weekends: Weekend[] = [
     ],
     saturday: [
       { time: '08:00', title: 'Ensembles: XGBoost + Random Forests', type: 'lecture', who: 'Deli' },
-      { time: '09:00', title: 'Ensembles', type: 'exercise' },
+      {
+        time: '09:00',
+        title: 'Ensembles',
+        type: 'exercise',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE1-public/blob/main/exercises/05_cx_ensembles_student.ipynb',
+      },
       { time: '10:00', title: 'Coffee break', type: 'break' },
       { time: '10:30', title: 'Kaggle + Competitive ML', type: 'lecture', who: 'Francesco' },
       { time: '11:00', title: 'Kaggle + Competitive ML (preprocessing, …)', type: 'exercise' },
