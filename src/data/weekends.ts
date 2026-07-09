@@ -356,6 +356,7 @@ export const weekends: Weekend[] = [
         type: 'exercise',
         links: [
           { label: 'Part 1: Gaussian Distributions', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE1-public/blob/main/exercises/01a_cx_gaussian_distributions_student.ipynb'},
+          { label: 'Part 2: Gaussian Process', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE1-public/blob/main/exercises/01b_cx_gaussian_process_student.ipynb'},
         ],
       },
       { time: '10:00', title: 'Coffee break', type: 'break' },
