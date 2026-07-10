@@ -415,7 +415,12 @@ export const weekends: Weekend[] = [
       },
       { time: '10:00', title: 'Coffee break', type: 'break' },
       { time: '10:30', title: 'Kaggle + Competitive ML', type: 'lecture', who: 'Francesco' },
-      { time: '11:00', title: 'Kaggle + Competitive ML (preprocessing, …)', type: 'exercise' },
+      {
+        time: '11:00',
+        title: 'Kaggle + Competitive ML (preprocessing, …)',
+        type: 'exercise',
+        url: 'https://www.kaggle.com/competitions/fdd-exercise-hotel-booking-cancellation-prediction/overview',
+      },
       { time: '12:00', title: 'Intro to Project', type: 'project', who: 'Francesco' },
     ],
     resources: [
@@ -463,6 +468,11 @@ export const weekends: Weekend[] = [
         group: 'Exercises',
         label: 'Block 5 — Ensembles: XGBoost & Random Forests (exercise, open in Colab)',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE1-public/blob/main/exercises/05_cx_ensembles_student.ipynb',
+      },
+      {
+        group: 'Exercises',
+        label: 'Block 6 — Competitive ML: Hotel Booking Cancellation (Kaggle competition)',
+        url: 'https://www.kaggle.com/competitions/fdd-exercise-hotel-booking-cancellation-prediction/overview',
       },
       {
         group: 'Exercises',
