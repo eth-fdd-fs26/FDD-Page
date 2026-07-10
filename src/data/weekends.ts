@@ -360,7 +360,8 @@ export const weekends: Weekend[] = [
         ],
       },
       { time: '10:00', title: 'Coffee break', type: 'break' },
-      { time: '10:30', title: 'Information Theory — Entropy & Kullback–Leibler Divergence', type: 'lecture', who: 'Matina', url:'https://github.com/eth-fdd-fs26/FDD-WE1-public/blob/main/slides/info_theory_lecture.pdf' },
+      { time: '10:30', title: 'Information Theory — Entropy & Kullback–Leibler Divergence', type: 'lecture', who: 'Matina',links: [
+          { label: 'Slides', url:'https://github.com/eth-fdd-fs26/FDD-WE1-public/blob/main/slides/info_theory_lecture.pdf' },
       {
         time: '11:00',
         title: 'Information Theory',
