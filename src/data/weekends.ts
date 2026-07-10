@@ -393,6 +393,7 @@ export const weekends: Weekend[] = [
         type: 'lecture',
         who: 'Francesco, Deli',
         links: [
+          { label: 'Slides', url: 'https://github.com/eth-fdd-fs26/FDD-WE1-public/blob/main/slides/04_Claude_code.pdf' },
           { label: 'Video', url: 'https://youtu.be/Sx16rk9VvS4' },
         ],
       },
@@ -493,6 +494,11 @@ export const weekends: Weekend[] = [
         group: 'Lecture slides',
         label: 'IT Active Learning & Bayesian Optimization — lecture slides (Carlos, PDF)',
         url: 'https://fdd-hs26.github.io/projects/w1-active-learning-slides.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'Claude Code — lecture slides (Francesco, Deli, PDF)',
+        url: 'https://github.com/eth-fdd-fs26/FDD-WE1-public/blob/main/slides/04_Claude_code.pdf',
       },
     ],
   },
