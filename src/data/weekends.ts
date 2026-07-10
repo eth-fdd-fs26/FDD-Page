@@ -387,7 +387,15 @@ export const weekends: Weekend[] = [
         ],
       },
       { time: '15:00', title: 'Coffee break', type: 'break' },
-      { time: '15:30', title: 'Claude Code', type: 'lecture', who: 'Francesco, Deli' },
+      {
+        time: '15:30',
+        title: 'Claude Code',
+        type: 'lecture',
+        who: 'Francesco, Deli',
+        links: [
+          { label: 'Video', url: 'https://youtu.be/Sx16rk9VvS4' },
+        ],
+      },
       {
         time: '16:00',
         title: 'Claude Code',
@@ -445,6 +453,11 @@ export const weekends: Weekend[] = [
         group: 'Exercises',
         label: 'Block 4 — Claude Code: Operation Midnight Launch (brief, GitHub)',
         url: 'https://github.com/eth-fdd-fs26/FDD-WE1-public/blob/main/exercises/04_operation-midnight-launch.md',
+      },
+      {
+        group: 'Exercises',
+        label: 'Block 4 — Claude Code: lecture recording (YouTube)',
+        url: 'https://youtu.be/Sx16rk9VvS4',
       },
       {
         group: 'Exercises',
