@@ -463,6 +463,11 @@ export const weekends: Weekend[] = [
     ],
     resources: [
       {
+        group: 'Quiz',
+        label: 'Quiz',
+        url: 'https://docs.google.com/forms/d/e/1FAIpQLSd716MEmeON50uoWPrRo0PbyXBDlqfxeJR-nObDaPq770jFlQ/viewform?usp=dialog',
+      },
+      {
         group: 'Setup',
         label: 'Installation guide — VS Code + Claude Code',
         url: 'guides/installation-guide.html',
@@ -481,11 +486,6 @@ export const weekends: Weekend[] = [
         group: 'Project',
         label: 'Submission script — submission.py (GitHub)',
         url: 'https://github.com/eth-fdd-fs26/FDD-WE1-public/blob/main/submission.py',
-      },
-      {
-        group: 'Quiz',
-        label: 'quiz',
-        url: 'https://docs.google.com/forms/d/e/1FAIpQLSd716MEmeON50uoWPrRo0PbyXBDlqfxeJR-nObDaPq770jFlQ/viewform?usp=dialog',
       },
       {
         group: 'Exercises',
