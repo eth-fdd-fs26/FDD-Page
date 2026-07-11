@@ -430,7 +430,15 @@ export const weekends: Weekend[] = [
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE1-public/blob/main/exercises/05_cx_ensembles_student.ipynb',
       },
       { time: '10:00', title: 'Coffee break', type: 'break' },
-      { time: '10:30', title: 'Kaggle + Competitive ML', type: 'lecture', who: 'Francesco' },
+      {
+        time: '10:30',
+        title: 'Kaggle + Competitive ML',
+        type: 'lecture',
+        who: 'Francesco',
+        links: [
+          { label: 'Slides', url: 'https://github.com/eth-fdd-fs26/FDD-WE1-public/blob/main/slides/06_kaggle_competition.pdf' },
+        ],
+      },
       {
         time: '11:00',
         title: 'Kaggle + Competitive ML (preprocessing, …)',
@@ -532,6 +540,11 @@ export const weekends: Weekend[] = [
         group: 'Lecture slides',
         label: 'Ensembles: XGBoost & Random Forests — lecture slides (Deli, PDF)',
         url: 'https://github.com/eth-fdd-fs26/FDD-WE1-public/blob/main/slides/05_Ensembles.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'Kaggle + Competitive ML — lecture slides (Francesco, PDF)',
+        url: 'https://github.com/eth-fdd-fs26/FDD-WE1-public/blob/main/slides/06_kaggle_competition.pdf',
       },
     ],
   },
