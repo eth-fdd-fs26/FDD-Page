@@ -452,6 +452,7 @@ export const weekends: Weekend[] = [
         who: 'Francesco',
         links: [
           { label: 'Kaggle competition', url: 'https://www.kaggle.com/competitions/eth-fdd-competition' },
+          { label: 'Slides', url: 'https://github.com/eth-fdd-fs26/FDD-WE1-public/blob/main/slides/Project%20week%201.pdf' },
         ],
       },
     ],
@@ -465,6 +466,11 @@ export const weekends: Weekend[] = [
         group: 'Project',
         label: 'Kaggle ML Competition — ETH FDD',
         url: 'https://www.kaggle.com/competitions/eth-fdd-competition',
+      },
+      {
+        group: 'Project',
+        label: 'Project intro — slides (PDF)',
+        url: 'https://github.com/eth-fdd-fs26/FDD-WE1-public/blob/main/slides/Project%20week%201.pdf',
       },
       {
         group: 'Exercises',
