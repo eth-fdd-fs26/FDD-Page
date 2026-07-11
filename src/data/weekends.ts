@@ -437,7 +437,15 @@ export const weekends: Weekend[] = [
         type: 'exercise',
         url: 'https://www.kaggle.com/competitions/fdd-exercise-hotel-booking-cancellation-prediction/overview',
       },
-      { time: '12:00', title: 'Intro to Project', type: 'project', who: 'Francesco' },
+      {
+        time: '12:00',
+        title: 'Intro to Project',
+        type: 'project',
+        who: 'Francesco',
+        links: [
+          { label: 'Kaggle competition', url: 'https://www.kaggle.com/competitions/eth-fdd-competition' },
+        ],
+      },
     ],
     resources: [
       {
