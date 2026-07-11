@@ -446,6 +446,11 @@ export const weekends: Weekend[] = [
         url: 'guides/installation-guide.html',
       },
       {
+        group: 'Project',
+        label: 'Kaggle ML Competition — ETH FDD',
+        url: 'https://www.kaggle.com/competitions/eth-fdd-competition',
+      },
+      {
         group: 'Exercises',
         label: 'Block 1 — Gaussian Distributions (exercise, open in Colab)',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE1-public/blob/main/exercises/01a_cx_gaussian_distributions_student.ipynb',
