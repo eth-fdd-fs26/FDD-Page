@@ -453,6 +453,7 @@ export const weekends: Weekend[] = [
         links: [
           { label: 'Kaggle competition', url: 'https://www.kaggle.com/competitions/eth-fdd-competition' },
           { label: 'Slides', url: 'https://github.com/eth-fdd-fs26/FDD-WE1-public/blob/main/slides/Project%20week%201.pdf' },
+          { label: 'Lecture notes', url: 'https://www.apollo-platform.xyz/notes/6f103c68-3b56-4657-8533-a01dd5e245ec' },
         ],
       },
     ],
