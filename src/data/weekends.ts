@@ -347,7 +347,9 @@ export const weekends: Weekend[] = [
         who: 'Carlos',
         links: [
           { label: 'Roadmap', url: 'https://fdd-hs26.github.io/projects/w1-intro-roadmap-slides.pdf' },
+          { label: 'Roadmap (annotated)', url: 'https://fdd-hs26.github.io/projects/w1-intro-roadmap-slides-annotated.pdf' },
           { label: 'Slides', url: 'https://fdd-hs26.github.io/projects/w1-gaussian-processes-slides.pdf' },
+          { label: 'Slides (annotated)', url: 'https://fdd-hs26.github.io/projects/w1-gaussian-processes-slides-annotated.pdf' },
         ],
       },
       { 
@@ -381,6 +383,7 @@ export const weekends: Weekend[] = [
         who: 'Carlos',
         links: [
           { label: 'Slides', url: 'https://fdd-hs26.github.io/projects/w1-active-learning-slides.pdf' },
+          { label: 'Annotated', url: 'https://fdd-hs26.github.io/projects/w1-active-learning-slides-annotated.pdf' },
         ],
       },
       { time: '13:00', title: 'Lunch break', type: 'break' },
