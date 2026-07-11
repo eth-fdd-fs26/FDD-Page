@@ -414,7 +414,15 @@ export const weekends: Weekend[] = [
       },
     ],
     saturday: [
-      { time: '08:00', title: 'Ensembles: XGBoost + Random Forests', type: 'lecture', who: 'Deli' },
+      {
+        time: '08:00',
+        title: 'Ensembles: XGBoost + Random Forests',
+        type: 'lecture',
+        who: 'Deli',
+        links: [
+          { label: 'Slides', url: 'https://github.com/eth-fdd-fs26/FDD-WE1-public/blob/main/slides/05_Ensembles.pdf' },
+        ],
+      },
       {
         time: '09:00',
         title: 'Ensembles',
@@ -506,6 +514,11 @@ export const weekends: Weekend[] = [
         group: 'Lecture slides',
         label: 'Claude Code — lecture slides (Francesco, Deli, PDF)',
         url: 'https://github.com/eth-fdd-fs26/FDD-WE1-public/blob/main/slides/04_Claude_code.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'Ensembles: XGBoost & Random Forests — lecture slides (Deli, PDF)',
+        url: 'https://github.com/eth-fdd-fs26/FDD-WE1-public/blob/main/slides/05_Ensembles.pdf',
       },
     ],
   },
