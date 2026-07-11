@@ -483,6 +483,11 @@ export const weekends: Weekend[] = [
         url: 'https://github.com/eth-fdd-fs26/FDD-WE1-public/blob/main/submission.py',
       },
       {
+        group: 'Quiz',
+        label: 'quiz',
+        url: 'https://docs.google.com/forms/d/e/1FAIpQLSd716MEmeON50uoWPrRo0PbyXBDlqfxeJR-nObDaPq770jFlQ/viewform?usp=dialog',
+      },
+      {
         group: 'Exercises',
         label: 'Block 1 — Gaussian Distributions (exercise, open in Colab)',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE1-public/blob/main/exercises/01a_cx_gaussian_distributions_student.ipynb',
