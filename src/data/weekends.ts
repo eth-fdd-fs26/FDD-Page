@@ -601,7 +601,13 @@ export const weekends: Weekend[] = [
       { time: '11:00', title: 'Prompt Optimization + GEPA', type: 'exercise' },
       { time: '12:00', title: 'Intro to Project', type: 'project', who: 'Adrian, Francesco' },
     ],
-    resources: placeholderResources(),
+    resources: [
+      {
+        group: 'Exercises',
+        label: 'Confounding & Selection Exercise (interactive)',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE2-public/main/2_confounding_selection_exercise.html',
+      },
+    ],
   },
   {
     id: 'we3',
@@ -647,7 +653,7 @@ export const weekends: Weekend[] = [
     category: 'preparatory',
     project: 'Project WE4',
     summary:
-      'A modern tour of reinforcement learning: policy gradients with REINFORCE, generalized advantage estimation, and the PPO algorithm that powers much of today’s RL and RLHF.',
+      'A modern tour of reinforcement learning: policy gradients with REINFORCE, generalized advantage estimation, and the PPO algorithm that powers much of today's RL and RLHF.',
     friday: [
       { time: '08:00', title: 'Re-intro to RL', type: 'lecture' },
       { time: '09:00', title: 'Coding Exercise', type: 'exercise' },
@@ -747,7 +753,7 @@ export const weekends: Weekend[] = [
     startISO: '2026-08-28',
     category: 'mandatory',
     summary:
-      'How modern AI is trained and served at scale: parallel computing, distributed training, efficient inference (quantization, batching), MLOps, and architectures like MoE and Flash Attention.',
+      'How modern AI is trained and served at scale: parallel computing, distributed training, efficient inference (quantization, batching), MLOps, and architectures like MoE and Flash Attention.[...]',
     friday: [
       { time: '08:00', title: 'Parallel Computing', type: 'lecture' },
       { time: '09:00', title: 'Coding Exercise', type: 'exercise' },
