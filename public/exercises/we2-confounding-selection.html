@@ -1,0 +1,1192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Confounding &amp; Selection Bias</title>
+<style>
+:root{
+  --bg:#ffffff;
+  --bg2:#f8f9fc;
+  --bg3:#f1f3f8;
+  --card:#ffffff;
+  --border:#e4e7ef;
+  --border2:#d0d5e4;
+  --text:#0f172a;
+  --text2:#374151;
+  --text3:#64748b;
+  --muted:#94a3b8;
+  --ok:#059669;
+  --ok-bg:#ecfdf5;
+  --ok-border:#6ee7b7;
+  --bad:#dc2626;
+  --bad-bg:#fef2f2;
+  --bad-border:#fca5a5;
+  --info:#2563eb;
+  --info-bg:#eff6ff;
+  --info-border:#93c5fd;
+  --accent:#0f172a;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,'Segoe UI',Roboto,'Helvetica Neue',Arial;background:var(--bg);color:var(--text)}
+html{scroll-behavior:smooth;scroll-snap-type:y mandatory}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+
+
+/* ── Main layout ── */
+main{max-width:none;width:100%;margin:0;padding:0 64px}
+.page{display:block}
+
+/* ── Segments ── */
+.segment{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px 0;overflow:visible;scroll-snap-align:start}
+.segment.slide-scroll{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px 0;overflow:visible;scroll-snap-align:start}
+.segment.has-sidebar{overflow:visible;justify-content:flex-start;padding-top:80px;scroll-snap-align:start}
+.segment-inner{width:100%}
+.segment-heading{font-size:clamp(28px,3.4vw,44px);font-weight:800;letter-spacing:-0.02em;margin:0 0 14px;line-height:1.1;color:var(--text)}
+.segment-lead{color:var(--text3);font-size:17px;line-height:1.6;margin:0 0 28px;max-width:80ch}
+.segment-eyebrow{display:inline-block;letter-spacing:0.12em;text-transform:uppercase;font-size:11.5px;font-weight:600;color:#6366f1;background:#eef2ff;border:1px solid #c7d2fe;padding:5px 12px;border-radius:999px;margin-bottom:18px}
+
+/* ── Hero ── */
+.hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;background:radial-gradient(1100px 500px at 20% 20%,rgba(99,102,241,0.07),transparent 60%),radial-gradient(900px 500px at 80% 80%,rgba(192,132,252,0.06),transparent 60%),var(--bg);margin:0 -64px;padding:48px 64px;overflow:hidden;scroll-snap-align:start}
+.hero .scroll-cue{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);margin:0}
+.hero-inner{display:grid;grid-template-columns:1fr;gap:32px;align-items:center;max-width:900px;width:100%}
+.eyebrow{display:inline-block;letter-spacing:0.12em;text-transform:uppercase;font-size:12px;font-weight:600;color:#6366f1;background:#eef2ff;border:1px solid #c7d2fe;padding:6px 14px;border-radius:999px;margin-bottom:28px}
+.hero-title{margin:0 0 22px;font-size:clamp(44px,6vw,84px);line-height:1.1;font-weight:800;letter-spacing:-0.025em;color:var(--text)}
+.grad{background:linear-gradient(135deg,#3b82f6 0%,#8b5cf6 50%,#ec4899 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-sub{margin:0;font-size:18px;line-height:1.55;color:var(--text3);max-width:60ch}
+
+/* ── Scroll-reveal ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal.d1{transition-delay:.10s}
+.reveal.d2{transition-delay:.25s}
+.reveal.d3{transition-delay:.40s}
+.reveal.d4{transition-delay:.55s}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+/* ── Scroll cue ── */
+.scroll-cue{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--muted);font-size:12px;letter-spacing:0.18em;text-transform:uppercase}
+.scroll-cue .chev{font-size:22px;color:var(--info);animation:bob 1.6s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+
+/* ── Cards & panels ── */
+.card{background:var(--card);border:1px solid var(--border);padding:18px 22px;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+.panel{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:20px 22px}
+
+.rule-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+@media(max-width:900px){.rule-grid{grid-template-columns:1fr}}
+.rule-card{display:flex;gap:14px;align-items:flex-start;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px 18px;transition:transform .15s,border-color .15s,box-shadow .15s}
+.rule-card:hover{transform:translateY(-2px);border-color:var(--border2);box-shadow:0 4px 12px rgba(0,0,0,0.08)}
+.rule-icon{font-size:26px;line-height:1;flex-shrink:0}
+.rule-body{font-size:14px;line-height:1.5;color:var(--text2)}
+
+.concept-card{background:var(--info-bg);border:1px solid var(--info-border);border-left:4px solid var(--info);border-radius:10px;padding:18px 22px;max-width:760px}
+.concept-tag{display:inline-block;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:var(--info);margin-bottom:8px}
+.concept-card p{margin:0;color:var(--text2);line-height:1.6;font-size:15px}
+
+/* ── Progress pips ── */
+.progress-bar{display:flex;gap:7px;margin-bottom:24px}
+.pip{height:6px;flex:1;border-radius:3px;background:var(--border);transition:background .35s}
+.pip.done-ok{background:var(--ok)}
+.pip.done-bad{background:var(--bad)}
+.pip.active{background:var(--info)}
+
+/* ── Gradient CTA button ── */
+.game-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 22px;border-radius:12px;border:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#fff;background:linear-gradient(135deg,#3b82f6 0%,#8b5cf6 55%,#ec4899 100%);background-size:200% 100%;background-position:0% 50%;box-shadow:0 4px 16px -4px rgba(59,130,246,0.40),inset 0 1px 0 rgba(255,255,255,0.2);transition:background-position .4s,transform .12s,box-shadow .2s;overflow:hidden}
+.game-btn:hover{background-position:100% 50%;box-shadow:0 8px 24px -6px rgba(139,92,246,0.45),inset 0 1px 0 rgba(255,255,255,0.25);transform:translateY(-1px)}
+.game-btn:active{transform:translateY(0) scale(0.985)}
+.game-btn-icon{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,0.2);font-size:14px}
+
+button.secondary{background:transparent;border:1px solid var(--border2);padding:10px 18px;border-radius:8px;color:var(--text2);cursor:pointer;font-weight:500;font-size:14px;font-family:inherit;transition:background .15s}
+button.secondary:hover{background:var(--bg2)}
+
+/* ── Choice buttons ── */
+.choice-btn{flex:1;min-width:120px;padding:13px 14px;font-size:14px;font-family:inherit;font-weight:600;border:1px solid var(--border);border-radius:10px;background:var(--bg);color:var(--text2);cursor:pointer;transition:background .15s,border-color .15s,transform .1s;text-align:center}
+.choice-btn:hover{background:var(--bg2);border-color:var(--border2);transform:translateY(-1px)}
+.choice-btn.correct{background:var(--ok-bg);border-color:var(--ok-border);color:var(--ok)}
+.choice-btn.wrong{background:var(--bad-bg);border-color:var(--bad-border);color:var(--bad)}
+.choice-btn.disabled{pointer-events:none;opacity:.55}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+
+/* ── Feedback panels ── */
+.quiz-explain{margin-top:16px;padding:14px 18px;border-radius:10px;font-size:14px;line-height:1.65;display:none}
+.quiz-explain.show{display:block}
+.quiz-explain .verdict{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;margin-bottom:6px}
+.quiz-explain.correct{background:var(--ok-bg);border:1px solid var(--ok-border);border-left:4px solid var(--ok)}
+.quiz-explain.correct .verdict{color:var(--ok)}
+.quiz-explain.incorrect{background:var(--bad-bg);border:1px solid var(--bad-border);border-left:4px solid var(--bad)}
+.quiz-explain.incorrect .verdict{color:var(--bad)}
+.quiz-explain p{margin:0;color:var(--text2)}
+
+/* ── Next button ── */
+.next-btn{margin-top:14px;padding:10px 22px;font-size:14px;font-family:inherit;font-weight:600;border:1px solid var(--border2);border-radius:8px;background:var(--bg2);color:var(--text2);cursor:pointer;display:none;transition:background .15s}
+.next-btn:hover{background:var(--bg3)}
+.next-btn.show{display:inline-block}
+
+/* ── Hint ── */
+.hint-box{margin-top:10px;padding:10px 14px;border-radius:8px;background:var(--info-bg);border:1px solid var(--info-border);color:var(--info);font-size:13.5px;display:none}
+.hint-box.show{display:block}
+.hint-toggle{display:inline-block;margin-top:10px;font-size:12.5px;color:var(--info);cursor:pointer;user-select:none}
+
+/* ── Stat / score ── */
+.stat-value{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:52px;font-weight:800;line-height:1;letter-spacing:-0.02em;background:linear-gradient(135deg,#3b82f6 0%,#8b5cf6 55%,#ec4899 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat-label{font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:var(--muted);margin-bottom:6px}
+.score-block{display:none;text-align:center;padding:20px 0}
+.score-block.show{display:block}
+.score-msg{color:var(--text3);font-size:14px;margin-top:10px}
+
+/* ── Code template ── */
+code{background:var(--bg3);padding:2px 6px;border-radius:4px;font-size:12.5px;font-family:ui-monospace,Menlo,monospace;color:var(--text2)}
+
+/* ── MCQ ── */
+.mcq-counter{font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6366f1;margin-bottom:18px}
+.mcq-question{font-size:clamp(18px,2vw,24px);font-weight:700;line-height:1.35;color:var(--text);margin:0 0 28px;max-width:68ch}
+.mcq-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:720px}
+@media(max-width:700px){.mcq-opts{grid-template-columns:1fr}}
+.mcq-opt{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:12px;background:var(--bg);border:1.5px solid var(--border);cursor:pointer;font-size:15px;line-height:1.45;color:var(--text2);text-align:left;font-family:inherit;transition:background .15s,border-color .15s,opacity .2s,transform .12s;width:100%}
+.mcq-opt:hover:not(:disabled){background:var(--bg2);border-color:var(--border2);transform:translateY(-1px)}
+.mcq-opt:active:not(:disabled){transform:translateY(0)}
+.mcq-letter{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;background:var(--bg2);border:1px solid var(--border);font-size:13px;font-weight:700;color:var(--text3);flex-shrink:0;transition:background .15s,border-color .15s,color .15s}
+.mcq-opt:hover:not(:disabled) .mcq-letter{background:var(--bg3);border-color:var(--border2)}
+.mcq-opt.wrong{background:var(--bad-bg);border-color:var(--bad-border);opacity:.55;cursor:not-allowed;transform:none}
+.mcq-opt.wrong .mcq-letter{background:var(--bad-bg);border-color:var(--bad-border);color:var(--bad)}
+.mcq-opt.wrong:hover{background:var(--bad-bg);border-color:var(--bad-border);transform:none}
+.mcq-opt.correct{background:var(--ok-bg);border-color:var(--ok-border);cursor:default}
+.mcq-opt.correct .mcq-letter{background:var(--ok);border-color:var(--ok);color:#fff}
+.mcq-opt:disabled{cursor:not-allowed}
+.mcq-explain{margin-top:24px;padding:16px 20px;border-radius:10px;display:none;max-width:720px}
+.mcq-explain.show{display:block}
+.mcq-explain.correct{background:var(--ok-bg);border:1px solid var(--ok-border);border-left:4px solid var(--ok)}
+.mcq-explain .verdict{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;color:var(--ok);margin-bottom:6px}
+.mcq-explain.incorrect{background:var(--bad-bg);border:1px solid var(--bad-border);border-left:4px solid var(--bad)}
+.mcq-explain.incorrect .verdict{color:var(--bad)}
+.mcq-explain p{margin:0;color:var(--text2);line-height:1.6;font-size:14.5px}
+.mcq-tries{font-size:12.5px;color:var(--muted);margin-top:10px}
+
+/* ── D-sep two-column layout ── */
+.dsep-grid{display:grid;grid-template-columns:1fr 260px;gap:48px;align-items:start;width:100%}
+.dsep-dag{position:sticky;top:80px;padding:16px 18px;background:var(--bg2);border:1px solid var(--border);border-radius:12px}
+@media(max-width:900px){.dsep-grid{grid-template-columns:1fr}.dsep-dag{display:none}}
+.replay-btn{margin-top:14px;padding:10px 22px;font-size:14px;font-family:inherit;font-weight:600;border:1px solid var(--border2);border-radius:8px;background:var(--bg);color:var(--text2);cursor:pointer;transition:background .15s}
+.replay-btn:hover{background:var(--bg2)}
+
+/* ── Part 04: dataset + code editor ── */
+.data-table{width:100%;border-collapse:collapse;font-size:13.5px;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.data-table th{text-align:left;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;font-weight:700;color:var(--text3);background:var(--bg2);padding:10px 14px;border-bottom:1px solid var(--border)}
+.data-table td{padding:9px 14px;border-bottom:1px solid var(--border);color:var(--text2);font-family:ui-monospace,Menlo,monospace}
+.data-table tr:last-child td{border-bottom:none}
+.data-table td.yes{color:var(--ok);font-weight:600}
+.data-table td.no{color:var(--text3)}
+.dataset-stat{min-width:160px}
+.dataset-stat .stat-label{font-size:10.5px}
+.dataset-stat .stat-num{font-size:26px;font-weight:800;color:var(--text);font-family:ui-monospace,Menlo,monospace}
+
+/* ── ANYmal-style dark exercise card (styles copied from anymal_app_new.html, scoped so the rest of this page is unaffected) ── */
+.code-exercise-dark{width:100%;max-width:100%;background:#111827;color:#e6eef8;border-radius:12px;padding:18px 22px;box-shadow:0 6px 20px rgba(2,6,23,0.4)}
+.code-exercise-dark .taskbox{background:#0b1220;border:1px solid rgba(96,165,250,0.30);border-left:4px solid #60a5fa;border-radius:8px;padding:14px 18px;margin:6px 0 14px 0}
+.code-exercise-dark .taskbox h3{margin:0 0 8px 0;font-size:15px;color:#60a5fa}
+.code-exercise-dark .taskbox p{margin:6px 0;color:#d1d8e6}
+.code-exercise-dark .taskbox ol,.code-exercise-dark .taskbox ul{margin:6px 0 0 0;padding-left:20px}
+.code-exercise-dark .taskbox ol li,.code-exercise-dark .taskbox ul li{margin:4px 0;line-height:1.55;color:#d1d8e6}
+.code-exercise-dark .taskbox .tag{display:inline-block;font-family:ui-monospace,Menlo,monospace;font-size:12px;background:rgba(251,113,133,0.18);color:#fb7185;padding:1px 8px;border-radius:4px;margin-right:6px}
+.code-exercise-dark .taskbox code{background:rgba(255,255,255,0.08);color:#e6eef8}
+.code-exercise-dark .mdp-context{font-size:13px;color:#94a3b8;font-style:italic;margin-top:8px;border-top:1px dashed rgba(255,255,255,0.06);padding-top:8px}
+.code-exercise-dark pre.template{background:#0b1220;border:1px solid rgba(255,255,255,0.06);padding:12px;border-radius:8px;overflow:auto;font-size:13px;line-height:1.6;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#e6eef8}
+.code-exercise-dark pre.template .kw{color:#c084fc}
+.code-exercise-dark pre.template .fn{color:#60a5fa}
+.code-exercise-dark pre.template .cls{color:#5eead4}
+.code-exercise-dark pre.template .num{color:#fbbf24}
+.code-exercise-dark pre.template .str{color:#86efac}
+.code-exercise-dark pre.template .com{color:#64748b;font-style:italic}
+.code-exercise-dark pre.template .self{color:#f472b6}
+.code-exercise-dark pre.template .op{color:#94a3b8}
+.code-exercise-dark pre.template input.inline{font-family:inherit;font-size:inherit;background:rgba(251,113,133,0.10);color:#ffd9df;border:1px solid rgba(251,113,133,0.4);border-radius:4px;padding:1px 6px;outline:none;min-width:160px;transition:background .15s,border-color .15s}
+.code-exercise-dark pre.template input.inline:focus{background:rgba(96,165,250,0.12);border-color:#60a5fa;color:#e6eef8}
+.code-exercise-dark pre.template input.inline.ok{background:rgba(52,211,153,0.14);border-color:#34d399;color:#d1fae5}
+.code-exercise-dark pre.template input.inline.bad{background:rgba(251,113,133,0.18);border-color:#fb7185;color:#ffd9df}
+.code-exercise-dark .btnrow{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.code-exercise-dark button.primary{background:#f5f5f5;border:none;padding:10px 18px;border-radius:8px;color:#06202b;cursor:pointer;font-weight:600;font-size:14px;font-family:inherit}
+.code-exercise-dark button.primary:hover{filter:brightness(1.05)}
+.code-exercise-dark button.secondary{background:transparent;border:1px solid rgba(255,255,255,0.18);padding:10px 18px;border-radius:8px;color:#e6eef8;cursor:pointer;font-weight:500;font-size:14px;font-family:inherit}
+.code-exercise-dark button.secondary:hover{background:rgba(255,255,255,0.05)}
+.code-exercise-dark .feedback{margin-top:10px;padding:10px 14px;border-radius:8px;font-size:13.5px;display:none}
+.code-exercise-dark .feedback.ok{display:block;background:rgba(52,211,153,0.12);border:1px solid #34d399;color:#34d399}
+.code-exercise-dark .feedback.bad{display:block;background:rgba(251,113,133,0.12);border:1px solid #fb7185;color:#fb7185}
+.code-exercise-dark .hint-box{margin-top:10px;padding:10px 14px;border-radius:8px;background:rgba(96,165,250,0.10);border:1px solid rgba(96,165,250,0.4);color:#bfdbfe;font-size:13.5px;display:none}
+.code-exercise-dark .hint-box.show{display:block}
+</style>
+</head>
+<body>
+
+<main>
+
+<!-- ═══════════ HERO ═══════════ -->
+<div class="hero" id="hero">
+  <div class="hero-inner">
+    <div>
+      <h1 class="hero-title reveal d1">Spot the<br><span class="grad">bias.</span></h1>
+      <p class="hero-sub reveal d2">Four exercises on confounding, selection bias, d-separation, and correcting bias in code — the core threats to causal inference in observational research.</p>
+    </div>
+  </div>
+  <div class="scroll-cue reveal d4" aria-hidden="true">
+    <span>scroll</span><div class="chev">↓</div>
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 1 — GAME ═══════════ -->
+<section class="page" id="p1">
+  <div class="segment">
+    <div class="segment-inner">
+      <div class="segment-eyebrow reveal">Part 01</div>
+      <h2 class="segment-heading reveal d1">Spot the bias.</h2>
+      <p class="segment-lead reveal d2">Seven real-world scenarios — each conceals a confound, a selection problem, or neither. Read the scenario, use the hint if you need it, then classify.</p>
+      <div class="rule-grid reveal d3">
+        <div class="rule-card"><div class="rule-icon">🔀</div><div class="rule-body"><strong>Confounding</strong> — a third variable is associated with both exposure and outcome, distorting the apparent relationship.</div></div>
+        <div class="rule-card"><div class="rule-icon">🎯</div><div class="rule-body"><strong>Selection bias</strong> — who ends up in the study is systematically different from the target population.</div></div>
+        <div class="rule-card"><div class="rule-icon">✓</div><div class="rule-body"><strong>Neither</strong> — the study design adequately protects against both threats.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="segment" id="game-segment">
+    <div class="segment-inner" style="max-width:760px">
+      <div class="progress-bar" id="pips"></div>
+      <div id="game-area"></div>
+      <div class="score-block" id="game-score">
+        <div class="stat-label">Your score</div>
+        <div class="stat-value" id="game-score-num"></div>
+        <div class="score-msg" id="game-score-msg"></div>
+        <button class="replay-btn" onclick="initGame()">Play again</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════ PAGE 2 — MCQ ═══════════ -->
+<section class="page" id="p2">
+  <div class="segment">
+    <div class="segment-inner">
+      <div class="segment-eyebrow reveal">Part 02</div>
+      <h2 class="segment-heading reveal d1">Multiple choice.</h2>
+      <p class="segment-lead reveal d2">Five questions on confounding and selection bias. Click your answer — the explanation appears immediately. No going back.</p>
+      <div class="concept-card reveal d3">
+        <div class="concept-tag">Tip</div>
+        <p>Distinguish between <em>who is in the study</em> (selection) and <em>what is distorting the association</em> (confounding). Ask: could a third variable explain this link? And: is the sample representative of the target population?</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="mcq-slides"></div>
+</section>
+
+<!-- ═══════════ PAGE 3 — D-SEPARATION ═══════════ -->
+<section class="page" id="p3">
+
+  <!-- 4a: intro -->
+  <div class="segment has-sidebar">
+    <div class="dsep-grid">
+      <div class="segment-inner">
+        <div class="segment-eyebrow reveal">Part 03</div>
+        <h2 class="segment-heading reveal d1">D-separation.</h2>
+        <p class="segment-lead reveal d2">Reading independence and dependence off a causal graph. All exercises use the <strong>sprinkler network</strong> on the right — it stays visible as you work through each slide.</p>
+        <div style="display:flex;flex-direction:column;gap:10px" class="reveal d3">
+          <div class="concept-card" style="border-left-color:#8b5cf6">
+            <div class="concept-tag" style="color:#8b5cf6">Chain &nbsp; A → M → B</div>
+            <p>Influence flows through M. Conditioning on M <strong>blocks</strong> the path; not conditioning leaves it open.</p>
+          </div>
+          <div class="concept-card" style="border-left-color:#ec4899">
+            <div class="concept-tag" style="color:#ec4899">Fork &nbsp; A ← M → B</div>
+            <p>Common cause M. Conditioning on M <strong>blocks</strong> the path; not conditioning leaves it open.</p>
+          </div>
+          <div class="concept-card" style="border-left-color:#f59e0b;background:#fffbeb;border-color:#fde68a">
+            <div class="concept-tag" style="color:#b45309">Collider &nbsp; A → M ← B</div>
+            <p>Blocked by default. Conditioning on M or any descendant of M <strong>opens</strong> the path.</p>
+          </div>
+        </div>
+      </div>
+      <div class="dsep-dag reveal d2">
+        <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#6366f1;margin-bottom:12px">Sprinkler network</div>
+        <svg viewBox="0 0 320 310" width="100%" style="display:block;max-width:280px">
+          <defs><marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="3.5" orient="auto"><path d="M0,0 L8,3.5 L0,7 Z" fill="#6366f1"/></marker></defs>
+          <g font-family="Inter,ui-sans-serif,system-ui,sans-serif" font-size="13" text-anchor="middle">
+            <ellipse cx="160" cy="36" rx="50" ry="20" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/><text x="160" y="40" fill="#3730a3" font-weight="600">Season</text>
+            <ellipse cx="68" cy="128" rx="54" ry="20" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/><text x="68" y="132" fill="#3730a3" font-weight="600">Sprinkler</text>
+            <ellipse cx="252" cy="128" rx="42" ry="20" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/><text x="252" y="132" fill="#3730a3" font-weight="600">Rain</text>
+            <ellipse cx="160" cy="210" rx="36" ry="20" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/><text x="160" y="214" fill="#3730a3" font-weight="600">Wet</text>
+            <ellipse cx="160" cy="278" rx="48" ry="20" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/><text x="160" y="282" fill="#3730a3" font-weight="600">Slippery</text>
+          </g>
+          <g stroke="#6366f1" stroke-width="1.5" fill="none" marker-end="url(#arr)">
+            <line x1="128" y1="50" x2="95" y2="111"/>
+            <line x1="192" y1="50" x2="230" y2="111"/>
+            <line x1="100" y1="143" x2="136" y2="193"/>
+            <line x1="222" y1="143" x2="184" y2="193"/>
+            <line x1="160" y1="230" x2="160" y2="260"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4b: Part A -->
+  <div class="segment has-sidebar" id="dsep-a" style="height:auto;min-height:100vh;overflow:visible;padding-bottom:75vh">
+    <div class="dsep-grid">
+      <div class="segment-inner">
+        <div class="segment-eyebrow">Part A — Name the shape</div>
+        <h3 class="segment-heading" style="font-size:clamp(22px,2.4vw,32px);margin-bottom:8px">Chain, fork, or collider?</h3>
+        <p class="segment-lead" style="font-size:15px;margin-bottom:24px">For each triple, identify the shape of the middle node. Click your answer.</p>
+        <div id="shape-qs"></div>
+      </div>
+      <div class="dsep-dag">
+        <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#6366f1;margin-bottom:12px">Sprinkler network</div>
+        <svg viewBox="0 0 320 310" width="100%" style="display:block;max-width:280px">
+          <defs><marker id="arr2" markerWidth="8" markerHeight="8" refX="7" refY="3.5" orient="auto"><path d="M0,0 L8,3.5 L0,7 Z" fill="#6366f1"/></marker></defs>
+          <g font-family="Inter,ui-sans-serif,system-ui,sans-serif" font-size="13" text-anchor="middle">
+            <ellipse cx="160" cy="36" rx="50" ry="20" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/><text x="160" y="40" fill="#3730a3" font-weight="600">Season</text>
+            <ellipse cx="68" cy="128" rx="54" ry="20" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/><text x="68" y="132" fill="#3730a3" font-weight="600">Sprinkler</text>
+            <ellipse cx="252" cy="128" rx="42" ry="20" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/><text x="252" y="132" fill="#3730a3" font-weight="600">Rain</text>
+            <ellipse cx="160" cy="210" rx="36" ry="20" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/><text x="160" y="214" fill="#3730a3" font-weight="600">Wet</text>
+            <ellipse cx="160" cy="278" rx="48" ry="20" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/><text x="160" y="282" fill="#3730a3" font-weight="600">Slippery</text>
+          </g>
+          <g stroke="#6366f1" stroke-width="1.5" fill="none" marker-end="url(#arr2)">
+            <line x1="128" y1="50" x2="95" y2="111"/>
+            <line x1="192" y1="50" x2="230" y2="111"/>
+            <line x1="100" y1="143" x2="136" y2="193"/>
+            <line x1="222" y1="143" x2="184" y2="193"/>
+            <line x1="160" y1="230" x2="160" y2="260"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4c: Part B -->
+  <div class="segment has-sidebar" id="dsep-b" style="height:auto;min-height:100vh;overflow:visible;padding-bottom:75vh">
+    <div class="dsep-grid">
+      <div class="segment-inner">
+        <div class="segment-eyebrow">Part B — Open or blocked?</div>
+        <h3 class="segment-heading" style="font-size:clamp(22px,2.4vw,32px);margin-bottom:8px">Is this path active?</h3>
+        <p class="segment-lead" style="font-size:15px;margin-bottom:24px">Each item gives a single path and a conditioning set Z. Decide whether the path is open or blocked, then see the explanation.</p>
+        <div id="path-qs"></div>
+      </div>
+      <div class="dsep-dag">
+        <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#6366f1;margin-bottom:12px">Sprinkler network</div>
+        <svg viewBox="0 0 320 310" width="100%" style="display:block;max-width:280px">
+          <defs><marker id="arr3" markerWidth="8" markerHeight="8" refX="7" refY="3.5" orient="auto"><path d="M0,0 L8,3.5 L0,7 Z" fill="#6366f1"/></marker></defs>
+          <g font-family="Inter,ui-sans-serif,system-ui,sans-serif" font-size="13" text-anchor="middle">
+            <ellipse cx="160" cy="36" rx="50" ry="20" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/><text x="160" y="40" fill="#3730a3" font-weight="600">Season</text>
+            <ellipse cx="68" cy="128" rx="54" ry="20" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/><text x="68" y="132" fill="#3730a3" font-weight="600">Sprinkler</text>
+            <ellipse cx="252" cy="128" rx="42" ry="20" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/><text x="252" y="132" fill="#3730a3" font-weight="600">Rain</text>
+            <ellipse cx="160" cy="210" rx="36" ry="20" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/><text x="160" y="214" fill="#3730a3" font-weight="600">Wet</text>
+            <ellipse cx="160" cy="278" rx="48" ry="20" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/><text x="160" y="282" fill="#3730a3" font-weight="600">Slippery</text>
+          </g>
+          <g stroke="#6366f1" stroke-width="1.5" fill="none" marker-end="url(#arr3)">
+            <line x1="128" y1="50" x2="95" y2="111"/>
+            <line x1="192" y1="50" x2="230" y2="111"/>
+            <line x1="100" y1="143" x2="136" y2="193"/>
+            <line x1="222" y1="143" x2="184" y2="193"/>
+            <line x1="160" y1="230" x2="160" y2="260"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4d: Part C -->
+  <div class="segment has-sidebar" id="dsep-c" style="height:auto;min-height:100vh;overflow:visible;padding-bottom:75vh">
+    <div class="dsep-grid" style="align-items:start">
+      <div class="segment-inner">
+        <div class="segment-eyebrow">Part C — Independence?</div>
+        <h3 class="segment-heading" style="font-size:clamp(22px,2.4vw,32px);margin-bottom:8px">Are these two variables independent?</h3>
+        <p class="segment-lead" style="font-size:15px;margin-bottom:24px">Each question names two variables and a set of variables being conditioned on. Consider <em>all</em> paths between the pair — are they all blocked? Answer Yes (independent) or No (dependent).</p>
+        <div id="indep-qs"></div>
+      </div>
+      <div class="dsep-dag" style="top:80px">
+        <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#6366f1;margin-bottom:12px">Sprinkler network</div>
+        <svg viewBox="0 0 320 310" width="100%" style="display:block;max-width:280px">
+          <defs><marker id="arr4" markerWidth="8" markerHeight="8" refX="7" refY="3.5" orient="auto"><path d="M0,0 L8,3.5 L0,7 Z" fill="#6366f1"/></marker></defs>
+          <g font-family="Inter,ui-sans-serif,system-ui,sans-serif" font-size="13" text-anchor="middle">
+            <ellipse cx="160" cy="36" rx="50" ry="20" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/><text x="160" y="40" fill="#3730a3" font-weight="600">Season</text>
+            <ellipse cx="68" cy="128" rx="54" ry="20" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/><text x="68" y="132" fill="#3730a3" font-weight="600">Sprinkler</text>
+            <ellipse cx="252" cy="128" rx="42" ry="20" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/><text x="252" y="132" fill="#3730a3" font-weight="600">Rain</text>
+            <ellipse cx="160" cy="210" rx="36" ry="20" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/><text x="160" y="214" fill="#3730a3" font-weight="600">Wet</text>
+            <ellipse cx="160" cy="278" rx="48" ry="20" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/><text x="160" y="282" fill="#3730a3" font-weight="600">Slippery</text>
+          </g>
+          <g stroke="#6366f1" stroke-width="1.5" fill="none" marker-end="url(#arr4)">
+            <line x1="128" y1="50" x2="95" y2="111"/>
+            <line x1="192" y1="50" x2="230" y2="111"/>
+            <line x1="100" y1="143" x2="136" y2="193"/>
+            <line x1="222" y1="143" x2="184" y2="193"/>
+            <line x1="160" y1="230" x2="160" y2="260"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4e: Part D -->
+  <div class="segment has-sidebar" id="dsep-d" style="height:auto;min-height:100vh;overflow:visible;padding-bottom:75vh">
+    <div class="dsep-grid" style="align-items:start">
+      <div class="segment-inner">
+        <div class="segment-eyebrow">Part D — Putting it together</div>
+        <h3 class="segment-heading" style="font-size:clamp(22px,2.4vw,32px);margin-bottom:8px">Confounding &amp; back-doors.</h3>
+        <p class="segment-lead" style="font-size:15px;margin-bottom:24px">Two structured questions. Write your answer, then reveal the solution.</p>
+        <div id="compound-qs"></div>
+      </div>
+      <div class="dsep-dag" style="top:80px">
+        <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#6366f1;margin-bottom:12px">Sprinkler network</div>
+        <svg viewBox="0 0 320 310" width="100%" style="display:block;max-width:280px">
+          <defs><marker id="arr5" markerWidth="8" markerHeight="8" refX="7" refY="3.5" orient="auto"><path d="M0,0 L8,3.5 L0,7 Z" fill="#6366f1"/></marker></defs>
+          <g font-family="Inter,ui-sans-serif,system-ui,sans-serif" font-size="13" text-anchor="middle">
+            <ellipse cx="160" cy="36" rx="50" ry="20" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/><text x="160" y="40" fill="#3730a3" font-weight="600">Season</text>
+            <ellipse cx="68" cy="128" rx="54" ry="20" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/><text x="68" y="132" fill="#3730a3" font-weight="600">Sprinkler</text>
+            <ellipse cx="252" cy="128" rx="42" ry="20" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/><text x="252" y="132" fill="#3730a3" font-weight="600">Rain</text>
+            <ellipse cx="160" cy="210" rx="36" ry="20" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/><text x="160" y="214" fill="#3730a3" font-weight="600">Wet</text>
+            <ellipse cx="160" cy="278" rx="48" ry="20" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/><text x="160" y="282" fill="#3730a3" font-weight="600">Slippery</text>
+          </g>
+          <g stroke="#6366f1" stroke-width="1.5" fill="none" marker-end="url(#arr5)">
+            <line x1="128" y1="50" x2="95" y2="111"/>
+            <line x1="192" y1="50" x2="230" y2="111"/>
+            <line x1="100" y1="143" x2="136" y2="193"/>
+            <line x1="222" y1="143" x2="184" y2="193"/>
+            <line x1="160" y1="230" x2="160" y2="260"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ═══════════ PAGE 4 — CODE THE FIX ═══════════ -->
+<section class="page" id="p4">
+
+  <!-- 5a: intro -->
+  <div class="segment">
+    <div class="segment-inner">
+      <div class="segment-eyebrow reveal">Part 04</div>
+      <h2 class="segment-heading reveal d1">Fix the bias, in code.</h2>
+      <p class="segment-lead reveal d2">You're a data analyst for an esports organization. The team's energy-drink sponsor claims their product improves in-match performance, and leadership wants an honest read before renewing the deal. You've pulled match records for 240 players — write the Python to check whether the effect is real.</p>
+      <div class="concept-card reveal d3">
+        <div class="concept-tag">What you're seeing</div>
+        <p>A first look at the data shows drinkers scoring noticeably higher than non-drinkers. But you notice something: <strong>Pro players</strong> reach for the drink far more often than <strong>amateur players</strong> do — it's practically part of their pre-match routine — and Pros already outscore amateurs regardless of what they drink. <code>skill_tier</code> is a confounder here: it affects both who drinks the sponsor's product and how well they score, so a raw comparison mixes the drink's real effect with the skill-tier effect.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5b: dataset -->
+  <div class="segment">
+    <div class="segment-inner" style="max-width:920px">
+      <div class="segment-eyebrow">The raw dataset</div>
+      <h3 class="segment-heading" style="font-size:clamp(20px,2.2vw,28px);margin-bottom:8px">240 players, one confound.</h3>
+      <p class="segment-lead" style="font-size:15px;margin-bottom:20px">First 8 of 240 rows shown below.</p>
+      <div id="dataset-table-wrap"></div>
+      <div class="panel" style="margin-top:18px;display:flex;gap:36px;flex-wrap:wrap" id="dataset-summary"></div>
+      <div class="panel" style="margin-top:16px;border-left:4px solid var(--bad);background:var(--bad-bg);border-color:var(--bad-border)">
+        <div class="stat-label" style="color:var(--bad)">Naive comparison (biased)</div>
+        <div id="naive-stat" style="font-size:14.5px;color:var(--text2);line-height:1.65"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5c: code exercise -->
+  <div class="segment" style="min-height:150vh;padding-bottom:100px">
+    <div class="segment-inner" style="width:100%;max-width:none">
+      <div class="segment-eyebrow">Your turn</div>
+      <h3 class="segment-heading" style="font-size:clamp(20px,2.2vw,28px);margin-bottom:8px">Write the correction, step by step.</h3>
+
+      <div class="code-exercise-dark">
+        <div class="taskbox">
+          <h3>🎯 Your task</h3>
+          <p>Complete the two functions below. <code>naive_effect</code> computes the raw, biased comparison across the whole sample. <code>stratified_effect</code> computes the bias-corrected estimate by working <em>within</em> each <code>skill_tier</code> stratum before combining the results. Fill in all <span class="tag">5</span> highlighted blanks.</p>
+          <ul>
+            <li><strong>Step 1</strong> — the naive difference: energy-drink average minus no-drink average, across everyone.</li>
+            <li><strong>Step 2</strong> — inside the loop, the condition selecting rows where a player did <em>not</em> drink an energy drink, within the current stratum.</li>
+            <li><strong>Step 3</strong> — the energy-drink effect <em>within this one stratum</em>: same shape as Step 1, computed on <code>group</code> instead of the whole <code>df</code>.</li>
+            <li><strong>Step 4</strong> — the weight for this stratum: how many players are in it.</li>
+            <li><strong>Step 5</strong> — combine every stratum's difference into one number, weighted by stratum size.</li>
+          </ul>
+          <p class="mdp-context">💡 This is exactly how you close a back-door path through a confounder: instead of comparing drinkers vs. non-drinkers across everyone, you compare them <strong>inside</strong> each level of the confounder, then combine those comparisons.</p>
+        </div>
+
+        <pre class="template" id="p5-template"><span class="com"># df: player_id, skill_tier ("Pro"/"Amateur"), energy_drink (True/False), match_score</span>
+
+<span class="kw">def</span> <span class="fn">naive_effect</span>(df):
+    drink_mean    = df[df.energy_drink].match_score.mean()
+    no_drink_mean = df[<span class="op">~</span>df.energy_drink].match_score.mean()
+    <span class="kw">return</span> <input class="inline" data-s="1" style="min-width:260px" />
+
+
+<span class="kw">def</span> <span class="fn">stratified_effect</span>(df):
+    differences, weights = [], []
+
+    <span class="kw">for</span> tier, group <span class="kw">in</span> df.groupby(<span class="str">'skill_tier'</span>):
+        drink_mean    = group[group.energy_drink].match_score.mean()
+        no_drink_mean = group[<input class="inline" data-s="2" style="min-width:190px" />].match_score.mean()
+
+        differences.append(<input class="inline" data-s="3" style="min-width:220px" />)
+        weights.append(<input class="inline" data-s="4" style="min-width:150px" />)
+
+    weighted_sum  = <span class="fn">sum</span>(d <span class="op">*</span> w <span class="kw">for</span> d, w <span class="kw">in</span> <span class="fn">zip</span>(differences, weights))
+    total_weight  = <span class="fn">sum</span>(weights)
+    <span class="kw">return</span> <input class="inline" data-s="5" style="min-width:220px" /></pre>
+
+        <div class="btnrow">
+          <button class="primary" id="p5check">Check answers</button>
+          <button class="secondary" id="p5hint">Show hint</button>
+        </div>
+        <div class="feedback" id="p5fb"></div>
+        <div class="hint-box" id="p5hintbox">
+          💡 Start with the intuition before the syntax:
+          <ul style="margin:8px 0 0 0">
+            <li><strong>Step 1:</strong> compute the raw energy-drink gap across the whole sample. This is the biased estimate to compare against.</li>
+            <li><strong>Step 2:</strong> inside each skill tier, select the non-drinker rows the same way you selected drinker rows — use <code>~group.energy_drink</code>.</li>
+            <li><strong>Step 3:</strong> compute the per-tier effect just like the naive difference, but only within the current <code>group</code>.</li>
+            <li><strong>Step 4:</strong> count how many players are in the current <code>group</code> using <code>len(group)</code>. That number is the weight for this tier.</li>
+            <li><strong>Step 5:</strong> return the weighted average: divide the total weighted difference by the sum of all weights.</li>
+          </ul>
+          <p style="margin-top:10px">This is how stratification removes the confounder: instead of comparing all drinkers and non-drinkers together, you compare them within each skill tier and then combine those tier-specific effects.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5d: corrected dataset (revealed on success) -->
+  <div class="segment" id="corrected-segment" style="display:none">
+    <div class="segment-inner" style="max-width:920px">
+      <div class="segment-eyebrow" style="color:var(--ok)">Bias corrected</div>
+      <h3 class="segment-heading" style="font-size:clamp(20px,2.2vw,28px);margin-bottom:8px">Stratified results.</h3>
+      <p class="segment-lead" style="font-size:15px;margin-bottom:20px">Mean match score by energy-drink status, computed <em>within</em> each skill tier instead of across the whole sample.</p>
+      <div id="corrected-table-wrap"></div>
+      <div class="panel" style="margin-top:16px;border-left:4px solid var(--ok);background:var(--ok-bg);border-color:var(--ok-border)">
+        <div class="stat-label" style="color:var(--ok)">Adjusted estimate</div>
+        <div id="corrected-stat" style="font-size:14.5px;color:var(--text2);line-height:1.65"></div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ═══════════ THE END ═══════════ -->
+<div class="hero" id="end" style="background:radial-gradient(1000px 500px at 75% 30%,rgba(99,102,241,0.08),transparent 60%),radial-gradient(700px 400px at 20% 70%,rgba(236,72,153,0.06),transparent 60%),var(--bg)">
+  <div class="hero-inner" style="text-align:center;align-items:center">
+    <div>
+      <div class="eyebrow reveal">Complete</div>
+      <h2 class="hero-title reveal d1">The <span class="grad">end.</span></h2>
+      <p class="hero-sub reveal d2" style="margin:0 auto">Confounding distorts associations through shared causes; selection bias distorts them through how the sample was assembled — recognising which is which is the first step toward honest causal inference.</p>
+    </div>
+  </div>
+  <div style="position:absolute;bottom:36px;left:50%;transform:translateX(-50%)">
+    <button class="replay-btn reveal d3" onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'})">↑ Back to start</button>
+  </div>
+</div>
+
+</main>
+
+<script>
+function jumpTo(id){document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'});}
+
+/* ── Scroll-reveal ── */
+const revObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');});
+},{threshold:0.15});
+document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+
+/* ═══════ GAME ═══════ */
+const SCENARIOS=[
+  {text:"Researchers find that people who carry lighters have higher rates of lung cancer. They conclude lighters cause cancer.",answer:"confounding",hint:"Think about what else lighter-carriers tend to do.",ok:"Correct. Smoking is the confounder — it causes both carrying lighters and lung cancer. The lighter–cancer association vanishes once you control for smoking.",bad:"This is confounding. Smoking causes people to carry lighters AND causes lung cancer. The apparent association is entirely explained by this common cause."},
+  {text:"An ICU study finds that receiving a blood transfusion is associated with higher in-hospital mortality. The authors infer transfusions are harmful.",answer:"confounding",hint:"Who gets transfusions in the ICU — stable patients or the most critically ill?",ok:"Correct. Disease severity is the confounder. Sicker patients are both more likely to receive transfusions and more likely to die, independently.",bad:"Confounding by disease severity. The sickest patients get transfusions and are also most likely to die. You can't infer harm without controlling for baseline severity."},
+  {text:"A clinical trial randomly assigns 500 patients to drug vs placebo. Both groups are balanced at baseline on all known characteristics.",answer:"neither",hint:"What does randomisation do to potential confounders?",ok:"Correct. Randomisation distributes confounders equally across arms on average, and both groups come from the same population — no selection bias either.",bad:"Neither applies. Randomisation balances confounders across groups, and both groups come from the same sampling frame, so neither threat is present here."},
+  {text:"Survivors of a plane crash are surveyed about pre-flight anxiety. High anxiety predicts survival, and the researchers conclude anxious people have stronger survival instincts.",answer:"selection",hint:"Who can actually complete the survey?",ok:"Correct — survivorship bias. Only survivors can respond. The sample is systematically unrepresentative of everyone on board.",bad:"Selection bias (survivorship bias). Only survivors can answer. Non-survivors are excluded by definition, making the sample unrepresentative."},
+  {text:"A survey on back pain is sent to members of a chronic-pain online forum. Prevalence estimates far exceed national figures.",answer:"selection",hint:"Who joins a chronic-pain forum?",ok:"Correct. Forum members self-select — people with chronic pain are vastly over-represented, inflating the prevalence estimate relative to the general population.",bad:"Selection bias. Forum membership is self-selected: people with pain are far more likely to join, so the sample is unrepresentative of the general population."},
+  {text:"Cities with higher ice-cream sales have higher drowning rates. A reporter suggests ice cream causes drowning.",answer:"confounding",hint:"What season drives both ice-cream sales and swimming activity?",ok:"Correct. Hot weather (summer) confounds both variables — it independently causes more ice-cream purchases and more swimming (hence drownings). No causal link between ice cream and drowning.",bad:"Confounding by season. Hot weather drives both variables independently. Controlling for temperature would remove the association entirely."},
+  {text:"A randomised trial of a new anxiety drug loses 40% of participants to dropout, with those experiencing severe side effects leaving disproportionately.",answer:"selection",hint:"Are completers representative of everyone who started the trial?",ok:"Correct — attrition bias. Participants with worse side effects drop out, making completers systematically different. The estimated effect will appear more favourable than the true effect.",bad:"Selection bias (attrition bias). Participants with worse side effects leave, so completers are unrepresentative. The true effect is distorted toward the drug looking better than it is."}
+];
+const OPT_LABELS=["Confounding","Selection bias","Neither"];
+const OPT_KEYS=["confounding","selection","neither"];
+let gIdx=0,gScore=0,gAnswered=false,gShuffled=[];
+function shuffle(a){return[...a].sort(()=>Math.random()-.5);}
+function initGame(){
+  gShuffled=shuffle(SCENARIOS);gIdx=0;gScore=0;
+  document.getElementById('game-score').classList.remove('show');
+  renderPips();renderScenario();
+}
+function renderPips(){
+  document.getElementById('pips').innerHTML=gShuffled.map((_,i)=>`<div class="pip${i===gIdx?' active':''}" id="pip${i}"></div>`).join('');
+}
+function renderScenario(){
+  gAnswered=false;const s=gShuffled[gIdx];
+  document.getElementById('game-area').innerHTML=`
+    <div style="margin-bottom:20px">
+      <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:#6366f1;margin-bottom:10px">Scenario ${gIdx+1} of ${gShuffled.length}</div>
+      <div style="font-size:17px;color:var(--text);line-height:1.65;max-width:72ch">${s.text}</div>
+      <span class="hint-toggle" onclick="toggleHint()">Show hint ▸</span>
+      <div class="hint-box" id="h-box">${s.hint}</div>
+    </div>
+    <div class="btn-row">
+      ${OPT_LABELS.map((l,i)=>`<button class="choice-btn" data-key="${OPT_KEYS[i]}" onclick="pickGame('${OPT_KEYS[i]}')">${l}</button>`).join('')}
+    </div>
+    <div class="quiz-explain" id="gfb"></div>
+    <button class="next-btn" id="gnxt" onclick="nextScenario()">${gIdx<gShuffled.length-1?'Next scenario →':'See results →'}</button>
+  `;
+}
+function toggleHint(){document.getElementById('h-box').classList.toggle('show');}
+function pickGame(key){
+  if(gAnswered)return;gAnswered=true;
+  const s=gShuffled[gIdx];const ok=key===s.answer;if(ok)gScore++;
+  document.querySelectorAll('.choice-btn').forEach(b=>{
+    b.classList.add('disabled');
+    if(b.dataset.key===s.answer)b.classList.add('correct');
+    else if(b.dataset.key===key&&!ok)b.classList.add('wrong');
+  });
+  const fb=document.getElementById('gfb');
+  fb.className='quiz-explain show '+(ok?'correct':'incorrect');
+  fb.innerHTML=`<div class="verdict">${ok?'Correct':'Incorrect'}</div><p>${ok?s.ok:s.bad}</p>`;
+  const pip=document.getElementById('pip'+gIdx);
+  pip.classList.remove('active');pip.classList.add(ok?'done-ok':'done-bad');
+  document.getElementById('gnxt').classList.add('show');
+}
+function nextScenario(){
+  gIdx++;
+  if(gIdx>=gShuffled.length){
+    document.getElementById('game-area').innerHTML='';
+    const sc=document.getElementById('game-score');sc.classList.add('show');
+    const pct=Math.round(gScore/gShuffled.length*100);
+    document.getElementById('game-score-num').textContent=gScore+' / '+gShuffled.length;
+    document.getElementById('game-score-msg').textContent=pct>=86?'Excellent eye for bias!':pct>=57?'Good — review the explanations and try again.':'Keep going — re-read the scenarios carefully.';
+  }else{renderScenario();renderPips();}
+}
+
+/* ═══════ CODE ═══════ */
+
+/* ═══════ MCQ ═══════ */
+const MCQS=[
+  {q:"Which of the following is the defining feature of a confounder?",opts:["It is caused by the exposure","It is associated with both the exposure and outcome, and lies outside the causal pathway","It affects only the outcome, not the exposure","It can only be measured after the study ends"],correct:1,exp:"A confounder must (1) be associated with the exposure, (2) independently cause the outcome, and (3) not lie on the causal path between them. Options A and C each satisfy only one criterion; option D describes a timing issue, not confounding."},
+  {q:"A researcher studies whether coffee drinking causes anxiety. She recruits participants exclusively from a café frequented by high-stress professionals. The main threat here is:",opts:["Confounding by caffeine sensitivity","Information bias","Selection bias — the sample is unrepresentative","Reverse causation"],correct:2,exp:"Recruiting from a stress-dense venue over-represents anxious people relative to the general population. This is a sampling-frame problem — selection bias — independent of coffee."},
+  {q:"Randomisation controls for confounding primarily by:",opts:["Ensuring unmeasured confounders are equally distributed across groups on average","Eliminating all selection bias in the sample","Preventing participants from dropping out","Making outcome measurement more accurate"],correct:0,exp:"Random allocation creates groups that are, in expectation, balanced on both measured and unmeasured confounders. It does not fix who is enrolled, prevent dropout, or improve measurement."},
+  {q:"The 'healthy worker effect' — where workers appear healthier than the general population — is an example of:",opts:["Confounding by lifestyle","Selection bias","Information bias","Effect modification"],correct:1,exp:"Only people healthy enough to work enter occupational cohorts. Comparing them to the general population (which includes ill and disabled people) introduces selection bias — the comparison group is systematically sicker."},
+  {q:"After stratifying by age, an association between a drug and recovery disappears within every age stratum, yet is positive in the overall unadjusted analysis. This is best described as:",opts:["Effect modification by age","Information bias","Confounding by age (Simpson's paradox)","Attrition bias"],correct:2,exp:"When an overall association vanishes after stratifying on a third variable, this is confounding. The crude association was driven by the differential age distribution across groups — not the drug. This reversal is a classic presentation of Simpson's paradox."},
+];
+const LETTERS=['A','B','C','D'];
+let mcqTries=[];
+
+function initMCQ(){
+  mcqTries=new Array(MCQS.length).fill(0);
+  const container=document.getElementById('mcq-slides');
+  container.innerHTML=MCQS.map((q,qi)=>`
+    <div class="segment" id="mq${qi}">
+      <div class="segment-inner" style="max-width:780px">
+        <div class="mcq-counter">Question ${qi+1} of ${MCQS.length}</div>
+        <div class="mcq-question">${q.q}</div>
+        <div class="mcq-opts" id="opts${qi}">
+          ${q.opts.map((o,oi)=>`
+            <button class="mcq-opt" id="opt${qi}_${oi}" onclick="pickMCQ(${qi},${oi})">
+              <span class="mcq-letter">${LETTERS[oi]}</span>
+              <span>${o}</span>
+            </button>`).join('')}
+        </div>
+        <div class="mcq-tries" id="tries${qi}"></div>
+        <div id="nudge${qi}" style="display:none;margin-top:12px;font-size:13.5px;color:var(--bad);font-weight:500"></div>
+        <div class="mcq-explain" id="qe${qi}"></div>
+        <div id="qnxt${qi}" style="display:none;margin-top:22px">
+          ${qi<MCQS.length-1
+            ? `<button class="next-btn show" onclick="scrollToMQ(${qi+1})">Next question →</button>`
+            : `<div id="quiz-score-inline"></div>`}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function scrollToMQ(qi){
+  document.getElementById('mq'+qi).scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function pickMCQ(qi,oi){
+  const q=MCQS[qi];
+  const btn=document.getElementById(`opt${qi}_${oi}`);
+  if(btn.classList.contains('correct')||btn.classList.contains('wrong'))return;
+
+  if(oi===q.correct){
+    // ── Correct ──
+    btn.classList.add('correct');
+    btn.disabled=true;
+    // lock remaining options
+    document.querySelectorAll(`#opts${qi} .mcq-opt`).forEach(b=>{if(!b.classList.contains('correct'))b.disabled=true;});
+    const triesEl=document.getElementById('tries'+qi);
+    const n=mcqTries[qi];
+    triesEl.textContent=n===0?'First try!':n===1?'Got it in 2 attempts.':'Got it in '+(n+1)+' attempts.';
+    triesEl.style.color=n===0?'var(--ok)':'var(--muted)';
+    // clear any wrong-answer nudge
+    const nudge=document.getElementById('nudge'+qi);
+    if(nudge) nudge.style.display='none';
+    const exp=document.getElementById('qe'+qi);
+    exp.className='mcq-explain show correct';
+    exp.innerHTML=`<div class="verdict">Correct</div><p>${q.exp}</p>`;
+    document.getElementById('qnxt'+qi).style.display='block';
+    // final score
+    if(qi===MCQS.length-1){
+      const totalTries=mcqTries.reduce((a,b)=>a+b,0);
+      const sc=document.getElementById('quiz-score-inline');
+      if(sc) sc.innerHTML=`
+        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:24px 28px;margin-top:12px;text-align:center">
+          <div class="stat-label" style="margin-bottom:8px">All done</div>
+          <div class="stat-value">${MCQS.length} / ${MCQS.length}</div>
+          <div class="score-msg" style="margin-top:10px">${totalTries===0?'Perfect — all correct first try!':totalTries<=2?'Sharp thinking — very few wrong turns.':'All questions answered correctly.'}</div>
+          <button class="replay-btn" onclick="initMCQ();scrollToMQ(0)" style="margin-top:14px">Retry questions</button>
+        </div>`;
+    }
+  } else {
+    // ── Wrong — mark button, show nudge, keep others active ──
+    mcqTries[qi]++;
+    btn.classList.add('wrong');
+    btn.disabled=true;
+    const nudge=document.getElementById('nudge'+qi);
+    if(nudge){nudge.style.display='block';nudge.textContent='Not quite — try another option.';}
+  }
+}
+
+/* ═══════ D-SEPARATION ═══════ */
+
+/* ── Part A: shape questions (Part 03) ── */
+const SHAPE_QS = [
+  {
+    label: "Q1",
+    path: "Sprinkler ← Season → Rain",
+    middle: "Season",
+    question: "Sprinkler ← <strong>Season</strong> → Rain — what shape is Season in the middle?",
+    opts: ["Chain","Fork","Collider"],
+    correct: 1,
+    exp: "Two arrows point <em>out</em> of Season toward Sprinkler and Rain. Season is a <strong>fork</strong> (common cause): it produces both Sprinkler and Rain independently."
+  },
+  {
+    label: "Q2",
+    path: "Season → Rain → Wet",
+    middle: "Rain",
+    question: "Season → <strong>Rain</strong> → Wet — what shape is Rain in the middle?",
+    opts: ["Chain","Fork","Collider"],
+    correct: 0,
+    exp: "One arrow enters Rain from Season, one arrow leaves Rain toward Wet. This is a <strong>chain</strong> (mediation): Season influences Wet via Rain."
+  },
+  {
+    label: "Q3",
+    path: "Sprinkler → Wet ← Rain",
+    middle: "Wet",
+    question: "Sprinkler → <strong>Wet</strong> ← Rain — what shape is Wet in the middle?",
+    opts: ["Chain","Fork","Collider"],
+    correct: 2,
+    exp: "Both arrows point <em>into</em> Wet from Sprinkler and Rain. Wet is a <strong>collider</strong> (v-structure): two causes share a common effect."
+  },
+  {
+    label: "Q4",
+    path: "A → B → C",
+    middle: "B",
+    question: "In a standalone graph A → <strong>B</strong> → C, what shape is B?",
+    opts: ["Chain","Fork","Collider"],
+    correct: 0,
+    exp: "One arrow enters B from A, one arrow leaves B toward C — a textbook <strong>chain</strong>."
+  }
+];
+
+/* ── Part B: open/blocked ── */
+const PATH_QS = [
+  {
+    label: "Q5",
+    setup: "Path: Sprinkler ← Season → Rain &nbsp;|&nbsp; Z = {} (nothing conditioned on)",
+    question: "Sprinkler ← <strong>Season</strong> → Rain, given Z = ∅. Open or blocked?",
+    opts: ["Open","Blocked"],
+    correct: 0,
+    exp: "Season is a <strong>fork</strong>. A fork blocks only when it is in Z. Here Z is empty, so Season is <em>not</em> conditioned on — the path is <strong>open</strong>. Sprinkler and Rain are marginally dependent through their shared cause."
+  },
+  {
+    label: "Q6",
+    setup: "Path: Sprinkler ← Season → Rain &nbsp;|&nbsp; Z = {Season}",
+    question: "Sprinkler ← <strong>Season</strong> → Rain, given Z = {Season}. Open or blocked?",
+    opts: ["Open","Blocked"],
+    correct: 1,
+    exp: "Season is a fork, and Season <em>is</em> in Z. Conditioning on a fork <strong>blocks</strong> the path — once you know the season, Sprinkler and Rain become independent."
+  },
+  {
+    label: "Q7",
+    setup: "Path: Sprinkler → Wet ← Rain &nbsp;|&nbsp; Z = {} (nothing conditioned on)",
+    question: "Sprinkler → <strong>Wet</strong> ← Rain, given Z = ∅. Open or blocked?",
+    opts: ["Open","Blocked"],
+    correct: 1,
+    exp: "Wet is a <strong>collider</strong>. Colliders are blocked by default — they only open when Wet or a descendant (here: Slippery) is in Z. With Z = ∅ the path is <strong>blocked</strong>."
+  },
+  {
+    label: "Q8",
+    setup: "Path: Season → Wet → Slippery &nbsp;|&nbsp; Z = {Wet}",
+    question: "Season → <strong>Wet</strong> → Slippery, given Z = {Wet}. Open or blocked?",
+    opts: ["Open","Blocked"],
+    correct: 1,
+    exp: "Wet is a <strong>chain</strong> node on this path (it mediates). Conditioning on a chain node blocks the path. With Wet in Z, the path is <strong>blocked</strong> — knowing the season tells you nothing more about Slippery once you already know whether the grass is wet."
+  }
+];
+
+/* ── Part C: full independence ── */
+const INDEP_QS = [
+  {
+    label: "Q9",
+    question: "Are <strong>Sprinkler</strong> and <strong>Rain</strong> independent when you condition on <em>nothing</em>?",
+    opts: ["Yes — independent","No — dependent"],
+    correct: 1,
+    exp: "The only path between Sprinkler and Rain runs through Season (a fork). Z = ∅ so Season is <em>not</em> conditioned on — the fork is open → the path is open → Sprinkler and Rain are <strong>dependent</strong>. Knowing it rained makes the sprinkler less likely, because both share Season as a common cause."
+  },
+  {
+    label: "Q10",
+    question: "Are <strong>Sprinkler</strong> and <strong>Rain</strong> independent when you condition on <strong>Season</strong>?",
+    opts: ["Yes — independent","No — dependent"],
+    correct: 0,
+    exp: "Conditioning on Season blocks the fork Sprinkler ← Season → Rain — the only path between the two variables. Every path is blocked → <strong>d-separated → independent</strong>. Once you know the season, Sprinkler and Rain carry no information about each other."
+  },
+  {
+    label: "Q11",
+    question: "Are <strong>Sprinkler</strong> and <strong>Rain</strong> independent when you condition on both <strong>Season</strong> and <strong>Wet</strong>?",
+    opts: ["Yes — independent","No — dependent"],
+    correct: 1,
+    exp: "Conditioning on Season blocks the fork path. But conditioning on Wet — a <em>collider</em> on the path Sprinkler → Wet ← Rain — opens that path. One path is now open → <strong>dependent</strong>. This is Berkson's paradox: controlling for the common effect creates a spurious association between its two causes."
+  },
+  {
+    label: "Q12",
+    question: "Are <strong>Sprinkler</strong> and <strong>Rain</strong> independent when you condition on both <strong>Season</strong> and <strong>Slippery</strong>?",
+    opts: ["Yes — independent","No — dependent"],
+    correct: 1,
+    exp: "Season blocks the fork path. But Slippery is a <em>descendant</em> of the collider Wet. Conditioning on any descendant of a collider also opens it — so the path Sprinkler → Wet ← Rain is now open → <strong>dependent</strong>."
+  },
+  {
+    label: "Q13",
+    question: "Are <strong>Season</strong> and <strong>Slippery</strong> independent when you condition on <strong>Wet</strong>?",
+    opts: ["Yes — independent","No — dependent"],
+    correct: 0,
+    exp: "The paths from Season to Slippery all pass through Wet (either Season → Rain → Wet → Slippery or Season → Sprinkler → Wet → Slippery). Wet is a <em>chain</em> node on both routes. Conditioning on Wet blocks both chains → every path is blocked → <strong>d-separated → independent</strong>. Once you know whether the grass is wet, the season tells you nothing more about the pavement being slippery."
+  }
+];
+
+/* ── Part D: compound reveal questions ── */
+const COMPOUND_QS = [
+  {
+    label: "Q14",
+    title: "Name the two traps",
+    parts: [
+      {
+        letter: "a",
+        question: "Which single variable is the <em>confounder</em> that makes Sprinkler and Rain look related even though neither causes the other? Which building block is responsible?",
+        answer: "<strong>Season</strong> is the confounder. It is a <strong>fork</strong> (common cause): Season → Sprinkler and Season → Rain. Because both variables share Season as a parent, they appear associated in unadjusted data even though there is no direct causal link between them."
+      },
+      {
+        letter: "b",
+        question: "Conditioning on which variable would <em>create</em> a spurious association between Sprinkler and Rain where there was none? Which building block is responsible, and what is this effect called?",
+        answer: "Conditioning on <strong>Wet</strong> (or its descendant Slippery) creates the spurious association. Wet is a <strong>collider</strong> on the path Sprinkler → Wet ← Rain. Opening a collider by conditioning on it (or a descendant) induces a non-causal correlation — commonly called <strong>Berkson's paradox</strong> or collider bias."
+      }
+    ]
+  },
+  {
+    label: "Q15",
+    title: "The back-door question",
+    parts: [
+      {
+        letter: "a",
+        question: "Write the single directed causal path from Sprinkler to Slippery.",
+        answer: "Sprinkler → Wet → Slippery"
+      },
+      {
+        letter: "b",
+        question: "Write the non-causal back-door path — the path that leaves Sprinkler through an arrow pointing <em>into</em> it.",
+        answer: "Sprinkler ← Season → Rain → Wet → Slippery"
+      },
+      {
+        letter: "c",
+        question: "Which single variable can you adjust for to block the back-door path without disturbing the causal path?",
+        answer: "<strong>Season</strong>. It sits on the back-door path as a fork and is not on the causal path. Adjusting for Season closes the back door and gives an unbiased estimate of the Sprinkler → Slippery effect."
+      },
+      {
+        letter: "d",
+        question: "A colleague proposes to 'control for Wet grass'. Give the two separate reasons this is the wrong choice.",
+        answer: "<strong>(1) Wet is a mediator</strong> on the causal path Sprinkler → Wet → Slippery. Conditioning on a mediator blocks the very effect you are trying to measure — you would estimate zero causal effect even if one exists.<br><br><strong>(2) Wet is a collider</strong> on the back-door path (Sprinkler → Wet ← Rain). Conditioning on it opens the collider path, <em>introducing</em> a spurious association rather than removing one."
+      }
+    ]
+  }
+];
+
+function renderShapeQs(){
+  const el = document.getElementById('shape-qs');
+  el.innerHTML = SHAPE_QS.map((q,i) => `
+    <div style="margin-bottom:${i<SHAPE_QS.length-1?'22px':'0'}${i>0?';padding-top:22px;border-top:1px solid var(--border)':''}">
+      <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:#6366f1;margin-bottom:8px">${q.label}</div>
+      <div style="font-size:16px;font-weight:600;color:var(--text);margin-bottom:14px;line-height:1.45">${q.question}</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap" id="sq${i}">
+        ${q.opts.map((o,oi)=>`
+          <button class="choice-btn" style="flex:none;min-width:110px" onclick="pickShape(${i},${oi})">${o}</button>
+        `).join('')}
+      </div>
+      <div class="quiz-explain" id="sqe${i}"></div>
+    </div>
+  `).join('');
+}
+
+function pickShape(qi,oi){
+  const q=SHAPE_QS[qi]; const ok=oi===q.correct;
+  document.querySelectorAll(`#sq${qi} button`).forEach((b,i)=>{
+    b.classList.add('disabled');
+    if(i===q.correct)b.classList.add('correct');
+    else if(i===oi&&!ok)b.classList.add('wrong');
+  });
+  const exp=document.getElementById('sqe'+qi);
+  exp.className='quiz-explain show '+(ok?'correct':'incorrect');
+  exp.innerHTML=`<div class="verdict">${ok?'Correct':'Incorrect'}</div><p>${q.exp}</p>`;
+}
+
+function renderPathQs(){
+  const el = document.getElementById('path-qs');
+  el.innerHTML = PATH_QS.map((q,i) => `
+    <div style="margin-bottom:${i<PATH_QS.length-1?'22px':'0'}${i>0?';padding-top:22px;border-top:1px solid var(--border)':''}">
+      <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:#6366f1;margin-bottom:6px">${q.label}</div>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:8px;font-family:ui-monospace,monospace">${q.setup}</div>
+      <div style="font-size:16px;font-weight:600;color:var(--text);margin-bottom:14px;line-height:1.45">${q.question}</div>
+      <div style="display:flex;gap:10px" id="pq${i}">
+        ${q.opts.map((o,oi)=>`
+          <button class="choice-btn" style="flex:none;min-width:120px" onclick="pickPath(${i},${oi})">${o}</button>
+        `).join('')}
+      </div>
+      <div class="quiz-explain" id="pqe${i}"></div>
+    </div>
+  `).join('');
+}
+
+function pickPath(qi,oi){
+  const q=PATH_QS[qi]; const ok=oi===q.correct;
+  document.querySelectorAll(`#pq${qi} button`).forEach((b,i)=>{
+    b.classList.add('disabled');
+    if(i===q.correct)b.classList.add('correct');
+    else if(i===oi&&!ok)b.classList.add('wrong');
+  });
+  const exp=document.getElementById('pqe'+qi);
+  exp.className='quiz-explain show '+(ok?'correct':'incorrect');
+  exp.innerHTML=`<div class="verdict">${ok?'Correct':'Incorrect'}</div><p>${q.exp}</p>`;
+}
+
+function renderIndepQs(){
+  const el = document.getElementById('indep-qs');
+  el.innerHTML = INDEP_QS.map((q,i) => `
+    <div style="margin-bottom:${i<INDEP_QS.length-1?'28px':'0'}${i>0?';padding-top:28px;border-top:1px solid var(--border)':''}">
+      <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:#6366f1;margin-bottom:8px">${q.label}</div>
+      <div style="font-size:16px;font-weight:600;color:var(--text);line-height:1.5;margin-bottom:14px;max-width:68ch">${q.question}</div>
+      <div class="mcq-opts" id="iq${i}" style="grid-template-columns:1fr 1fr;max-width:520px">
+        ${q.opts.map((o,oi)=>`
+          <button class="mcq-opt" id="iqo${i}_${oi}" onclick="pickIndep(${i},${oi})">
+            <span class="mcq-letter">${oi===0?'Y':'N'}</span>
+            <span>${o}</span>
+          </button>
+        `).join('')}
+      </div>
+      <div class="mcq-explain" id="iqe${i}"></div>
+    </div>
+  `).join('');
+}
+
+function pickIndep(qi,oi){
+  const q=INDEP_QS[qi]; const ok=oi===q.correct;
+  document.querySelectorAll(`#iq${qi} button`).forEach((b,i)=>{
+    b.disabled=true;
+    if(i===q.correct)b.classList.add('correct');
+    else if(i===oi&&!ok)b.classList.add('wrong');
+  });
+  const exp=document.getElementById('iqe'+qi);
+  exp.className='mcq-explain show '+(ok?'correct':'incorrect');
+  exp.innerHTML=`<div class="verdict">${ok?'Correct':'Incorrect'}</div><p>${q.exp}</p>`;
+}
+
+function renderCompoundQs(){
+  const el=document.getElementById('compound-qs');
+  el.innerHTML=COMPOUND_QS.map((cq,ci)=>`
+    <div style="${ci>0?'margin-top:32px;padding-top:32px;border-top:1px solid var(--border)':''}">
+      <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:#6366f1;margin-bottom:6px">${cq.label}</div>
+      <div style="font-size:18px;font-weight:700;color:var(--text);margin-bottom:18px">${cq.title}</div>
+      ${cq.parts.map((p,pi)=>`
+        <div style="${pi>0?'margin-top:20px;padding-top:20px;border-top:1px dashed var(--border)':''}">
+          <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:12px">
+            <span style="display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:6px;background:#eef2ff;border:1px solid #c7d2fe;font-size:13px;font-weight:700;color:#4338ca;flex-shrink:0">${p.letter}</span>
+            <div style="font-size:15px;color:var(--text2);line-height:1.55">${p.question}</div>
+          </div>
+          <button class="secondary" style="font-size:13px;padding:7px 14px" onclick="revealPart(this,'cqa${ci}_${pi}')">Show answer</button>
+          <div id="cqa${ci}_${pi}" style="display:none;margin-top:12px;padding:14px 18px;border-radius:10px;background:var(--ok-bg);border:1px solid var(--ok-border);border-left:4px solid var(--ok);font-size:14px;line-height:1.65;color:var(--text2)">${p.answer}</div>
+        </div>
+      `).join('')}
+    </div>
+  `).join('');
+}
+
+function revealPart(btn,id){
+  document.getElementById(id).style.display='block';
+  btn.style.display='none';
+}
+
+renderShapeQs();
+renderPathQs();
+renderIndepQs();
+renderCompoundQs();
+
+initGame();
+initMCQ();
+
+/* ══════════════════════════════════════════════════
+   Part 04 — dataset + Pyodide code exercise
+   ══════════════════════════════════════════════════ */
+
+const TRUE_EFFECT = 5; // points added by the energy drink, by design
+
+function mulberry32(seed){
+  return function(){
+    seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+    let t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+function gaussian(rng, mean, sd){
+  let u = 0, v = 0;
+  while(u === 0) u = rng();
+  while(v === 0) v = rng();
+  return mean + sd * Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+}
+
+function generateDataset(){
+  const rng = mulberry32(20260714);
+  const rows = [];
+  for(let i = 0; i < 240; i++){
+    const tier = rng() < 0.5 ? 'Pro' : 'Amateur';
+    const base = tier === 'Pro' ? 84 : 62;
+    const pDrink = tier === 'Pro' ? 0.75 : 0.15;
+    const energyDrink = rng() < pDrink;
+    let score = base + (energyDrink ? TRUE_EFFECT : 0) + gaussian(rng, 0, 5);
+    score = Math.max(0, Math.min(100, Math.round(score * 10) / 10));
+    rows.push({
+      player_id: 'P' + String(i + 1).padStart(3, '0'),
+      skill_tier: tier,
+      energy_drink: energyDrink,
+      match_score: score
+    });
+  }
+  return rows;
+}
+
+const DATASET = generateDataset();
+
+function renderDatasetTable(){
+  const wrap = document.getElementById('dataset-table-wrap');
+  const head = `<tr><th>Player</th><th>Skill tier</th><th>Energy drink</th><th>Match score</th></tr>`;
+  const body = DATASET.slice(0, 8).map(r => `
+    <tr>
+      <td>${r.player_id}</td>
+      <td>${r.skill_tier}</td>
+      <td class="${r.energy_drink ? 'yes' : 'no'}">${r.energy_drink ? 'Yes' : 'No'}</td>
+      <td>${r.match_score.toFixed(1)}</td>
+    </tr>`).join('');
+  wrap.innerHTML = `<table class="data-table">${head}${body}</table>`;
+
+  const pro = DATASET.filter(r => r.skill_tier === 'Pro');
+  const ama = DATASET.filter(r => r.skill_tier === 'Amateur');
+  const proDrink = pro.filter(r => r.energy_drink).length;
+  const amaDrink = ama.filter(r => r.energy_drink).length;
+
+  document.getElementById('dataset-summary').innerHTML = `
+    <div class="dataset-stat"><div class="stat-label">Pro tier</div><div class="stat-num">${pro.length}</div><div style="font-size:12.5px;color:var(--text3);margin-top:2px">${proDrink} drank · ${pro.length - proDrink} didn't</div></div>
+    <div class="dataset-stat"><div class="stat-label">Amateur tier</div><div class="stat-num">${ama.length}</div><div style="font-size:12.5px;color:var(--text3);margin-top:2px">${amaDrink} drank · ${ama.length - amaDrink} didn't</div></div>
+    <div class="dataset-stat"><div class="stat-label">Total who drank</div><div class="stat-num">${proDrink + amaDrink}</div><div style="font-size:12.5px;color:var(--text3);margin-top:2px">of ${DATASET.length} players</div></div>
+  `;
+
+  const drinkMean = mean(DATASET.filter(r => r.energy_drink).map(r => r.match_score));
+  const noDrinkMean = mean(DATASET.filter(r => !r.energy_drink).map(r => r.match_score));
+  const naive = drinkMean - noDrinkMean;
+  document.getElementById('naive-stat').innerHTML =
+    `Energy-drink average: <strong>${drinkMean.toFixed(1)}</strong> &nbsp;·&nbsp; No-drink average: <strong>${noDrinkMean.toFixed(1)}</strong><br>
+     Naive difference: <strong>+${naive.toFixed(1)} points</strong> — but this compares mostly-Pro drinkers against mostly-Amateur non-drinkers, not like with like.`;
+}
+function mean(xs){ return xs.reduce((a,b)=>a+b,0) / xs.length; }
+
+renderDatasetTable();
+
+/* ── Step-by-step fill-in-the-blank check (same pattern as ANYmal's p3/p4 checks) ── */
+function norm(s){ return (s||'').replace(/\s+/g,'').replace(/"/g,"'"); }
+function setInputState(el, ok){
+  el.classList.remove('ok','bad');
+  el.classList.add(ok ? 'ok' : 'bad');
+}
+
+const STEP_ACCEPTED = {
+  1: ["drink_mean-no_drink_mean"],
+  2: ["~group.energy_drink","group.energy_drink==False","~group['energy_drink']","~(group.energy_drink)"],
+  3: ["drink_mean-no_drink_mean"],
+  4: ["len(group)","group.shape[0]","len(group.index)"],
+  5: ["weighted_sum/total_weight"]
+};
+
+document.getElementById('p5check').addEventListener('click', () => {
+  let correct = 0, total = 0;
+  for(const key of Object.keys(STEP_ACCEPTED)){
+    total++;
+    const el = document.querySelector(`input[data-s="${key}"]`);
+    const val = norm(el.value);
+    const ok = STEP_ACCEPTED[key].some(a => norm(a) === val);
+    setInputState(el, ok);
+    if(ok) correct++;
+  }
+  const fb = document.getElementById('p5fb');
+  if(correct === total){
+    fb.className = 'feedback ok';
+    fb.textContent = `✅ All ${total} steps correct! Scroll down to see the bias-corrected dataset.`;
+    revealCorrected();
+  }else{
+    fb.className = 'feedback bad';
+    fb.textContent = `❌ ${correct}/${total} correct. Check the highlighted blanks above.`;
+    document.getElementById('corrected-segment').style.display = 'none';
+  }
+});
+document.getElementById('p5hint').addEventListener('click', () => {
+  document.getElementById('p5hintbox').classList.toggle('show');
+});
+document.querySelectorAll('#p5-template input.inline').forEach(inp => {
+  inp.addEventListener('input', () => inp.classList.remove('ok','bad'));
+});
+
+function revealCorrected(){
+  const tiers = ['Pro','Amateur'];
+  const rows = [];
+  tiers.forEach(tier => {
+    [true,false].forEach(drink => {
+      const subset = DATASET.filter(r => r.skill_tier === tier && r.energy_drink === drink);
+      rows.push({ tier, energy_drink: drink, mean: mean(subset.map(r => r.match_score)), count: subset.length });
+    });
+  });
+  const head = `<tr><th>Skill tier</th><th>Energy drink</th><th>Mean score</th><th>Count</th></tr>`;
+  const body = rows.map(r => `
+    <tr>
+      <td>${r.tier}</td>
+      <td class="${r.energy_drink ? 'yes' : 'no'}">${r.energy_drink ? 'Yes' : 'No'}</td>
+      <td>${r.mean.toFixed(1)}</td>
+      <td>${r.count}</td>
+    </tr>`).join('');
+  document.getElementById('corrected-table-wrap').innerHTML = `<table class="data-table">${head}${body}</table>`;
+
+  let differences = [], weights = [];
+  tiers.forEach(tier => {
+    const g = DATASET.filter(r => r.skill_tier === tier);
+    const d = mean(g.filter(r => r.energy_drink).map(r => r.match_score));
+    const n = mean(g.filter(r => !r.energy_drink).map(r => r.match_score));
+    differences.push(d - n);
+    weights.push(g.length);
+  });
+  const adjusted = differences.reduce((a,d,i) => a + d * weights[i], 0) / weights.reduce((a,b) => a+b, 0);
+
+  document.getElementById('corrected-stat').innerHTML =
+    `Adjusted estimate: <strong>+${adjusted.toFixed(1)} points</strong> — much closer to the true simulated energy-drink effect of <strong>+${TRUE_EFFECT} points</strong> than the naive comparison. Stratifying on <code>skill_tier</code> compares drinkers and non-drinkers <em>within</em> the same skill tier, closing the back-door path through the confounder instead of leaving it open.`;
+
+  const seg = document.getElementById('corrected-segment');
+  seg.style.display = '';
+  seg.scrollIntoView({behavior:'smooth', block:'start'});
+}
+</script>
+</body>
+</html>

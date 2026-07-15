@@ -585,7 +585,12 @@ export const weekends: Weekend[] = [
       { time: '09:00', title: 'Re-intro to NNs', type: 'exercise' },
       { time: '10:00', title: 'Confounding & Selection', type: 'lecture', who: 'Carlos' },
       { time: '10:30', title: 'Coffee break', type: 'break' },
-      { time: '11:00', title: 'Confounding & Selection', type: 'exercise' },
+      {
+        time: '11:00',
+        title: 'Confounding & Selection',
+        type: 'exercise',
+        url: 'exercises/we2-confounding-selection.html',
+      },
       { time: '12:00', title: 'LIME + Robustness / Certification', type: 'lecture', who: 'Ankita, Christina, Dimitrios' },
       { time: '13:00', title: 'Lunch break', type: 'break' },
       { time: '14:00', title: 'LIME', type: 'exercise' },
@@ -605,7 +610,7 @@ export const weekends: Weekend[] = [
       {
         group: 'Exercises',
         label: 'Confounding & Selection Exercise (interactive)',
-        url: 'https://cdn.jsdelivr.net/gh/eth-fdd-fs26/FDD-WE2-public@main/2_confounding_selection_exercise.html',
+        url: 'exercises/we2-confounding-selection.html',
       },
     ],
   },
