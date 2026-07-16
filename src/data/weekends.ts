@@ -608,6 +608,21 @@ export const weekends: Weekend[] = [
     ],
     resources: [
       {
+        group: 'Lecture slides',
+        label: 'Confounding and Selection: introductory block (Carlos, PDF)',
+        url: 'https://fdd-hs26.github.io/projects/w2-intro-block-slides.pdf',
+      },
+      {
+        group: 'Interactive',
+        label: "Simpson's paradox explorer",
+        url: 'https://fdd-hs26.github.io/projects/interactive-simpson/',
+      },
+      {
+        group: 'Interactive',
+        label: 'Collider bias explorer (hot guys are jerks)',
+        url: 'https://fdd-hs26.github.io/projects/interactive-collider/',
+      },
+      {
         group: 'Exercises',
         label: 'Confounding & Selection Exercise (interactive)',
         url: 'exercises/we2-confounding-selection.html',
