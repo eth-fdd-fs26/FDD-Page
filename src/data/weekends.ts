@@ -629,7 +629,7 @@ export const weekends: Weekend[] = [
     ],
     saturday: [
       { time: '08:00', title: 'Mechanistic Interpretability', type: 'lecture', who: 'Adrian, Dimitrios' },
-      { time: '09:00', title: 'Mechanistic Interpretability', type: 'exercise' },
+      { time: '09:00', title: 'Mechanistic Interpretability', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE2-public/blob/main/exercises/05_mechinterp_students_extended.ipynb' },
       { time: '10:00', title: 'Coffee break', type: 'break' },
       { time: '10:30', title: 'Prompt Optimization + GEPA', type: 'lecture', who: 'Emircan' },
       {
@@ -665,6 +665,11 @@ export const weekends: Weekend[] = [
         group: 'Exercises',
         label: 'LIME Exercise (notebook)',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE2-public/blob/main/exercises/04a_lime_student.ipynb',
+      },
+      {
+        group: 'Exercises',
+        label: 'Mechanistic Interpretability Exercise (notebook)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE2-public/blob/main/exercises/05_mechinterp_students_extended.ipynb',
       },
     ],
   },
