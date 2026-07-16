@@ -583,7 +583,26 @@ export const weekends: Weekend[] = [
     friday: [
       { time: '08:00', title: 'Re-intro to Neural Networks', type: 'lecture', who: 'Carlos' },
       { time: '09:00', title: 'Re-intro to NNs', type: 'exercise' },
-      { time: '10:00', title: 'Confounding & Selection', type: 'lecture', who: 'Carlos' },
+      {
+        time: '10:00',
+        title: 'Confounding & Selection',
+        type: 'lecture',
+        who: 'Carlos',
+        links: [
+          {
+            label: 'Slides (PDF)',
+            url: 'https://fdd-hs26.github.io/projects/w2-intro-block-slides.pdf',
+          },
+          {
+            label: "Simpson's paradox explorer",
+            url: 'https://fdd-hs26.github.io/projects/interactive-simpson/',
+          },
+          {
+            label: 'Collider bias explorer',
+            url: 'https://fdd-hs26.github.io/projects/interactive-collider/',
+          },
+        ],
+      },
       { time: '10:30', title: 'Coffee break', type: 'break' },
       {
         time: '11:00',
