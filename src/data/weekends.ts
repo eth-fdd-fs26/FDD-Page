@@ -619,7 +619,7 @@ export const weekends: Weekend[] = [
         time: '16:00',
         title: 'SHAP',
         type: 'exercise',
-        url: 'https://github.com/eth-fdd-fs26/FDD-WE2-public/blob/main/04b_shap_students.ipynb',
+        url: 'https://github.com/eth-fdd-fs26/FDD-WE2-public/blob/main/exercises/04b_shap_students.ipynb',
       },
     ],
     saturday: [
