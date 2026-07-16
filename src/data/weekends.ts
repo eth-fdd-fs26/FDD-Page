@@ -668,8 +668,18 @@ export const weekends: Weekend[] = [
       },
       {
         group: 'Exercises',
+        label: 'SHAP Exercise (notebook)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE2-public/blob/main/exercises/04b_shap_students.ipynb',
+      },      
+      {
+        group: 'Exercises',
         label: 'Mechanistic Interpretability Exercise (notebook)',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE2-public/blob/main/exercises/05_mechinterp_students_extended.ipynb',
+      },
+      {
+        group: 'Exercises',
+        label: 'Prompt Optimization & GEPA (notebook)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE2-public/blob/main/exercises/06_prompt_optimization_gepa_students.ipynb',
       },
     ],
   },
