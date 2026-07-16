@@ -582,7 +582,12 @@ export const weekends: Weekend[] = [
       'How to look inside models and make them better understood: LIME and SHAP attributions, mechanistic interpretability, robustness/certification, and modern prompt optimization with GEPA.',
     friday: [
       { time: '08:00', title: 'Re-intro to Neural Networks', type: 'lecture', who: 'Carlos' },
-      { time: '09:00', title: 'Re-intro to NNs', type: 'exercise' },
+      {
+        time: '09:00',
+        title: 'Re-intro to NNs',
+        type: 'exercise',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE2-public/blob/main/exercises/01_nn_language_model_students.ipynb',
+      },
       {
         time: '10:00',
         title: 'Confounding & Selection',
@@ -655,6 +660,11 @@ export const weekends: Weekend[] = [
         group: 'Interactive',
         label: 'Collider bias explorer (hot guys are jerks)',
         url: 'https://fdd-hs26.github.io/projects/interactive-collider/',
+      },
+      {
+        group: 'Exercises',
+        label: 'Re-intro to Neural Networks Exercise (notebook)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE2-public/blob/main/exercises/01_nn_language_model_students.ipynb',
       },
       {
         group: 'Exercises',
