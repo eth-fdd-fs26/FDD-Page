@@ -627,7 +627,12 @@ export const weekends: Weekend[] = [
       { time: '09:00', title: 'Mechanistic Interpretability', type: 'exercise' },
       { time: '10:00', title: 'Coffee break', type: 'break' },
       { time: '10:30', title: 'Prompt Optimization + GEPA', type: 'lecture', who: 'Emircan' },
-      { time: '11:00', title: 'Prompt Optimization + GEPA', type: 'exercise' },
+      {
+        time: '11:00',
+        title: 'Prompt Optimization + GEPA',
+        type: 'exercise',
+        url: 'https://github.com/eth-fdd-fs26/FDD-WE2-public/blob/main/exercises/06_prompt_optimization_gepa_students.ipynb',
+      },
       { time: '12:00', title: 'Intro to Project', type: 'project', who: 'Adrian, Francesco' },
     ],
     resources: [
