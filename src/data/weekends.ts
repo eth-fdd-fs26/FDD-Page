@@ -612,7 +612,12 @@ export const weekends: Weekend[] = [
       },
       { time: '12:00', title: 'LIME + Robustness / Certification', type: 'lecture', who: 'Ankita, Christina, Dimitrios' },
       { time: '13:00', title: 'Lunch break', type: 'break' },
-      { time: '14:00', title: 'LIME', type: 'exercise' },
+      {
+        time: '14:00',
+        title: 'LIME',
+        type: 'exercise',
+        url: 'https://github.com/eth-fdd-fs26/FDD-WE2-public/blob/main/exercises/04a_lime_student.ipynb',
+      },
       { time: '15:00', title: 'Attribution Maps and SHAP', type: 'lecture', who: 'Giuseppe, Francesco' },
       { time: '15:30', title: 'Coffee break', type: 'break' },
       {
@@ -655,6 +660,11 @@ export const weekends: Weekend[] = [
         group: 'Exercises',
         label: 'Confounding & Selection Exercise (interactive)',
         url: 'exercises/we2-confounding-selection.html',
+      },
+      {
+        group: 'Exercises',
+        label: 'LIME Exercise (notebook)',
+        url: 'https://github.com/eth-fdd-fs26/FDD-WE2-public/blob/main/exercises/04a_lime_student.ipynb',
       },
     ],
   },
