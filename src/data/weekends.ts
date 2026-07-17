@@ -631,7 +631,18 @@ export const weekends: Weekend[] = [
         type: 'exercise',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE2-public/blob/main/exercises/04a_lime_student.ipynb',
       },
-      { time: '15:00', title: 'Attribution Maps and SHAP', type: 'lecture', who: 'Giuseppe, Francesco' },
+      {
+        time: '15:00',
+        title: 'Attribution Maps and SHAP',
+        type: 'lecture',
+        who: 'Giuseppe, Francesco',
+        links: [
+          {
+            label: 'Slides',
+            url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE2-public/main/lectures/04_b_attribution_maps_shap.pdf',
+          },
+        ],
+      },
       { time: '15:30', title: 'Coffee break', type: 'break' },
       {
         time: '16:00',
@@ -663,6 +674,11 @@ export const weekends: Weekend[] = [
         group: 'Lecture slides',
         label: 'Local Interpretability: LIME (PDF)',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE2-public/main/lectures/04_LIME.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'Attribution Maps and SHAP (PDF)',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE2-public/main/lectures/04_b_attribution_maps_shap.pdf',
       },
       {
         group: 'Interactive',
