@@ -621,7 +621,7 @@ export const weekends: Weekend[] = [
         type: 'lecture',
         who: 'Ankita, Christina, Dimitrios',
         links: [
-          { label: 'Slides', url: 'https://github.com/eth-fdd-fs26/FDD-WE2-public/blob/main/lectures/04_LIME.pdf' },
+          { label: 'Slides', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE2-public/main/lectures/04_LIME.pdf' },
         ],
       },
       { time: '13:00', title: 'Lunch break', type: 'break' },
@@ -662,7 +662,7 @@ export const weekends: Weekend[] = [
       {
         group: 'Lecture slides',
         label: 'Local Interpretability: LIME (PDF)',
-        url: 'https://github.com/eth-fdd-fs26/FDD-WE2-public/blob/main/lectures/04_LIME.pdf',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE2-public/main/lectures/04_LIME.pdf',
       },
       {
         group: 'Interactive',
