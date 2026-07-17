@@ -615,7 +615,15 @@ export const weekends: Weekend[] = [
         type: 'exercise',
         url: 'exercises/we2-confounding-selection.html',
       },
-      { time: '12:00', title: 'LIME + Robustness / Certification', type: 'lecture', who: 'Ankita, Christina, Dimitrios' },
+      {
+        time: '12:00',
+        title: 'Local Interpretability: LIME',
+        type: 'lecture',
+        who: 'Ankita, Christina, Dimitrios',
+        links: [
+          { label: 'Slides', url: 'https://github.com/eth-fdd-fs26/FDD-WE2-public/blob/main/lectures/04_LIME.pdf' },
+        ],
+      },
       { time: '13:00', title: 'Lunch break', type: 'break' },
       {
         time: '14:00',
@@ -650,6 +658,11 @@ export const weekends: Weekend[] = [
         group: 'Lecture slides',
         label: 'Confounding and Selection: introductory block (Carlos, PDF)',
         url: 'https://fdd-hs26.github.io/projects/w2-intro-block-slides.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'Local Interpretability: LIME (PDF)',
+        url: 'https://github.com/eth-fdd-fs26/FDD-WE2-public/blob/main/lectures/04_LIME.pdf',
       },
       {
         group: 'Interactive',
