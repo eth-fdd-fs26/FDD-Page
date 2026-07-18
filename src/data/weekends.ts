@@ -705,6 +705,11 @@ export const weekends: Weekend[] = [
       },
       {
         group: 'Lecture slides',
+        label: 'Confounding and Selection: introductory block, annotated (Carlos, PDF)',
+        url: 'https://fdd-hs26.github.io/projects/w2-intro-block-slides-annotated.pdf',
+      },
+      {
+        group: 'Lecture slides',
         label: 'Local Interpretability: LIME (PDF)',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE2-public/main/lectures/04_LIME.pdf',
       },
