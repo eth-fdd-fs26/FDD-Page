@@ -666,7 +666,18 @@ export const weekends: Weekend[] = [
       },
       { time: '09:00', title: 'Mechanistic Interpretability', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE2-public/blob/main/exercises/05_mechinterp_students_extended.ipynb' },
       { time: '10:00', title: 'Coffee break', type: 'break' },
-      { time: '10:30', title: 'Prompt Optimization + GEPA', type: 'lecture', who: 'Emircan' },
+      {
+        time: '10:30',
+        title: 'Prompt Optimization + GEPA',
+        type: 'lecture',
+        who: 'Emircan',
+        links: [
+          {
+            label: 'Slides',
+            url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE2-public/main/lectures/06_prompt_optimization_and_gepa.pdf',
+          },
+        ],
+      },
       {
         time: '11:00',
         title: 'Prompt Optimization + GEPA',
@@ -695,6 +706,11 @@ export const weekends: Weekend[] = [
         group: 'Lecture slides',
         label: 'Mechanistic Interpretability (PDF)',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE2-public/main/lectures/05_Machanistic_Interpretability.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'Prompt Optimization and GEPA (PDF)',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE2-public/main/lectures/06_prompt_optimization_and_gepa.pdf',
       },
       {
         group: 'Interactive',
