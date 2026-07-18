@@ -652,7 +652,18 @@ export const weekends: Weekend[] = [
       },
     ],
     saturday: [
-      { time: '08:00', title: 'Mechanistic Interpretability', type: 'lecture', who: 'Adrian, Dimitrios' },
+      {
+        time: '08:00',
+        title: 'Mechanistic Interpretability',
+        type: 'lecture',
+        who: 'Adrian, Dimitrios',
+        links: [
+          {
+            label: 'Slides',
+            url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE2-public/main/lectures/05_Machanistic_Interpretability.pdf',
+          },
+        ],
+      },
       { time: '09:00', title: 'Mechanistic Interpretability', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE2-public/blob/main/exercises/05_mechinterp_students_extended.ipynb' },
       { time: '10:00', title: 'Coffee break', type: 'break' },
       { time: '10:30', title: 'Prompt Optimization + GEPA', type: 'lecture', who: 'Emircan' },
@@ -679,6 +690,11 @@ export const weekends: Weekend[] = [
         group: 'Lecture slides',
         label: 'Attribution Maps and SHAP (PDF)',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE2-public/main/lectures/04_b_attribution_maps_shap.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'Mechanistic Interpretability (PDF)',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE2-public/main/lectures/05_Machanistic_Interpretability.pdf',
       },
       {
         group: 'Interactive',
