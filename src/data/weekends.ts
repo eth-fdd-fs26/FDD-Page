@@ -690,6 +690,10 @@ export const weekends: Weekend[] = [
             label: 'Slides',
             url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE2-public/main/lectures/project_FDD_audit.pdf',
           },
+          {
+            label: 'Notebook',
+            url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE2-public/blob/project/FDD_health_ai_audit.ipynb',
+          },
         ],
       },
     ],
@@ -723,6 +727,11 @@ export const weekends: Weekend[] = [
         group: 'Lecture slides',
         label: 'Project slides',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE2-public/main/lectures/project_FDD_audit.pdf',
+      },
+      {
+        group: 'Project',
+        label: 'Project notebook — Health AI Audit (notebook)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE2-public/blob/project/FDD_health_ai_audit.ipynb',
       },
       {
         group: 'Interactive',
