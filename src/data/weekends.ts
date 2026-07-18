@@ -599,6 +599,10 @@ export const weekends: Weekend[] = [
             url: 'https://fdd-hs26.github.io/projects/w2-intro-block-slides.pdf',
           },
           {
+            label: 'Slides (annotated, PDF)',
+            url: 'https://fdd-hs26.github.io/projects/w2-intro-block-slides-annotated.pdf',
+          },
+          {
             label: "Simpson's paradox explorer",
             url: 'https://fdd-hs26.github.io/projects/interactive-simpson/',
           },
