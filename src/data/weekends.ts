@@ -684,7 +684,14 @@ export const weekends: Weekend[] = [
         type: 'exercise',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE2-public/blob/main/exercises/06_prompt_optimization_gepa_students.ipynb',
       },
-      { time: '12:00', title: 'Intro to Project', type: 'project', who: 'Adrian, Francesco' },
+      { time: '12:00', title: 'Intro to Project', type: 'project', who: 'Adrian, Francesco' ,
+        links: [
+          {
+            label: 'Slides',
+            url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE2-public/main/lectures/project_FDD_audit.pdf',
+          },
+        ],
+      },
     ],
     resources: [
       {
@@ -711,6 +718,11 @@ export const weekends: Weekend[] = [
         group: 'Lecture slides',
         label: 'Prompt Optimization and GEPA (PDF)',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE2-public/main/lectures/06_prompt_optimization_and_gepa.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'Project slides',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE2-public/main/lectures/project_FDD_audit.pdf',
       },
       {
         group: 'Interactive',
