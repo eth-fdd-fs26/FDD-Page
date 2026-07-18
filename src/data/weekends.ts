@@ -454,7 +454,7 @@ export const weekends: Weekend[] = [
         type: 'project',
         who: 'Francesco',
         links: [
-          { label: 'Kaggle competition', url: 'https://www.kaggle.com/competitions/eth-fdd-competition' },
+          { label: 'Kaggle competition', url: 'https://www.kaggle.com/t/40276fd0e0c54a42bcc046758201dbd1' },
           { label: 'Slides', url: 'https://github.com/eth-fdd-fs26/FDD-WE1-public/blob/main/slides/Project%20week%201.pdf' },
           { label: 'Lecture notes', url: 'https://www.apollo-platform.xyz/notes/6f103c68-3b56-4657-8533-a01dd5e245ec' },
           { label: 'Submission script', url: 'https://github.com/eth-fdd-fs26/FDD-WE1-public/blob/main/submission.py' },
