@@ -703,6 +703,11 @@ export const weekends: Weekend[] = [
     ],
     resources: [
       {
+        group: 'Quiz',
+        label: 'Quiz',
+        url: 'https://docs.google.com/forms/d/e/1FAIpQLSdXsLvHesHvVCa7LxcI6T0GGFwOA3dA90pQhkBEUzzJmRp-gA/viewform?usp=header',
+      },
+      {
         group: 'Lecture slides',
         label: 'Confounding and Selection: introductory block (Carlos, PDF)',
         url: 'https://fdd-hs26.github.io/projects/w2-intro-block-slides.pdf',
