@@ -821,7 +821,18 @@ export const weekends: Weekend[] = [
       { time: '11:00', title: 'LLM Watermarks', type: 'exercise' },
       { time: '12:00', title: 'Intro to Project', type: 'project' },
     ],
-    resources: placeholderResources(),
+    resources: [
+      {
+        group: 'Exercises',
+        label: 'Jailbreaking and Prompt Injecting LLMs',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/02_attacking_vendor_copilot_student.ipynb',
+      },
+      {
+        group: 'Exercises',
+        label: 'Differential Privacy',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/04_differential_privacy_students.ipynb',
+      },
+    ],
   },
   {
     id: 'we4',
@@ -855,18 +866,7 @@ export const weekends: Weekend[] = [
       { time: '11:00', title: 'Coding Exercise', type: 'exercise' },
       { time: '12:00', title: 'Intro to Project', type: 'project' },
     ],
-    resources: [
-      {
-        group: 'Exercises',
-        label: 'Jailbreaking and Prompt Injecting LLMs',
-        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/02_attacking_vendor_copilot_student.ipynb',
-      },
-      {
-        group: 'Exercises',
-        label: 'Differential Privacy',
-        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/04_differential_privacy_students.ipynb',
-      },
-    ],
+    resources: placeholderResources(),
   },
   {
     id: 'we5',
