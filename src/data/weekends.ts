@@ -803,15 +803,15 @@ export const weekends: Weekend[] = [
     friday: [
       { time: '08:00', title: 'Adversarial Attacks + Robustness and Certification', type: 'lecture', who: 'Dimitrios' },
       { time: '09:00', title: 'Adversarial Attacks + Robustness and Certification', type: 'exercise' },
-      { time: '10:00', title: 'Jailbreaking and Prompt Injecting LLMs', type: 'lecture', who: 'Adrian' },
+      { time: '10:00', title: 'Jailbreaking and Prompt Injecting LLMs', type: 'lecture', who: 'Adrian' }, 
       { time: '10:30', title: 'Coffee break', type: 'break' },
-      { time: '11:00', title: 'Jailbreaking and Prompt Injecting LLMs', type: 'exercise' },
+      { time: '11:00', title: 'Jailbreaking and Prompt Injecting LLMs', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/02_attacking_vendor_copilot_student.ipynb' },
       { time: '12:00', title: 'LLM Transformation Attacks (fine-tuning, quantization, abliteration)', type: 'lecture', who: 'Adrian' },
       { time: '13:00', title: 'Lunch break', type: 'break' },
       { time: '14:00', title: 'LLM Transformation Attacks (fine-tuning, quantization, abliteration)', type: 'exercise' },
       { time: '15:00', title: 'Differential Privacy', type: 'lecture', who: 'Deli' },
       { time: '15:30', title: 'Coffee break', type: 'break' },
-      { time: '16:00', title: 'Differential Privacy', type: 'exercise' },
+      { time: '16:00', title: 'Differential Privacy', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/04_differential_privacy_students.ipynb' },
     ],
     saturday: [
       { time: '08:00', title: 'LLM Defenses', type: 'lecture', who: 'Daniele' },
@@ -855,7 +855,18 @@ export const weekends: Weekend[] = [
       { time: '11:00', title: 'Coding Exercise', type: 'exercise' },
       { time: '12:00', title: 'Intro to Project', type: 'project' },
     ],
-    resources: placeholderResources(),
+    resources: [
+      {
+        group: 'Exercises',
+        label: 'Jailbreaking and Prompt Injecting LLMs',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/02_attacking_vendor_copilot_student.ipynb',
+      },
+      {
+        group: 'Exercises',
+        label: 'Differential Privacy',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/04_differential_privacy_students.ipynb',
+      },
+    ],
   },
   {
     id: 'we5',
