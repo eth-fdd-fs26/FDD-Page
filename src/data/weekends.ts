@@ -811,7 +811,7 @@ export const weekends: Weekend[] = [
       { time: '14:00', title: 'LLM Transformation Attacks (fine-tuning, quantization, abliteration)', type: 'exercise' },
       { time: '15:00', title: 'Differential Privacy', type: 'lecture', who: 'Deli' },
       { time: '15:30', title: 'Coffee break', type: 'break' },
-      { time: '16:00', title: 'Differential Privacy', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/04_differential_privacy_students.ipynb' },
+      { time: '16:00', title: 'Differential Privacy', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/04_differential_privacy_student.ipynb' },
     ],
     saturday: [
       { time: '08:00', title: 'LLM Defenses', type: 'lecture', who: 'Daniele' },
