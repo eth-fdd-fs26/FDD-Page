@@ -830,7 +830,7 @@ export const weekends: Weekend[] = [
       {
         group: 'Exercises',
         label: 'Differential Privacy',
-        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/04_differential_privacy_students.ipynb',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/04_differential_privacy_student.ipynb',
       },
     ],
   },
