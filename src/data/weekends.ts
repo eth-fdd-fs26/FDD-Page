@@ -830,7 +830,15 @@ export const weekends: Weekend[] = [
           { label: 'Fine-tuning & Quantization', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/03_model_integrity_attacks_student.ipynb' },
         ],
       },
-      { time: '15:00', title: 'Differential Privacy', type: 'lecture', who: 'Deli' },
+      {
+        time: '15:00',
+        title: 'Differential Privacy',
+        type: 'lecture',
+        who: 'Deli',
+        links: [
+          { label: 'Slides', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE3-public/main/lectures/04_DifferentialPrivacy.pdf' },
+        ],
+      },
       { time: '15:30', title: 'Coffee break', type: 'break' },
       { time: '16:00', title: 'Differential Privacy', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/04_differential_privacy_student.ipynb' },
     ],
@@ -857,6 +865,11 @@ export const weekends: Weekend[] = [
         group: 'Lecture slides',
         label: 'LLM Transformation Attacks (fine-tuning, quantization, abliteration) — lecture slides (Adrian, PDF)',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE3-public/main/lectures/03_LLM_Transformation_Attacks.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'Differential Privacy — lecture slides (Deli, PDF)',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE3-public/main/lectures/04_DifferentialPrivacy.pdf',
       },
       {
         group: 'Exercises',
