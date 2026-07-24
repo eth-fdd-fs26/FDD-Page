@@ -857,7 +857,7 @@ export const weekends: Weekend[] = [
       { time: '09:00', title: 'LLM Defenses', type: 'exercise' },
       { time: '10:00', title: 'Coffee break', type: 'break' },
       { time: '10:30', title: 'LLM Watermarks', type: 'lecture', who: 'Konstantinos' },
-      { time: '11:00', title: 'LLM Watermarks', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/05_watermark_student.ipynb' },
+      { time: '11:00', title: 'LLM Watermarks', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/06_watermark_student.ipynb' },
       { time: '12:00', title: 'Intro to Project', type: 'project' },
     ],
     resources: [
@@ -914,7 +914,7 @@ export const weekends: Weekend[] = [
       {
         group: 'Exercises',
         label: 'LLM Watermarks',
-        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/05_watermark_student.ipynb',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/06_watermark_student.ipynb',
       },
     ],
   },
