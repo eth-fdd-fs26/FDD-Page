@@ -858,25 +858,26 @@ export const weekends: Weekend[] = [
         label: 'Adversarial Attacks + Robustness and Certification',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/01_adversarial-robustness-certification_student.ipynb',
       },
-      { 
-        group: 'Exercises', 
-        label: 'Abliteration', 
-        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/00_abliteration_primer.ipynb' },
       {
         group: 'Exercises',
         label: 'Jailbreaking and Prompt Injecting LLMs',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/02_attacking_vendor_copilot_student.ipynb',
       },
+      { 
+        group: 'Exercises', 
+        label: 'LLM Transformation Attacks (Abliteration)', 
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/00_abliteration_primer.ipynb',
+      },
+      {
+        group: 'Exercises',
+        label: 'LLM Transformation Attacks (Fine-tuning & Quantization)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/03_model_integrity_attacks_student.ipynb',
+      },      
       {
         group: 'Exercises',
         label: 'Differential Privacy',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/04_differential_privacy_student.ipynb',
       },
-      {
-        group: 'Exercises',
-        label: 'LLM Transformation Attacks (fine-tuning, quantization, abliteration)',
-        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/03_model_integrity_attacks_student.ipynb',
-      }
     ],
   },
   {
