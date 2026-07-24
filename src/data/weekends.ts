@@ -843,7 +843,16 @@ export const weekends: Weekend[] = [
       { time: '16:00', title: 'Differential Privacy', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/04_differential_privacy_student.ipynb' },
     ],
     saturday: [
-      { time: '08:00', title: 'LLM Defenses', type: 'lecture', who: 'Daniele' },
+      {
+        time: '08:00',
+        title: 'LLM Defenses',
+        type: 'lecture',
+        who: 'Daniele',
+        links: [
+          { label: 'Slides', url: 'https://polybox.ethz.ch/index.php/s/dPswNpJm82gasNP?dir=/&editing=false&openfile=true' },
+          { label: 'Lecture notes', url: 'https://www.apollo-platform.xyz/notes/6cdb408b-d4f3-4940-9d6f-6062942fa5b5' },
+        ],
+      },
       { time: '09:00', title: 'LLM Defenses', type: 'exercise' },
       { time: '10:00', title: 'Coffee break', type: 'break' },
       { time: '10:30', title: 'LLM Watermarks', type: 'lecture', who: 'Konstantinos' },
