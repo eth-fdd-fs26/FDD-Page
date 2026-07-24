@@ -811,7 +811,15 @@ export const weekends: Weekend[] = [
         ],
       },
       { time: '09:00', title: 'Adversarial Attacks + Robustness and Certification', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/01_adversarial-robustness-certification_student.ipynb' },
-      { time: '10:00', title: 'Jailbreaking and Prompt Injecting LLMs', type: 'lecture', who: 'Adrian' }, 
+      {
+        time: '10:00',
+        title: 'Jailbreaking and Prompt Injecting LLMs',
+        type: 'lecture',
+        who: 'Adrian',
+        links: [
+          { label: 'Slides', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE3-public/main/lectures/02_LLMJailbreakPromptInjection.pdf' },
+        ],
+      },
       { time: '10:30', title: 'Coffee break', type: 'break' },
       { time: '11:00', title: 'Jailbreaking and Prompt Injecting LLMs', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/02_attacking_vendor_copilot_student.ipynb' },
       { time: '12:00', title: 'LLM Transformation Attacks (fine-tuning, quantization, abliteration)', type: 'lecture', who: 'Adrian' },
@@ -834,6 +842,11 @@ export const weekends: Weekend[] = [
         group: 'Lecture slides',
         label: 'Adversarial Attacks + Robustness and Certification — lecture slides (Dimitrios, PDF)',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE3-public/main/lectures/adversarial-robustness-certification.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'Jailbreaking and Prompt Injecting LLMs — lecture slides (Adrian, PDF)',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE3-public/main/lectures/02_LLMJailbreakPromptInjection.pdf',
       },
       {
         group: 'Exercises',
