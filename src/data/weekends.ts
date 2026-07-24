@@ -801,7 +801,15 @@ export const weekends: Weekend[] = [
     summary:
       'The offensive and defensive sides of AI security: adversarial attacks, data poisoning, LLM jailbreaking, agentic malware, differential privacy and watermarking.',
     friday: [
-      { time: '08:00', title: 'Adversarial Attacks + Robustness and Certification', type: 'lecture', who: 'Dimitrios' },
+      {
+        time: '08:00',
+        title: 'Adversarial Attacks + Robustness and Certification',
+        type: 'lecture',
+        who: 'Dimitrios',
+        links: [
+          { label: 'Slides', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE3-public/main/lectures/adversarial-robustness-certification.pdf' },
+        ],
+      },
       { time: '09:00', title: 'Adversarial Attacks + Robustness and Certification', type: 'exercise' },
       { time: '10:00', title: 'Jailbreaking and Prompt Injecting LLMs', type: 'lecture', who: 'Adrian' }, 
       { time: '10:30', title: 'Coffee break', type: 'break' },
@@ -822,6 +830,11 @@ export const weekends: Weekend[] = [
       { time: '12:00', title: 'Intro to Project', type: 'project' },
     ],
     resources: [
+      {
+        group: 'Lecture slides',
+        label: 'Adversarial Attacks + Robustness and Certification — lecture slides (Dimitrios, PDF)',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE3-public/main/lectures/adversarial-robustness-certification.pdf',
+      },
       {
         group: 'Exercises',
         label: 'Jailbreaking and Prompt Injecting LLMs',
