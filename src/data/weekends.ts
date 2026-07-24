@@ -837,6 +837,7 @@ export const weekends: Weekend[] = [
         who: 'Deli',
         links: [
           { label: 'Slides', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE3-public/main/lectures/04_DifferentialPrivacy.pdf' },
+          { label: 'Lecture notes', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE3-public/main/lectures/04_DifferentialPrivacy_notes.pdf' },
         ],
       },
       { time: '15:30', title: 'Coffee break', type: 'break' },
@@ -879,6 +880,11 @@ export const weekends: Weekend[] = [
         group: 'Lecture slides',
         label: 'Differential Privacy — lecture slides (Deli, PDF)',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE3-public/main/lectures/04_DifferentialPrivacy.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'Differential Privacy — lecture notes for self-study (Deli, PDF)',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE3-public/main/lectures/04_DifferentialPrivacy_notes.pdf',
       },
       {
         group: 'Exercises',
