@@ -822,7 +822,7 @@ export const weekends: Weekend[] = [
       },
       { time: '10:30', title: 'Coffee break', type: 'break' },
       { time: '11:00', title: 'Jailbreaking and Prompt Injecting LLMs', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/02_attacking_vendor_copilot_student.ipynb' },
-      { time: '12:00', title: 'LLM Transformation Attacks (fine-tuning, quantization, abliteration)', type: 'lecture', who: 'Adrian' },
+      { time: '12:00', title: 'LLM Transformation Attacks (fine-tuning, quantization, abliteration)', type: 'lecture', who: 'Adrian', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE3-public/main/lectures/03_LLM_Transformation_Attacks.pdf' },
       { time: '13:00', title: 'Lunch break', type: 'break' },
       { time: '14:00', title: 'LLM Transformation Attacks (fine-tuning, quantization, abliteration)', type: 'exercise', 
         links: [
@@ -852,6 +852,11 @@ export const weekends: Weekend[] = [
         group: 'Lecture slides',
         label: 'Jailbreaking and Prompt Injecting LLMs — lecture slides (Adrian, PDF)',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE3-public/main/lectures/02_LLMJailbreakPromptInjection.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'LLM Transformation Attacks (fine-tuning, quantization, abliteration) — lecture slides (Adrian, PDF)',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE3-public/main/lectures/03_LLM_Transformation_Attacks.pdf',
       },
       {
         group: 'Exercises',
