@@ -867,7 +867,14 @@ export const weekends: Weekend[] = [
       { time: '10:00', title: 'Coffee break', type: 'break' },
       { time: '10:30', title: 'LLM Watermarks', type: 'lecture', who: 'Konstantinos', url: 'https://github.com/eth-fdd-fs26/FDD-WE3-public/blob/main/lectures/06_watermarking.pdf' },
       { time: '11:00', title: 'LLM Watermarks', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/06_watermark_student.ipynb' },
-      { time: '12:00', title: 'Intro to Project', type: 'project' },
+      {
+        time: '12:00',
+        title: 'Intro to Project',
+        type: 'project',
+        links: [
+          { label: 'Slides', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE3-public/main/lectures/Project%20Presentation%20Attacking%20a%20Hiring%20Gate.pdf' },
+        ],
+      },
     ],
     resources: [
       {
@@ -899,6 +906,11 @@ export const weekends: Weekend[] = [
         group: 'Lecture slides',
         label: 'LLM Watermarks — lecture slides (Konstantinos, PDF)',
         url: 'https://github.com/eth-fdd-fs26/FDD-WE3-public/blob/main/lectures/06_watermarking.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'Intro to Project: Attacking a Hiring Gate — project presentation slides (PDF)',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE3-public/main/lectures/Project%20Presentation%20Attacking%20a%20Hiring%20Gate.pdf',
       },
       {
         group: 'Exercises',
