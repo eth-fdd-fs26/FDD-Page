@@ -861,6 +861,7 @@ export const weekends: Weekend[] = [
         links: [
           { label: 'RAG Poisoning Defense', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/05a_rag_poison_defense_student.ipynb' },
           { label: 'Melon Defense', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/05b_melon_defense_student.ipynb' },
+          { label: 'Camel Defenese', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/05c_camel_defense_student.ipynb' },
         ],
       },
       { time: '10:00', title: 'Coffee break', type: 'break' },
@@ -929,6 +930,11 @@ export const weekends: Weekend[] = [
         label: 'LLM Defenses (Melon Defense)',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/05b_melon_defense_student.ipynb',
       },
+      {
+        group: 'Exercises',
+        label: 'LLM Defenses (Camel Defense)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/05c_camel_defense_student.ipynb',
+      },      
       {
         group: 'Exercises',
         label: 'LLM Watermarks',
