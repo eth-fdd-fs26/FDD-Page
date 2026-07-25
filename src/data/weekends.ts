@@ -865,7 +865,7 @@ export const weekends: Weekend[] = [
         ],
       },
       { time: '10:00', title: 'Coffee break', type: 'break' },
-      { time: '10:30', title: 'LLM Watermarks', type: 'lecture', who: 'Konstantinos' },
+      { time: '10:30', title: 'LLM Watermarks', type: 'lecture', who: 'Konstantinos', url: 'https://github.com/eth-fdd-fs26/FDD-WE3-public/blob/main/lectures/06_watermarking.pdf' },
       { time: '11:00', title: 'LLM Watermarks', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/exercises/06_watermark_student.ipynb' },
       { time: '12:00', title: 'Intro to Project', type: 'project' },
     ],
@@ -894,6 +894,11 @@ export const weekends: Weekend[] = [
         group: 'Lecture slides',
         label: 'Differential Privacy — lecture notes for self-study (Deli, PDF)',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE3-public/main/lectures/04_DifferentialPrivacy_notes.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'LLM Watermarks — lecture slides (Konstantinos, PDF)',
+        url: 'https://github.com/eth-fdd-fs26/FDD-WE3-public/blob/main/lectures/06_watermarking.pdf',
       },
       {
         group: 'Exercises',
