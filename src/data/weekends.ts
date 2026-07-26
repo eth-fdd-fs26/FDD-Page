@@ -878,6 +878,11 @@ export const weekends: Weekend[] = [
     ],
     resources: [
       {
+        group: 'Quiz',
+        label: 'Quiz',
+        url: 'https://forms.gle/bbbmPhgf7YP4GCpE6',
+      },
+      {
         group: 'Lecture slides',
         label: 'Adversarial Attacks + Robustness and Certification — lecture slides (Dimitrios, PDF)',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE3-public/main/lectures/adversarial-robustness-certification.pdf',
