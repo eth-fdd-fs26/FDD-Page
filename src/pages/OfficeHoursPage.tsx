@@ -8,7 +8,17 @@ import {
   officeHourWeekdays,
   officeHourWeeks,
 } from '../data/officeHours';
-import { bookSlot, cancelSlot, fetchBookings, isConfigured, type Booking } from '../lib/officeHours';
+import {
+  bookSlot,
+  cancelSlot,
+  clearZoomLink,
+  fetchBookings,
+  isConfigured,
+  normalizeZoomUrl,
+  setZoomLink,
+  zoomSlotFor,
+  type Booking,
+} from '../lib/officeHours';
 import { MONTH_NAMES, WEEKDAYS_SHORT, addDaysISO, pad2 } from '../lib/date';
 
 /** How often (ms) to refresh so the grid stays close to live. */
@@ -64,6 +74,10 @@ export function OfficeHoursPage() {
 
   const [name, setName] = useState(() => localStorage.getItem(NAME_KEY) ?? '');
   const [email, setEmail] = useState('');
+
+  // Zoom-link editor: which TA slot's input is open, and its current draft.
+  const [zoomEditing, setZoomEditing] = useState<string | null>(null);
+  const [zoomDraft, setZoomDraft] = useState('');
 
   const todayISO = useMemo(() => {
     const d = new Date();
@@ -136,6 +150,67 @@ export function OfficeHoursPage() {
     }
   }
 
+  /** Removing a TA also removes their Zoom link, so no orphan row is left behind. */
+  async function handleCancelTA(date: string, taSlot: string, who: string) {
+    if (!window.confirm(`Remove ${who} as TA on duty for this day?`)) return;
+    const key = slotKey(date, taSlot);
+    setActing(key);
+    setError(null);
+    try {
+      await cancelSlot(date, taSlot);
+      await clearZoomLink(date, taSlot);
+      await load();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Could not remove the TA.');
+      await load();
+    } finally {
+      setActing(null);
+    }
+  }
+
+  function openZoomEditor(key: string, current: string) {
+    setZoomEditing(key);
+    setZoomDraft(current);
+    setError(null);
+  }
+
+  async function handleSaveZoom(date: string, taSlot: string) {
+    const url = normalizeZoomUrl(zoomDraft);
+    if (!url) {
+      setError('Enter a valid meeting link, e.g. https://ethz.zoom.us/j/1234567890');
+      return;
+    }
+    const key = slotKey(date, zoomSlotFor(taSlot));
+    setActing(key);
+    setError(null);
+    try {
+      await setZoomLink(date, taSlot, url);
+      setZoomEditing(null);
+      setZoomDraft('');
+      await load();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Could not save the link.');
+      await load();
+    } finally {
+      setActing(null);
+    }
+  }
+
+  async function handleClearZoom(date: string, taSlot: string) {
+    if (!window.confirm('Remove the Zoom link for this TA?')) return;
+    const key = slotKey(date, zoomSlotFor(taSlot));
+    setActing(key);
+    setError(null);
+    try {
+      await clearZoomLink(date, taSlot);
+      await load();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Could not remove the link.');
+    } finally {
+      setActing(null);
+    }
+  }
+
   const weekLabel = `${shortDay(days[0] ?? weekMonday).wd} ${shortDay(days[0] ?? weekMonday).dm}`;
 
   return (
@@ -146,7 +221,8 @@ export function OfficeHoursPage() {
           <h2 style={{ fontSize: '1.9rem' }}>Office hours booking</h2>
           <p>
             Enter your name first, then click an open slot to book it — or add yourself as a TA on
-            duty for a day (two per day). The grid updates automatically for everyone; anyone can
+            duty for a day (two per day). TAs on duty can attach their own meeting link, which
+            students see under their name. The grid updates automatically for everyone; anyone can
             cancel a booking.
           </p>
         </div>
@@ -248,16 +324,36 @@ export function OfficeHoursPage() {
                               const key = slotKey(date, ta);
                               const booking = bySlot.get(key);
                               const busy = acting === key;
-                              if (booking) {
+                              if (!booking) {
                                 return (
-                                  <div key={key} className="oh-tile oh-tile--ta-taken">
+                                  <button
+                                    key={key}
+                                    className="oh-tile oh-tile--ta-book"
+                                    type="button"
+                                    onClick={() => handleBook(date, ta)}
+                                    disabled={busy || loading}
+                                  >
+                                    <span className="oh-tile__book-label">
+                                      {busy ? 'Saving…' : '+ TA'}
+                                    </span>
+                                  </button>
+                                );
+                              }
+                              // A TA on duty: name tile, with their own Zoom link beneath it.
+                              const zKey = slotKey(date, zoomSlotFor(ta));
+                              const zoom = bySlot.get(zKey);
+                              const zBusy = acting === zKey;
+                              const editing = zoomEditing === zKey;
+                              return (
+                                <div key={key} className="oh-ta-slot">
+                                  <div className="oh-tile oh-tile--ta-taken">
                                     <span className="oh-tile__name" title={booking.name}>
                                       {booking.name}
                                     </span>
                                     <button
                                       className="oh-tile__cancel"
                                       type="button"
-                                      onClick={() => handleCancel(date, ta, booking.name)}
+                                      onClick={() => handleCancelTA(date, ta, booking.name)}
                                       disabled={busy || loading}
                                       aria-label={`Remove TA ${booking.name}`}
                                       title="Remove this TA"
@@ -265,20 +361,87 @@ export function OfficeHoursPage() {
                                       {busy ? '…' : '✕'}
                                     </button>
                                   </div>
-                                );
-                              }
-                              return (
-                                <button
-                                  key={key}
-                                  className="oh-tile oh-tile--ta-book"
-                                  type="button"
-                                  onClick={() => handleBook(date, ta)}
-                                  disabled={busy || loading}
-                                >
-                                  <span className="oh-tile__book-label">
-                                    {busy ? 'Saving…' : '+ TA'}
-                                  </span>
-                                </button>
+
+                                  {editing ? (
+                                    <form
+                                      className="oh-zoom-edit"
+                                      onSubmit={(e) => {
+                                        e.preventDefault();
+                                        handleSaveZoom(date, ta);
+                                      }}
+                                    >
+                                      <input
+                                        className="oh-zoom-edit__input"
+                                        type="text"
+                                        value={zoomDraft}
+                                        onChange={(e) => setZoomDraft(e.target.value)}
+                                        onKeyDown={(e) => {
+                                          if (e.key === 'Escape') setZoomEditing(null);
+                                        }}
+                                        placeholder="https://ethz.zoom.us/j/…"
+                                        aria-label={`Meeting link for ${booking.name}`}
+                                        autoFocus
+                                      />
+                                      <div className="oh-zoom-edit__actions">
+                                        <button
+                                          className="oh-zoom-btn oh-zoom-btn--save"
+                                          type="submit"
+                                          disabled={zBusy}
+                                        >
+                                          {zBusy ? 'Saving…' : 'Save'}
+                                        </button>
+                                        <button
+                                          className="oh-zoom-btn"
+                                          type="button"
+                                          onClick={() => setZoomEditing(null)}
+                                          disabled={zBusy}
+                                        >
+                                          Cancel
+                                        </button>
+                                      </div>
+                                    </form>
+                                  ) : zoom ? (
+                                    <div className="oh-zoom">
+                                      <a
+                                        className="oh-zoom__link"
+                                        href={zoom.name}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        title={zoom.name}
+                                      >
+                                        Join meeting
+                                      </a>
+                                      <button
+                                        className="oh-zoom__act"
+                                        type="button"
+                                        onClick={() => openZoomEditor(zKey, zoom.name)}
+                                        disabled={zBusy || loading}
+                                        title="Change this link"
+                                      >
+                                        Edit
+                                      </button>
+                                      <button
+                                        className="oh-zoom__act oh-zoom__act--clear"
+                                        type="button"
+                                        onClick={() => handleClearZoom(date, ta)}
+                                        disabled={zBusy || loading}
+                                        aria-label="Remove meeting link"
+                                        title="Remove this link"
+                                      >
+                                        {zBusy ? '…' : '✕'}
+                                      </button>
+                                    </div>
+                                  ) : (
+                                    <button
+                                      className="oh-zoom-add"
+                                      type="button"
+                                      onClick={() => openZoomEditor(zKey, '')}
+                                      disabled={zBusy || loading}
+                                    >
+                                      + Meeting link
+                                    </button>
+                                  )}
+                                </div>
                               );
                             })}
                           </div>
