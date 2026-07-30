@@ -147,6 +147,7 @@ export function CalendarPage() {
                     ) : (
                       <span>{e.title}</span>
                     )}
+                    {e.location && <span className="agenda__room">{e.location}</span>}
                   </div>
                   <a
                     className="agenda__google"

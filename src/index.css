@@ -313,10 +313,22 @@ h3 {
   letter-spacing: 0.12em;
   color: var(--eth-blue);
 }
+.wcard__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  text-align: right;
+}
 .wcard__dates {
   font-size: 0.82rem;
   color: var(--ink-faint);
   font-weight: 400;
+}
+.wcard__room {
+  font-size: 0.82rem;
+  color: var(--ink);
+  font-weight: 600;
 }
 .wcard__title {
   font-size: 1.24rem;
@@ -384,12 +396,18 @@ h3 {
   margin-bottom: 8px;
 }
 .wpeek__day {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
   font-size: 0.64rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-weight: 700;
   color: var(--ink-faint);
   margin: 10px 0 4px;
+}
+.wpeek__room {
+  color: var(--ink-soft);
 }
 .wpeek__row {
   display: flex;
@@ -1036,8 +1054,17 @@ a.srow__title--link:hover {
   color: var(--ink-faint);
 }
 .agenda__what {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
   font-size: 0.96rem;
   font-weight: 700;
+}
+.agenda__room {
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--ink-soft);
 }
 .agenda__item--deadline .agenda__what {
   font-weight: 400;

@@ -4,12 +4,15 @@ import type { Weekend, Session } from '../types';
 const mainSessions = (sessions: Session[]): Session[] =>
   sessions.filter((s) => s.type === 'lecture' || s.type === 'project');
 
-function PeekDay({ label, sessions }: { label: string; sessions: Session[] }) {
+function PeekDay({ label, sessions, room }: { label: string; sessions: Session[]; room?: string }) {
   const items = mainSessions(sessions);
   if (items.length === 0) return null;
   return (
     <>
-      <div className="wpeek__day">{label}</div>
+      <div className="wpeek__day">
+        {label}
+        {room && <span className="wpeek__room">{room}</span>}
+      </div>
       {items.map((s, i) => (
         <div className="wpeek__row" key={`${label}-${i}`}>
           <span className="wpeek__time">{s.time}</span>
@@ -25,8 +28,8 @@ export function SchedulePeek({ weekend }: { weekend: Weekend }) {
   return (
     <div className="wpeek" role="tooltip">
       <div className="wpeek__head">Schedule at a glance</div>
-      <PeekDay label="Friday" sessions={weekend.friday} />
-      <PeekDay label="Saturday" sessions={weekend.saturday} />
+      <PeekDay label="Friday" sessions={weekend.friday} room={weekend.fridayRoom} />
+      <PeekDay label="Saturday" sessions={weekend.saturday} room={weekend.saturdayRoom} />
     </div>
   );
 }

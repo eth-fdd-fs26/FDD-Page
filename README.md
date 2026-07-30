@@ -23,6 +23,9 @@ Each weekend has a title, theme, dates, summary, a `friday` and `saturday` sched
 
 - **Schedule** — each session has a `time`, `title`, a `type`
   (`lecture` | `exercise` | `break` | `project`), and an optional `who` (instructor/TA).
+- **Rooms**: `fridayRoom` / `saturdayRoom` per weekend. They show on the weekend card, the weekend
+  page header and schedule, and as the `LOCATION` of the calendar export. The reservation record
+  they come from is in [`docs/rooms.md`](docs/rooms.md).
 - **Resources** — links are **placeholders** (`url: '#'`) by default and render as greyed-out
   "to be added" items. Replace the `url` (and `label`) with real links to slides, notebooks or
   recordings — those automatically render as clickable links.

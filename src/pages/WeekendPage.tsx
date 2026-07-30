@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { weekends, getWeekend } from '../data/weekends';
+import { weekends, getWeekend, weekendRoom } from '../data/weekends';
 import { ScheduleTable } from '../components/ScheduleTable';
 import { CategoryBadge } from '../components/CategoryBadge';
 import type { Resource } from '../types';
@@ -62,6 +62,8 @@ export function WeekendPage() {
       ? weekend.dates.split('–')
       : [weekend.dates, weekend.dates];
 
+  const room = weekendRoom(weekend);
+
   const hasRealResources = weekend.resources.some((r) => r.url !== '#');
 
   // Group resources by their optional `group`, preserving first-seen order.
@@ -98,6 +100,10 @@ export function WeekendPage() {
             <div>
               <dt>Format</dt>
               <dd>Friday &amp; Saturday</dd>
+            </div>
+            <div>
+              <dt>Room</dt>
+              <dd>{room ?? 'To be confirmed'}</dd>
             </div>
           </dl>
           <p className="wdetail-head__summary">{weekend.summary}</p>

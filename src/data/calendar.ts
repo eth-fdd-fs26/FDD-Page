@@ -1,4 +1,4 @@
-import { weekends } from './weekends';
+import { weekends, weekendRoom } from './weekends';
 import { addDaysISO } from '../lib/date';
 
 export type CourseEventType = 'weekend' | 'deadline';
@@ -14,6 +14,8 @@ export interface CourseEvent {
   weekendId?: string;
   weekendNumber?: number;
   note?: string;
+  /** Room, for events that have one (weekends). */
+  location?: string;
 }
 
 /** Weekend events, derived from the weekend data (Friday + Saturday). */
@@ -26,6 +28,7 @@ export const weekendEvents: CourseEvent[] = weekends.map((w) => ({
   weekendId: w.id,
   weekendNumber: w.number,
   note: w.theme,
+  location: weekendRoom(w),
 }));
 
 /**

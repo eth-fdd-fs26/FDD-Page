@@ -38,6 +38,7 @@ export function buildICS(events: CourseEvent[]): string {
       `SUMMARY:${esc(ev.title)}`,
     );
     if (ev.note) lines.push(`DESCRIPTION:${esc(ev.note)}`);
+    if (ev.location) lines.push(`LOCATION:${esc(ev.location)}`);
     lines.push(`CATEGORIES:${ev.type === 'deadline' ? 'Deadline' : 'Weekend'}`, 'END:VEVENT');
   }
 
@@ -67,5 +68,6 @@ export function googleCalendarUrl(ev: CourseEvent): string {
     dates: `${icsDate(ev.start)}/${icsDate(addDaysISO(ev.end, 1))}`,
   });
   if (ev.note) params.set('details', ev.note);
+  if (ev.location) params.set('location', ev.location);
   return `https://calendar.google.com/calendar/render?${params.toString()}`;
 }

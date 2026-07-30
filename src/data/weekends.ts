@@ -29,6 +29,7 @@ export const weekends: Weekend[] = [
     summary:
       'An optional, hands-on warm-up weekend covering the practical Python stack used throughout the course: NumPy, scikit-learn, PyTorch, Pandas and visualization.',
     fridayRoom: 'HG D 1.1',
+    saturdayRoom: 'HG D 7.1',
     friday: [
       {
         time: '08:00',
@@ -339,6 +340,8 @@ export const weekends: Weekend[] = [
     project: 'Kaggle ML Competition',
     summary:
       'From the mathematical foundations of information theory and Gaussian processes to the practical craft of winning ML competitions with ensembles and strong preprocessing.',
+    fridayRoom: 'HG D 1.1',
+    saturdayRoom: 'HG D 1.1',
     friday: [
       {
         time: '08:00',
@@ -580,6 +583,8 @@ export const weekends: Weekend[] = [
     project: 'Project WE2',
     summary:
       'How to look inside models and make them better understood: LIME and SHAP attributions, mechanistic interpretability, robustness/certification, and modern prompt optimization with GEPA.',
+    fridayRoom: 'HG D 7.1',
+    saturdayRoom: 'HG D 7.1',
     friday: [
       { time: '08:00', title: 'Re-intro to Neural Networks', type: 'lecture', who: 'Carlos' },
       {
@@ -800,6 +805,8 @@ export const weekends: Weekend[] = [
     project: 'Project WE3',
     summary:
       'The offensive and defensive sides of AI security: adversarial attacks, data poisoning, LLM jailbreaking, agentic malware, differential privacy and watermarking.',
+    fridayRoom: 'HG D 7.1',
+    saturdayRoom: 'HG D 7.1',
     friday: [
       {
         time: '08:00',
@@ -975,6 +982,8 @@ export const weekends: Weekend[] = [
     project: 'Project WE4',
     summary:
       'A modern tour of reinforcement learning: policy gradients with REINFORCE, generalized advantage estimation, and the PPO algorithm that powers much of today\'s RL and RLHF.',
+    fridayRoom: 'HG D 7.1',
+    saturdayRoom: 'HG D 7.1',
     friday: [
       { time: '08:00', title: 'Re-intro to RL', type: 'lecture' },
       { time: '09:00', title: 'Coding Exercise', type: 'exercise' },
@@ -1009,6 +1018,8 @@ export const weekends: Weekend[] = [
     project: 'Project RAG',
     summary:
       'Building retrieval systems end to end: clustering and embeddings, approximate nearest neighbour search with HNSW, spatial data structures, reranking and FAISS.',
+    fridayRoom: 'HG D 7.1',
+    saturdayRoom: 'HG D 7.1',
     friday: [
       { time: '08:00', title: 'Clustering and K-means', type: 'lecture' },
       { time: '09:00', title: 'Coding Exercise', type: 'exercise' },
@@ -1043,6 +1054,8 @@ export const weekends: Weekend[] = [
     project: 'Project Agentic',
     summary:
       'Going deeper into agentic AI: emergent properties and reasoning in LLMs, mesa-optimization, Solomonoff induction, and multi-agent / meta-agentic systems.',
+    fridayRoom: 'HG D 7.1',
+    saturdayRoom: 'HG D 7.1',
     friday: [
       { time: '08:00', title: 'Emergent Properties of LLMs', type: 'lecture' },
       { time: '09:00', title: 'Vapnik', type: 'exercise' },
@@ -1075,6 +1088,10 @@ export const weekends: Weekend[] = [
     category: 'mandatory',
     summary:
       'How modern AI is trained and served at scale: parallel computing, distributed training, efficient inference (quantization, batching), MLOps, and architectures like MoE and Flash Attention.',
+    // The HG lecture rooms are blocked by the "Scientifica" event on 28 and 29
+    // August, so this weekend moves to ML H 44 (which also supports recording).
+    fridayRoom: 'ML H 44',
+    saturdayRoom: 'ML H 44',
     friday: [
       { time: '08:00', title: 'Parallel Computing', type: 'lecture' },
       { time: '09:00', title: 'Coding Exercise', type: 'exercise' },
@@ -1102,3 +1119,13 @@ export const weekends: Weekend[] = [
 
 export const getWeekend = (id: string): Weekend | undefined =>
   weekends.find((w) => w.id === id);
+
+/**
+ * Room label for a whole weekend: a single room when both days share it, and
+ * both days spelled out when they differ. Undefined when no room is known.
+ */
+export const weekendRoom = (w: Weekend): string | undefined => {
+  const { fridayRoom: fri, saturdayRoom: sat } = w;
+  if (fri && sat) return fri === sat ? fri : `Fri ${fri} · Sat ${sat}`;
+  return fri ?? sat;
+};
