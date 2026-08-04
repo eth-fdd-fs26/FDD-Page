@@ -880,6 +880,7 @@ export const weekends: Weekend[] = [
         type: 'project',
         links: [
           { label: 'Slides', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE3-public/main/lectures/Project%20Presentation%20Attacking%20a%20Hiring%20Gate.pdf' },
+          { label: 'Notebook', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/project/greenlight_attacks_student.ipynb' },
         ],
       },
     ],
@@ -923,6 +924,11 @@ export const weekends: Weekend[] = [
         group: 'Lecture slides',
         label: 'Intro to Project: Attacking a Hiring Gate — project presentation slides (PDF)',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE3-public/main/lectures/Project%20Presentation%20Attacking%20a%20Hiring%20Gate.pdf',
+      },
+      {
+        group: 'Project',
+        label: 'Project notebook — Greenlight Attacks (open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE3-public/blob/main/project/greenlight_attacks_student.ipynb',
       },
       {
         group: 'Exercises',
