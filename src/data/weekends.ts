@@ -1014,7 +1014,14 @@ export const weekends: Weekend[] = [
       { time: '12:00', title: 'Actor-Critic Methods', type: 'lecture' },
       { time: '13:00', title: 'Lunch break', type: 'break' },
       { time: '14:00', title: 'Coding Exercise', type: 'exercise' },
-      { time: '15:00', title: 'GAE (Generalized Advantage Estimation) & PPO (Proximal Policy Optimization)', type: 'lecture' },
+      {
+        time: '15:00',
+        title: 'GAE (Generalized Advantage Estimation) & PPO (Proximal Policy Optimization)',
+        type: 'lecture',
+        links: [
+          { label: 'Grasshopper (interactive)', url: 'https://fdd-hs26.github.io/projects/grasshopper/' },
+        ],
+      },
       { time: '15:30', title: 'Coffee break', type: 'break' },
       { time: '16:00', title: 'Coding Exercise', type: 'exercise' },
     ],
@@ -1026,7 +1033,14 @@ export const weekends: Weekend[] = [
       { time: '11:00', title: 'Coding Exercise', type: 'exercise' },
       { time: '12:00', title: 'Intro to Project', type: 'project' },
     ],
-    resources: placeholderResources(),
+    resources: [
+      {
+        group: 'Interactive',
+        label: 'Grasshopper: gradient ascent by feel (GAE & PPO session)',
+        url: 'https://fdd-hs26.github.io/projects/grasshopper/',
+      },
+      ...placeholderResources(),
+    ],
   },
   {
     id: 'we5',
