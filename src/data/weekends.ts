@@ -309,13 +309,28 @@ export const weekends: Weekend[] = [
       },
       {
         group: 'Homework',
+        label: 'Homework Part 1 — Pump Cleaning & Fitting (solution, open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/workshop/homework/HW1_pump_cleaning_fitting_solution.ipynb',
+      },
+      {
+        group: 'Homework',
         label: 'Homework Part 2 — Basin Temperature (open in Colab)',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/workshop/homework/HW2_basin_temperature_student.ipynb',
       },
       {
         group: 'Homework',
+        label: 'Homework Part 2 — Basin Temperature (solution, open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/workshop/homework/HW2_basin_temperature_solution.ipynb',
+      },
+      {
+        group: 'Homework',
         label: 'Homework Part 3 — Clustering Waste (open in Colab)',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/workshop/homework/HW3_clustering_waste_student.ipynb',
+      },
+      {
+        group: 'Homework',
+        label: 'Homework Part 3 — Clustering Waste (solution, open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE0-public/blob/main/workshop/homework/HW3_clustering_waste_solution.ipynb',
       },
       {
         group: 'Homework',
