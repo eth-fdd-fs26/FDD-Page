@@ -1006,7 +1006,14 @@ export const weekends: Weekend[] = [
     fridayRoom: 'HG D 7.1',
     saturdayRoom: 'HG D 7.1',
     friday: [
-      { time: '08:00', title: 'Re-intro to RL', type: 'lecture' },
+      {
+        time: '08:00',
+        title: 'Re-intro to RL',
+        type: 'lecture',
+        links: [
+          { label: 'Slides: Modern reinforcement learning', url: 'https://fdd-hs26.github.io/projects/w4-rl-slides.pdf' },
+        ],
+      },
       { time: '09:00', title: 'Coding Exercise', type: 'exercise' },
       { time: '10:00', title: 'Policy Gradient (REINFORCE)', type: 'lecture' },
       { time: '10:30', title: 'Coffee break', type: 'break' },
@@ -1023,7 +1030,14 @@ export const weekends: Weekend[] = [
         ],
       },
       { time: '15:30', title: 'Coffee break', type: 'break' },
-      { time: '16:00', title: 'Coding Exercise', type: 'exercise' },
+      {
+        time: '16:00',
+        title: 'Coding Exercise',
+        type: 'exercise',
+        links: [
+          { label: 'Notebook 04: PPO on LunarLander (Colab)', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE4-public/blob/main/4_gae_ppo/exercise/04_ppo_student.ipynb' },
+        ],
+      },
     ],
     saturday: [
       { time: '08:00', title: 'RL in Large Language Models', type: 'lecture' },
@@ -1034,6 +1048,16 @@ export const weekends: Weekend[] = [
       { time: '12:00', title: 'Intro to Project', type: 'project' },
     ],
     resources: [
+      {
+        group: 'Slides',
+        label: 'Modern reinforcement learning: the lecture deck',
+        url: 'https://fdd-hs26.github.io/projects/w4-rl-slides.pdf',
+      },
+      {
+        group: 'Notebooks',
+        label: 'Notebook 04: PPO on LunarLander (Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE4-public/blob/main/4_gae_ppo/exercise/04_ppo_student.ipynb',
+      },
       {
         group: 'Interactive',
         label: 'Grasshopper: gradient ascent by feel (GAE & PPO session)',
