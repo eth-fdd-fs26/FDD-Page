@@ -1060,12 +1060,27 @@ export const weekends: Weekend[] = [
     ],
     resources: [
       {
-        group: 'Slides',
+        group: 'Lecture slides',
+        label: 'Introduction',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE4-public/main/1_rl_intro/lecture/FDD26-W4-ReIntroToRL.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'Policy Gradient (REINFORCE)',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE4-public/main/2_pg/lecture/FDD26-W4-PolicyGradient.pdf',
+      },
+      {
+        group: 'Lecture slides',
         label: 'Modern reinforcement learning: the lecture deck',
         url: 'https://fdd-hs26.github.io/projects/w4-rl-slides.pdf',
       },
       {
-        group: 'Notebooks',
+        group: 'Lecture slides',
+        label: 'Safe RL',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE4-public/main/6_risk_rl/lecture/FDD26-W4-SafeRL.pdf',
+      },
+      {
+        group: 'Exercises',
         label: 'Notebook 04: PPO on LunarLander (Colab)',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE4-public/blob/main/4_gae_ppo/exercise/04_ppo_student.ipynb',
       },
