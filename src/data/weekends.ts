@@ -1008,7 +1008,7 @@ export const weekends: Weekend[] = [
     friday: [
       {
         time: '08:00',
-        title: '(Re-)Intro to RL',
+        title: 'Re-Intro to RL',
         type: 'lecture',
         who: 'Suei-Wen',
         links: [
@@ -1018,7 +1018,7 @@ export const weekends: Weekend[] = [
       },
       { 
         time: '09:00', 
-        title: '(Re-)Intro to RL', 
+        title: 'Re-Intro to RL', 
         type: 'exercise',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE4-public/blob/main/1_rl_intro/exercise/01_rl_intro_student.ipynb',
       },
@@ -1078,7 +1078,7 @@ export const weekends: Weekend[] = [
         type: 'lecture',
         who: 'Piyushi',
       },
-      { time: '09:00', title: 'Coding Exercise', type: 'exercise' },
+      { time: '09:00', title: 'RL in Large Language Models', type: 'exercise' },
       { time: '10:00', title: 'Coffee break', type: 'break' },
       { 
         time: '10:30', 
@@ -1138,10 +1138,14 @@ export const weekends: Weekend[] = [
       },
       {
         group: 'Interactive',
+        label: 'Gradient Update Visualization (Intro & Policy Gradient)',
+        url: 'https://github.com/eth-fdd-fs26/FDD-WE4-public/blob/main/1_rl_intro/lecture/gradient_update_visualization.html',
+      },
+      {
+        group: 'Interactive',
         label: 'Grasshopper: gradient ascent by feel (GAE & PPO session)',
         url: 'https://fdd-hs26.github.io/projects/grasshopper/',
       },
-      ...placeholderResources(),
     ],
   },
   {
