@@ -1008,17 +1008,17 @@ export const weekends: Weekend[] = [
     friday: [
       {
         time: '08:00',
-        title: 'Re-intro to RL',
+        title: '(Re-)Intro to RL',
         type: 'lecture',
         who: 'Suei-Wen',
         links: [
-          { label: 'Slides: Re-intro to RL', url: 'https://github.com/eth-fdd-fs26/FDD-WE4-public/blob/main/1_rl_intro/lecture/FDD26-W4-ReIntroToRL.pdf' },
+          { label: 'Slides: Re-intro to RL', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE4-public/main/1_rl_intro/lecture/FDD26-W4-ReIntroToRL.pdf' },
           { label: 'Slides: Modern reinforcement learning (Carlos)', url: 'https://fdd-hs26.github.io/projects/w4-rl-slides.pdf' },
         ],
       },
       { 
         time: '09:00', 
-        title: 'CX Re-intro to RL', 
+        title: '(Re-)Intro to RL', 
         type: 'exercise',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE4-public/blob/main/1_rl_intro/exercise/01_rl_intro_student.ipynb',
       },
@@ -1027,12 +1027,12 @@ export const weekends: Weekend[] = [
         title: 'Policy Gradient (REINFORCE & Baselines)', 
         type: 'lecture',
         who: 'Suei-Wen',
-        url: 'https://github.com/eth-fdd-fs26/FDD-WE4-public/blob/main/2_pg/lecture/FDD26-W4-PolicyGradient.pdf',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE4-public/main/2_pg/lecture/FDD26-W4-PolicyGradient.pdf',
       },
       { time: '10:30', title: 'Coffee break', type: 'break' },
       { 
         time: '11:00', 
-        title: 'CX Policy Gradient (REINFORCE & Baselines)', 
+        title: 'Policy Gradient (REINFORCE & Baselines)', 
         type: 'exercise',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE4-public/blob/main/2_pg/exercise/02_policy_gradients_student.ipynb',
       },
@@ -1040,11 +1040,11 @@ export const weekends: Weekend[] = [
       { time: '13:00', title: 'Lunch break', type: 'break' },
       { 
         time: '14:00', 
-        title: 'CX Actor-Critic Methods', 
+        title: 'Actor-Critic Methods', 
         type: 'exercise',
         links: [
-          {label: '1) Actor-Critic', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE4-public/blob/main/3_actor_critic/exercise/03_actor_critic_student.ipynb' },
-          {label: '2) N-step Advantage', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE4-public/blob/main/3_actor_critic/exercise/03b_actor_critic_nstep_advantage_student.ipynb' },
+          {label: 'a) Actor-Critic', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE4-public/blob/main/3_actor_critic/exercise/03_actor_critic_student.ipynb' },
+          {label: 'b) N-step Advantage', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE4-public/blob/main/3_actor_critic/exercise/03b_actor_critic_nstep_advantage_student.ipynb' },
         ]
       },
       {
@@ -1059,10 +1059,10 @@ export const weekends: Weekend[] = [
       { time: '15:30', title: 'Coffee break', type: 'break' },
       {
         time: '16:00',
-        title: 'Coding Exercise',
+        title: 'GAE & PPO',
         type: 'exercise',
         links: [
-          { label: 'Notebook 04: PPO on LunarLander (Colab)', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE4-public/blob/main/4_gae_ppo/exercise/04_ppo_student.ipynb' },
+          { label: 'PPO on LunarLander (Colab)', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE4-public/blob/main/4_gae_ppo/exercise/04_ppo_student.ipynb' },
         ],
       },
     ],
@@ -1075,7 +1075,7 @@ export const weekends: Weekend[] = [
         title: 'Safe RL',
         type: 'lecture',
         who: 'Suei-Wen',
-        url: 'https://github.com/eth-fdd-fs26/FDD-WE4-public/blob/main/6_risk_rl/lecture/FDD26-W4-SafeRL.pdf',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE4-public/main/6_risk_rl/lecture/FDD26-W4-SafeRL.pdf',
       },
       { time: '11:00', title: 'Coding Exercise', type: 'exercise' },
       { time: '12:00', title: 'Intro to Project', type: 'project' },
@@ -1084,12 +1084,12 @@ export const weekends: Weekend[] = [
       {
         group: 'Lecture slides',
         label: 'Introduction',
-        url: 'https://github.com/eth-fdd-fs26/FDD-WE4-public/blob/main/1_rl_intro/lecture/FDD26-W4-ReIntroToRL.pdf',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE4-public/main/1_rl_intro/lecture/FDD26-W4-ReIntroToRL.pdf',
       },
       {
         group: 'Lecture slides',
         label: 'Policy Gradient (REINFORCE & Baselines)',
-        url: 'https://github.com/eth-fdd-fs26/FDD-WE4-public/blob/main/2_pg/lecture/FDD26-W4-PolicyGradient.pdf',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE4-public/main/2_pg/lecture/FDD26-W4-PolicyGradient.pdf',
       },
       {
         group: 'Lecture slides',
@@ -1099,7 +1099,7 @@ export const weekends: Weekend[] = [
       {
         group: 'Lecture slides',
         label: 'Safe RL',
-        url: 'https://github.com/eth-fdd-fs26/FDD-WE4-public/blob/main/6_risk_rl/lecture/FDD26-W4-SafeRL.pdf',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE4-public/main/6_risk_rl/lecture/FDD26-W4-SafeRL.pdf',
       },
       {
         group: 'Exercises',
