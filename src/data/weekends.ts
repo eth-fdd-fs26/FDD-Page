@@ -1011,26 +1011,48 @@ export const weekends: Weekend[] = [
         title: 'Re-intro to RL',
         type: 'lecture',
         who: 'Suei-Wen',
-        url: 'https://github.com/eth-fdd-fs26/FDD-WE4-public/blob/main/1_rl_intro/lecture/FDD26-W4-ReIntroToRL.pdf',
+        links: [
+          { label: 'Slides: Re-intro to RL', url: 'https://github.com/eth-fdd-fs26/FDD-WE4-public/blob/main/1_rl_intro/lecture/FDD26-W4-ReIntroToRL.pdf' },
+          { label: 'Slides: Modern reinforcement learning (Carlos)', url: 'https://fdd-hs26.github.io/projects/w4-rl-slides.pdf' },
+        ],
       },
-      { time: '09:00', title: 'Coding Exercise', type: 'exercise' },
+      { 
+        time: '09:00', 
+        title: 'CX Re-intro to RL', 
+        type: 'exercise',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE4-public/blob/main/1_rl_intro/exercise/01_rl_intro_student.ipynb',
+      },
       { 
         time: '10:00', 
-        title: 'Policy Gradient (REINFORCE)', 
+        title: 'Policy Gradient (REINFORCE & Baselines)', 
         type: 'lecture',
         who: 'Suei-Wen',
         url: 'https://github.com/eth-fdd-fs26/FDD-WE4-public/blob/main/2_pg/lecture/FDD26-W4-PolicyGradient.pdf',
       },
       { time: '10:30', title: 'Coffee break', type: 'break' },
-      { time: '11:00', title: 'Coding Exercise', type: 'exercise' },
+      { 
+        time: '11:00', 
+        title: 'CX Policy Gradient (REINFORCE & Baselines)', 
+        type: 'exercise',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE4-public/blob/main/2_pg/exercise/02_policy_gradients_student.ipynb',
+      },
       { time: '12:00', title: 'Actor-Critic Methods', type: 'lecture' },
       { time: '13:00', title: 'Lunch break', type: 'break' },
-      { time: '14:00', title: 'Coding Exercise', type: 'exercise' },
+      { 
+        time: '14:00', 
+        title: 'CX Actor-Critic Methods', 
+        type: 'exercise',
+        links: [
+          {label: '1) Actor-Critic', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE4-public/blob/main/3_actor_critic/exercise/03_actor_critic_student.ipynb' },
+          {label: '2) N-step Advantage', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE4-public/blob/main/3_actor_critic/exercise/03b_actor_critic_nstep_advantage_student.ipynb' },
+        ]
+      },
       {
         time: '15:00',
         title: 'GAE (Generalized Advantage Estimation) & PPO (Proximal Policy Optimization)',
         type: 'lecture',
         links: [
+          { label: 'Slides: Modern reinforcement learning (Carlos)', url: 'https://fdd-hs26.github.io/projects/w4-rl-slides.pdf' },
           { label: 'Grasshopper (interactive)', url: 'https://fdd-hs26.github.io/projects/grasshopper/' },
         ],
       },
@@ -1066,7 +1088,7 @@ export const weekends: Weekend[] = [
       },
       {
         group: 'Lecture slides',
-        label: 'Policy Gradient (REINFORCE)',
+        label: 'Policy Gradient (REINFORCE & Baselines)',
         url: 'https://github.com/eth-fdd-fs26/FDD-WE4-public/blob/main/2_pg/lecture/FDD26-W4-PolicyGradient.pdf',
       },
       {
@@ -1078,6 +1100,26 @@ export const weekends: Weekend[] = [
         group: 'Lecture slides',
         label: 'Safe RL',
         url: 'https://github.com/eth-fdd-fs26/FDD-WE4-public/blob/main/6_risk_rl/lecture/FDD26-W4-SafeRL.pdf',
+      },
+      {
+        group: 'Exercises',
+        label: 'Notebook 01: Intro to RL Exercise (Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE4-public/blob/main/1_rl_intro/exercise/01_rl_intro_student.ipynb',
+      },
+      {
+        group: 'Exercises',
+        label: 'Notebook 02: Policy Gradient Exercise (Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE4-public/blob/main/2_pg/exercise/02_policy_gradients_student.ipynb',
+      },
+      {
+        group: 'Exercises',
+        label: 'Notebook 03a: Actor-Critic Exercise (Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE4-public/blob/main/3_actor_critic/exercise/03_actor_critic_student.ipynb',
+      },
+      {
+        group: 'Exercises',
+        label: 'Notebook 03b: N-step Advantage Exercise (Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE4-public/blob/main/3_actor_critic/exercise/03b_actor_critic_nstep_advantage_student.ipynb',
       },
       {
         group: 'Exercises',
