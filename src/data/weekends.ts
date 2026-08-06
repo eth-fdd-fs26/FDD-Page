@@ -1011,7 +1011,7 @@ export const weekends: Weekend[] = [
         title: 'Re-intro to RL',
         type: 'lecture',
         who: 'Suei-Wen',
-        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE4-public/main/1_rl_intro/lecture/FDD26-W4-ReIntroToRL.pdf',
+        url: 'https://github.com/eth-fdd-fs26/FDD-WE4-public/blob/main/1_rl_intro/lecture/FDD26-W4-ReIntroToRL.pdf',
       },
       { time: '09:00', title: 'Coding Exercise', type: 'exercise' },
       { 
@@ -1019,7 +1019,7 @@ export const weekends: Weekend[] = [
         title: 'Policy Gradient (REINFORCE)', 
         type: 'lecture',
         who: 'Suei-Wen',
-        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE4-public/main/2_pg/lecture/FDD26-W4-PolicyGradient.pdf',
+        url: 'https://github.com/eth-fdd-fs26/FDD-WE4-public/blob/main/2_pg/lecture/FDD26-W4-PolicyGradient.pdf',
       },
       { time: '10:30', title: 'Coffee break', type: 'break' },
       { time: '11:00', title: 'Coding Exercise', type: 'exercise' },
@@ -1053,7 +1053,7 @@ export const weekends: Weekend[] = [
         title: 'Safe RL',
         type: 'lecture',
         who: 'Suei-Wen',
-        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE4-public/main/6_risk_rl/lecture/FDD26-W4-SafeRL.pdf',
+        url: 'https://github.com/eth-fdd-fs26/FDD-WE4-public/blob/main/6_risk_rl/lecture/FDD26-W4-SafeRL.pdf',
       },
       { time: '11:00', title: 'Coding Exercise', type: 'exercise' },
       { time: '12:00', title: 'Intro to Project', type: 'project' },
@@ -1062,12 +1062,12 @@ export const weekends: Weekend[] = [
       {
         group: 'Lecture slides',
         label: 'Introduction',
-        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE4-public/main/1_rl_intro/lecture/FDD26-W4-ReIntroToRL.pdf',
+        url: 'https://github.com/eth-fdd-fs26/FDD-WE4-public/blob/main/1_rl_intro/lecture/FDD26-W4-ReIntroToRL.pdf',
       },
       {
         group: 'Lecture slides',
         label: 'Policy Gradient (REINFORCE)',
-        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE4-public/main/2_pg/lecture/FDD26-W4-PolicyGradient.pdf',
+        url: 'https://github.com/eth-fdd-fs26/FDD-WE4-public/blob/main/2_pg/lecture/FDD26-W4-PolicyGradient.pdf',
       },
       {
         group: 'Lecture slides',
@@ -1077,7 +1077,7 @@ export const weekends: Weekend[] = [
       {
         group: 'Lecture slides',
         label: 'Safe RL',
-        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE4-public/main/6_risk_rl/lecture/FDD26-W4-SafeRL.pdf',
+        url: 'https://github.com/eth-fdd-fs26/FDD-WE4-public/blob/main/6_risk_rl/lecture/FDD26-W4-SafeRL.pdf',
       },
       {
         group: 'Exercises',
