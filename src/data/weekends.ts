@@ -1013,7 +1013,6 @@ export const weekends: Weekend[] = [
         who: 'Suei-Wen',
         links: [
           { label: 'Slides: Re-intro to RL', url: 'https://github.com/eth-fdd-fs26/FDD-WE4-public/blob/main/1_rl_intro/lecture/FDD26-W4-ReIntroToRL.pdf' },
-          { label: 'Slides: Modern reinforcement learning (Carlos)', url: 'https://fdd-hs26.github.io/projects/w4-rl-slides.pdf' },
         ],
       },
       { 
@@ -1059,6 +1058,7 @@ export const weekends: Weekend[] = [
         type: 'lecture',
         links: [
           { label: 'Slides: Modern reinforcement learning (Carlos)', url: 'https://fdd-hs26.github.io/projects/w4-rl-slides.pdf' },
+          { label: 'Fly the lander (interactive)', url: 'https://fdd-hs26.github.io/projects/fly-the-lander/' },
           { label: 'Grasshopper (interactive)', url: 'https://fdd-hs26.github.io/projects/grasshopper/' },
         ],
       },
@@ -1146,6 +1146,11 @@ export const weekends: Weekend[] = [
         group: 'Interactive',
         label: 'Gradient Update Visualization (Intro & Policy Gradient)',
         url: 'https://github.com/eth-fdd-fs26/FDD-WE4-public/blob/main/1_rl_intro/lecture/gradient_update_visualization.html',
+      },
+      {
+        group: 'Interactive',
+        label: 'Fly the lander: the MDP from the pilot\'s seat (GAE & PPO session)',
+        url: 'https://fdd-hs26.github.io/projects/fly-the-lander/',
       },
       {
         group: 'Interactive',
