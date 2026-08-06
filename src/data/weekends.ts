@@ -1038,9 +1038,10 @@ export const weekends: Weekend[] = [
       },
       { 
         time: '12:00', 
-        title: 'Actor-Critic Methods', 
+        title: 'Actor-Critic Methods',
         type: 'lecture',
         who: 'Mattia',
+        url: 'slides/we4-actor-critic-slides.pdf',
       },
       { time: '13:00', title: 'Lunch break', type: 'break' },
       { 
@@ -1100,6 +1101,11 @@ export const weekends: Weekend[] = [
         group: 'Lecture slides',
         label: 'Policy Gradient (REINFORCE & Baselines)',
         url: 'https://github.com/eth-fdd-fs26/FDD-WE4-public/blob/main/2_pg/lecture/FDD26-W4-PolicyGradient.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'Actor-Critic Methods',
+        url: 'slides/we4-actor-critic-slides.pdf',
       },
       {
         group: 'Lecture slides',
