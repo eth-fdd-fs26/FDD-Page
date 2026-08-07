@@ -1079,8 +1079,9 @@ export const weekends: Weekend[] = [
         title: 'RL in Large Language Models', 
         type: 'lecture',
         who: 'Piyushi',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE4-public/main/5_llm_rl/lecture/RL_in_LLMs.pdf',
       },
-      { time: '09:00', title: 'RL in Large Language Models', type: 'exercise' },
+      { time: '09:00', title: 'RL in Large Language Models', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE4-public/blob/main/5_llm_rl/exercise/05_rl_for_llms_student.ipynb' },
       { time: '10:00', title: 'Coffee break', type: 'break' },
       { 
         time: '10:30', 
@@ -1089,7 +1090,7 @@ export const weekends: Weekend[] = [
         who: 'Suei-Wen',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE4-public/main/6_risk_rl/lecture/FDD26-W4-SafeRL.pdf',
       },
-      { time: '11:00', title: 'Safe RL', type: 'exercise' },
+      { time: '11:00', title: 'Safe RL', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE4-public/blob/main/6_risk_rl/exercise/06_risk_rl_student.ipynb' },
       { time: '12:00', title: 'Intro to Project', type: 'project' },
     ],
     resources: [
@@ -1112,6 +1113,11 @@ export const weekends: Weekend[] = [
         group: 'Lecture slides',
         label: 'Modern reinforcement learning: the lecture deck',
         url: 'https://fdd-hs26.github.io/projects/w4-rl-slides.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'RL in Large Language Models',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE4-public/main/5_llm_rl/lecture/RL_in_LLMs.pdf',
       },
       {
         group: 'Lecture slides',
@@ -1142,6 +1148,16 @@ export const weekends: Weekend[] = [
         group: 'Exercises',
         label: 'Notebook 04: PPO on LunarLander (Colab)',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE4-public/blob/main/4_gae_ppo/exercise/04_ppo_student.ipynb',
+      },
+      {
+        group: 'Exercises',
+        label: 'Notebook 05: RL in LLMs Exercise (Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE4-public/blob/main/5_llm_rl/exercise/05_rl_for_llms_student.ipynb', 
+      },
+      {
+        group: 'Exercises',
+        label: 'Notebook 06: Safe RL Exercise (Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE4-public/blob/main/6_risk_rl/exercise/06_risk_rl_student.ipynb',
       },
       {
         group: 'Interactive',
