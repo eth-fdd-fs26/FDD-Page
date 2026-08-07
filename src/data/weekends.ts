@@ -1144,7 +1144,7 @@ export const weekends: Weekend[] = [
       },
       {
         group: 'Interactive',
-        label: 'Gradient Update Visualization (Intro & Policy Gradient)',
+        label: 'Gradient Update Visualization (Intro & Policy Gradient). Download and open in browser.',
         url: 'https://github.com/eth-fdd-fs26/FDD-WE4-public/blob/main/1_rl_intro/lecture/gradient_update_visualization.html',
       },
       {
