@@ -1174,6 +1174,11 @@ export const weekends: Weekend[] = [
         label: 'Grasshopper: gradient ascent by feel (GAE & PPO session)',
         url: 'https://fdd-hs26.github.io/projects/grasshopper/',
       },
+      {
+        group: 'Project',
+        label: 'Project slides',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE4-public/project/FDD_FlappyBirdProject.pdf',
+      },
     ],
   },
   {
