@@ -1091,7 +1091,7 @@ export const weekends: Weekend[] = [
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE4-public/main/6_risk_rl/lecture/FDD26-W4-SafeRL.pdf',
       },
       { time: '11:00', title: 'Safe RL', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE4-public/blob/main/6_risk_rl/exercise/06_risk_rl_student.ipynb' },
-      { time: '12:00', title: 'Intro to Project', type: 'project' },
+      { time: '12:00', title: 'Intro to Project', type: 'project' , url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE4-public/project/FDD_FlappyBirdProject.pdf'},
     ],
     resources: [
       {
