@@ -1205,7 +1205,19 @@ export const weekends: Weekend[] = [
     fridayRoom: 'HG D 7.1',
     saturdayRoom: 'HG D 7.1',
     friday: [
-      { time: '08:00', title: 'RAG pipeline, embeddings and chunking', type: 'lecture', who: 'Carlos', url: 'slides/we5-rag-foundations-slides.pdf' },
+      {
+        time: '08:00',
+        title: 'RAG pipeline, embeddings and chunking',
+        type: 'lecture',
+        who: 'Carlos',
+        url: 'slides/we5-rag-foundations-slides.pdf',
+        // Both games are played inside this hour: pairs are formed at 08:03 in
+        // the pub quiz and reused for the yogurt game.
+        links: [
+          { label: 'The Vorlen document pile', url: 'document-pile/index.html' },
+          { label: 'The yogurt cup game', url: 'yogurt-cups/index.html' },
+        ],
+      },
       { time: '09:00', title: 'Embeddings', type: 'exercise' },
       { time: '10:00', title: 'ANN: vector and hybrid search', type: 'lecture', who: 'Suei-Wen' },
       { time: '10:30', title: 'Coffee break', type: 'break' },
@@ -1247,11 +1259,6 @@ export const weekends: Weekend[] = [
         group: 'In-class games',
         label: 'The Vorlen document pile (play in your browser)',
         url: 'document-pile/index.html',
-      },
-      {
-        group: 'In-class games',
-        label: 'The Vorlen document pile (presenter view)',
-        url: 'document-pile/presenter.html',
       },
       {
         group: 'In-class games',
