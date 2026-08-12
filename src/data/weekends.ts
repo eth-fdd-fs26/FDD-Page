@@ -1237,6 +1237,11 @@ export const weekends: Weekend[] = [
         label: 'RAG pipeline, embeddings and chunking (Carlos, Friday 08:00)',
         url: 'slides/we5-rag-foundations-slides.pdf',
       },
+      {
+        group: 'Lecture slides',
+        label: 'Reranking and context engineering (Carlos, Friday 12:00)',
+        url: 'slides/we5-reranking-slides.pdf',
+      },
       { group: 'Lecture slides', label: 'Other lecture slides (to be added)', url: '#' },
       {
         group: 'In-class games',
