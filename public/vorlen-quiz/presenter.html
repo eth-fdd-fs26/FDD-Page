@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Vorlen quiz: presenter</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <h1>Vorlen quiz, presenter view</h1>
+    <div class="sub">Projector shows this, not the deck. The deck opens after the game.</div>
+  </header>
+
+  <div><span class="roundtag" id="roundtag">round 1 of 4</span></div>
+  <div class="q" id="question">Press Start to reveal the first question.</div>
+  <div class="clock" id="clock">0:00</div>
+
+  <div class="bar">
+    <button id="start" type="button">Start round</button>
+    <input type="text" id="winner" placeholder="winning pair" autocomplete="off">
+    <button id="stop" type="button">Stop clock and score</button>
+    <button id="revealbtn" type="button">Reveal the card</button>
+    <button id="next" type="button">Next round</button>
+  </div>
+
+  <div class="script" id="script"></div>
+
+  <div class="row2">
+    <div>
+      <div class="panel reveal" id="reveal" hidden></div>
+    </div>
+    <div>
+      <div class="panel">
+        <table class="score" id="score">
+          <thead><tr><th>Round</th><th>Winner</th><th class="t">Time</th><th class="t">Cards</th></tr></thead>
+          <tbody></tbody>
+        </table>
+        <div class="bar" style="border:0;padding-top:10px;margin-top:6px">
+          <button id="export" type="button">Copy results as JSON</button>
+          <button id="clear" type="button">Clear the game</button>
+        </div>
+        <div class="hint" id="hint"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="corpus.js"></script>
+<script src="rounds.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  // Answers are base64 in rounds.js. That is enough friction to stop a shoulder surfer in a
+  // lecture room and is not claimed to be more than that. This page is not linked from anywhere.
+
+  var ALL = window.VORLEN_ROUNDS || [];
+  var CARDS = window.VORLEN_CARDS || [];
+  var ROUNDS = ALL.filter(function (r) { return r.played > 0; })
+                  .sort(function (a, b) { return a.played - b.played; });
+
+  // The one line the lecturer is allowed to say between rounds, and where. SKETCH.md section 2:
+  // take a count, not a story. The hands up count is the entire pedagogy of the game.
+  var SCRIPT = {
+    1: "Read the question. Say nothing else. Let them brute force it.",
+    2: "Still nothing. A second kind of card, so they start noticing that cards come in kinds.",
+    3: "BEFORE you reveal: hands up if you already knew roughly which cards to open. "
+       + "Write the count down. That number goes on slide 2b.",
+    4: "A category nobody has been asked about. This one is the deck's prototype query."
+  };
+
+  var idx = 0, t0 = null, tick = null, results = [];
+
+  var elQ = document.getElementById("question");
+  var elClock = document.getElementById("clock");
+  var elTag = document.getElementById("roundtag");
+  var elReveal = document.getElementById("reveal");
+  var elScript = document.getElementById("script");
+  var elWinner = document.getElementById("winner");
+  var elHint = document.getElementById("hint");
+
+  try {
+    var saved = JSON.parse(localStorage.getItem("vorlen_results") || "[]");
+    if (Array.isArray(saved) && saved.length) {
+      results = saved;
+      idx = Math.min(results.length, ROUNDS.length - 1);
+    }
+  } catch (e) {}
+
+  function cardOf(r) {
+    for (var i = 0; i < CARDS.length; i++) {
+      if (CARDS[i].n === r.cardNumber) { return CARDS[i]; }
+    }
+    return null;
+  }
+
+  function render() {
+    var r = ROUNDS[idx];
+    elTag.textContent = "round " + (idx + 1) + " of " + ROUNDS.length;
+    elQ.textContent = t0 === null && !startedThisRound ? "Press Start to reveal the question."
+                                                       : r.q;
+    elScript.textContent = SCRIPT[idx + 1] || "";
+    elReveal.hidden = true;
+    renderScore();
+  }
+
+  var startedThisRound = false;
+
+  function renderClock() {
+    var s = t0 === null ? heldSeconds : (Date.now() - t0) / 1000;
+    var m = Math.floor(s / 60);
+    var ss = Math.floor(s % 60);
+    elClock.textContent = m + ":" + (ss < 10 ? "0" : "") + ss;
+    elClock.className = s >= 120 ? "clock over" : "clock";
+  }
+
+  var heldSeconds = 0;
+
+  document.getElementById("start").addEventListener("click", function () {
+    startedThisRound = true;
+    heldSeconds = 0;
+    t0 = Date.now();
+    if (tick) { clearInterval(tick); }
+    tick = setInterval(renderClock, 200);
+    elQ.textContent = ROUNDS[idx].q;
+    elReveal.hidden = true;
+    renderClock();
+  });
+
+  document.getElementById("stop").addEventListener("click", function () {
+    if (t0 === null) { return; }
+    heldSeconds = (Date.now() - t0) / 1000;
+    clearInterval(tick);
+    tick = null;
+    t0 = null;
+    renderClock();
+    var r = ROUNDS[idx];
+    results[idx] = {
+      round: idx + 1,
+      question: r.id,
+      winner: elWinner.value.trim() || "unnamed pair",
+      seconds: Math.round(heldSeconds * 10) / 10,
+      card: r.cardNumber
+    };
+    elWinner.value = "";
+    save();
+    renderScore();
+  });
+
+  document.getElementById("revealbtn").addEventListener("click", function () {
+    var r = ROUNDS[idx];
+    var c = cardOf(r);
+    elReveal.hidden = false;
+    elReveal.textContent = "";
+
+    var a = document.createElement("div");
+    a.className = "answer";
+    a.textContent = "Answer: " + atob(r.a64);
+    elReveal.appendChild(a);
+
+    var where = document.createElement("div");
+    where.className = "hint";
+    where.textContent = "card " + r.cardNumber + ", " + r.cardId + ", " + r.category;
+    elReveal.appendChild(where);
+
+    if (c) {
+      var doc = document.createElement("div");
+      doc.className = "doc";
+      doc.style.marginTop = "10px";
+      var l1 = document.createElement("div"); l1.className = "l1"; l1.textContent = c.l1;
+      var l2 = document.createElement("div"); l2.className = "l2"; l2.textContent = c.l2;
+      var bd = document.createElement("div"); bd.className = "body"; bd.textContent = c.b;
+      doc.appendChild(l1); doc.appendChild(l2); doc.appendChild(bd);
+      elReveal.appendChild(doc);
+    }
+
+    // Linger on the first line. It is what plants the free index entry the next round runs on.
+    var note = document.createElement("div");
+    note.className = "script";
+    note.textContent = "Leave the first line up. That line is the free index entry the room "
+                     + "uses in the next round.";
+    elReveal.appendChild(note);
+  });
+
+  document.getElementById("next").addEventListener("click", function () {
+    if (idx < ROUNDS.length - 1) { idx += 1; }
+    startedThisRound = false;
+    heldSeconds = 0;
+    if (tick) { clearInterval(tick); tick = null; }
+    t0 = null;
+    renderClock();
+    render();
+  });
+
+  document.getElementById("export").addEventListener("click", function () {
+    var blob = JSON.stringify({ results: results }, null, 1);
+    if (navigator.clipboard) { navigator.clipboard.writeText(blob); }
+    elHint.textContent = "Copied. Paste it into the post mortem notes. " + blob;
+  });
+
+  document.getElementById("clear").addEventListener("click", function () {
+    results = [];
+    idx = 0;
+    startedThisRound = false;
+    heldSeconds = 0;
+    save();
+    render();
+    renderClock();
+  });
+
+  function save() {
+    try { localStorage.setItem("vorlen_results", JSON.stringify(results)); } catch (e) {}
+  }
+
+  function renderScore() {
+    var tb = document.querySelector("#score tbody");
+    tb.textContent = "";
+    for (var i = 0; i < ROUNDS.length; i++) {
+      var tr = document.createElement("tr");
+      var r = results[i];
+      var cells = [
+        String(i + 1),
+        r ? r.winner : "",
+        r ? r.seconds.toFixed(1) + " s" : "",
+        r ? String(r.card) : ""
+      ];
+      for (var j = 0; j < cells.length; j++) {
+        var td = document.createElement("td");
+        if (j >= 2) { td.className = "t"; }
+        td.textContent = cells[j];
+        tr.appendChild(td);
+      }
+      tb.appendChild(tr);
+    }
+    var done = results.filter(Boolean);
+    if (done.length >= 2) {
+      var first = done[0].seconds, last = done[done.length - 1].seconds;
+      elHint.textContent = "round 1 " + first.toFixed(1) + " s, round "
+        + done[done.length - 1].round + " " + last.toFixed(1) + " s, a factor of "
+        + (last > 0 ? (first / last).toFixed(1) : "?") + ". Slide 2b wants this number.";
+    }
+  }
+
+  render();
+  renderClock();
+}());
+</script>
+</body>
+</html>

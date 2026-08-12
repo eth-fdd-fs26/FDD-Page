@@ -1234,6 +1234,16 @@ export const weekends: Weekend[] = [
     resources: [
       { group: 'Lecture slides', label: 'Lecture slides (to be added)', url: '#' },
       {
+        group: 'In-class games',
+        label: 'The Vorlen document pile (pub quiz, play in your browser)',
+        url: 'vorlen-quiz/index.html',
+      },
+      {
+        group: 'In-class games',
+        label: 'The Vorlen document pile (presenter view)',
+        url: 'vorlen-quiz/presenter.html',
+      },
+      {
         group: 'Exercises',
         label: 'Reranking: monoBERT, ColBERT and RankGPT (exercise, open in Colab)',
         url: 'https://colab.research.google.com/github/fdd-hs26/projects/blob/main/weekend-05-rag-research/carlos-lectures/reranking/exercises/reranking_exercises.ipynb',

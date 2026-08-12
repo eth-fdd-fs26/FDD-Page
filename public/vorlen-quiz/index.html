@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Vorlen Bergbahnen AG: the document pile</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <h1>Vorlen Bergbahnen AG</h1>
+    <div class="sub">Fifty internal documents. Six questions. Play at your own pace.</div>
+  </header>
+
+  <div class="banner" id="intro">
+    <strong>You work here, and somebody has asked you a question.</strong>
+    The answer is in one of these fifty documents. Open a card to read it. Find the right one as fast
+    as you can, then click <em>this card answers it</em>.
+    <span class="nb">You can drag the cards around. Nobody will tell you why.</span>
+  </div>
+
+  <div class="qbar" id="qbar">
+    <div class="qline">
+      <span class="roundtag" id="roundtag">round 1 of 6</span>
+      <span class="clock" id="clock">0.0 s</span>
+    </div>
+    <div class="qtext" id="question">Press start when you are ready.</div>
+    <div class="qctl">
+      <button id="start" type="button" class="primary">Start round 1</button>
+      <span class="hint" id="feedback"></span>
+    </div>
+  </div>
+
+  <div class="times" id="times" hidden></div>
+
+  <div class="board" id="board" aria-label="Fifty documents"></div>
+
+  <div class="reader" id="reader">
+    <div class="empty">Click a card to read it.</div>
+  </div>
+
+  <div class="bar">
+    <span class="count" id="count">cards opened this round: <strong>0</strong></span>
+    <button id="reshuffle" type="button">Shuffle the pile</button>
+    <button id="restart" type="button">Start over</button>
+  </div>
+
+</div>
+
+<div class="modal" id="modal" hidden>
+  <div class="modalbox">
+    <h3 id="modaltitle">No searching</h3>
+    <p id="modaltext">The whole point is how you find things by hand. Close this and keep looking.</p>
+    <button id="modalok" type="button" class="primary">Alright</button>
+  </div>
+</div>
+
+<script src="corpus.js"></script>
+<script src="rounds.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  // ==========================================================================
+  // THE ONE DESIGN RULE, and everything else follows from it.
+  //
+  // A tile shows the KIND of document and nothing else. The body of a card is in the DOM only
+  // while that card is open, and only one is ever open.
+  //
+  // Why. The game's whole job is to make the player discover, unprompted, that grouping the pile by
+  // kind is what makes finding things fast. That needs two things at once: sorting by kind has to
+  // be POSSIBLE from what is on screen, and the ANSWERS have to stay unfindable by search. Showing
+  // the kind on the tile buys the first. Keeping the body out of the DOM buys the second: the
+  // browser's own find command can only ever match a category label, never an answer.
+  //
+  // Do not put the card bodies into the tiles. It would take two minutes and it would end the game.
+  // ==========================================================================
+
+  var CARDS = window.VORLEN_CARDS || [];
+  // The solo order, pinned. Two brute force rounds in different kinds, then the REPEAT of round
+  // one's kind, which is where the penny drops, then three fresh kinds to show it generalises.
+  // Q7 is excluded: it is the deliberately ambiguous round and it punishes the strategy the player
+  // has just found, which is honest in a lecture with a lecturer and merely confusing alone.
+  var SOLO_ORDER = ["Q1", "Q2", "Q3", "Q5", "Q4", "Q6"];
+  var ALL = window.VORLEN_ROUNDS || [];
+  var ROUNDS = SOLO_ORDER.map(function (id) {
+    for (var i = 0; i < ALL.length; i++) { if (ALL[i].id === id) { return ALL[i]; } }
+    return null;
+  }).filter(Boolean);
+
+  var board = document.getElementById("board");
+  var reader = document.getElementById("reader");
+  var elQ = document.getElementById("question");
+  var elTag = document.getElementById("roundtag");
+  var elClock = document.getElementById("clock");
+  var elCount = document.getElementById("count");
+  var elFeedback = document.getElementById("feedback");
+  var elTimes = document.getElementById("times");
+  var elStart = document.getElementById("start");
+
+  var byNumber = {};
+  CARDS.forEach(function (c) { byNumber[c.n] = c; });
+
+  var order = CARDS.map(function (c) { return c.n; });   // the player's own arrangement
+  var idx = 0, opened = 0, seen = {}, current = null;
+  var t0 = null, tick = null, results = [];
+  var running = false;
+
+  // ==== the board ===========================================================
+
+  function kindOf(card) {
+    // Line 1 is "<category label> <ID>". The tile shows the label only: the ID would be a second
+    // handle the player did not earn.
+    return card.l1.replace(/\s+\S+$/, "");
+  }
+
+  function renderBoard() {
+    board.textContent = "";
+    order.forEach(function (n) {
+      var c = byNumber[n];
+      var el = document.createElement("div");
+      el.className = "doccard" + (seen[n] ? " seen" : "") + (current === n ? " open" : "");
+      el.setAttribute("draggable", "true");
+      el.setAttribute("data-n", String(n));
+      el.setAttribute("tabindex", "0");
+
+      var num = document.createElement("span");
+      num.className = "dc-n";
+      num.textContent = n;
+
+      var kind = document.createElement("span");
+      kind.className = "dc-k";
+      kind.textContent = kindOf(c);
+
+      el.appendChild(num);
+      el.appendChild(kind);
+      board.appendChild(el);
+    });
+  }
+
+  // ==== drag to sort ========================================================
+  // Plain HTML5 drag and drop, insert-before semantics. No library: the page has to work offline
+  // on ETH guest wifi and survive until August 2026.
+
+  var dragging = null;
+
+  board.addEventListener("dragstart", function (ev) {
+    var el = ev.target.closest(".doccard");
+    if (!el) { return; }
+    dragging = parseInt(el.getAttribute("data-n"), 10);
+    el.classList.add("dragging");
+    ev.dataTransfer.effectAllowed = "move";
+    try { ev.dataTransfer.setData("text/plain", String(dragging)); } catch (e) {}
+  });
+
+  board.addEventListener("dragend", function () {
+    dragging = null;
+    Array.prototype.forEach.call(board.querySelectorAll(".doccard"), function (el) {
+      el.classList.remove("dragging");
+      el.classList.remove("dropbefore");
+    });
+  });
+
+  board.addEventListener("dragover", function (ev) {
+    if (dragging === null) { return; }
+    ev.preventDefault();
+    ev.dataTransfer.dropEffect = "move";
+    var el = ev.target.closest(".doccard");
+    Array.prototype.forEach.call(board.querySelectorAll(".dropbefore"), function (x) {
+      x.classList.remove("dropbefore");
+    });
+    if (el && parseInt(el.getAttribute("data-n"), 10) !== dragging) {
+      el.classList.add("dropbefore");
+    }
+  });
+
+  board.addEventListener("drop", function (ev) {
+    if (dragging === null) { return; }
+    ev.preventDefault();
+    var el = ev.target.closest(".doccard");
+    var from = order.indexOf(dragging);
+    order.splice(from, 1);
+    if (el) {
+      var target = parseInt(el.getAttribute("data-n"), 10);
+      var to = order.indexOf(target);
+      order.splice(to < 0 ? order.length : to, 0, dragging);
+    } else {
+      order.push(dragging);
+    }
+    dragging = null;
+    renderBoard();
+    save();
+  });
+
+  // ==== opening a card ======================================================
+
+  board.addEventListener("click", function (ev) {
+    var el = ev.target.closest(".doccard");
+    if (el) { openCard(parseInt(el.getAttribute("data-n"), 10)); }
+  });
+
+  board.addEventListener("keydown", function (ev) {
+    var el = ev.target.closest(".doccard");
+    if (el && (ev.key === "Enter" || ev.key === " ")) {
+      ev.preventDefault();
+      openCard(parseInt(el.getAttribute("data-n"), 10));
+    }
+  });
+
+  function openCard(n) {
+    var card = byNumber[n];
+    if (!card) { return; }
+    // Exactly one body in the DOM. Remove the previous before adding the next.
+    reader.textContent = "";
+    if (!seen[n]) { seen[n] = true; opened += 1; renderCount(); }
+    current = n;
+    renderBoard();
+
+    var doc = document.createElement("div");
+    doc.className = "doc";
+
+    var tagn = document.createElement("span");
+    tagn.className = "num";
+    tagn.textContent = "card " + n;
+    doc.appendChild(tagn);
+
+    var l1 = document.createElement("div"); l1.className = "l1"; l1.textContent = card.l1;
+    var l2 = document.createElement("div"); l2.className = "l2"; l2.textContent = card.l2;
+    var b = document.createElement("div"); b.className = "body"; b.textContent = card.b;
+    doc.appendChild(l1); doc.appendChild(l2); doc.appendChild(b);
+
+    if (running) {
+      var pick = document.createElement("button");
+      pick.className = "primary pick";
+      pick.type = "button";
+      pick.textContent = "this card answers it";
+      pick.addEventListener("click", function () { submit(n); });
+      doc.appendChild(pick);
+    }
+    reader.appendChild(doc);
+  }
+
+  function renderCount() {
+    elCount.innerHTML = "cards opened this round: <strong>" + opened + "</strong>";
+  }
+
+  // ==== rounds ==============================================================
+
+  function currentRound() { return ROUNDS[idx]; }
+
+  elStart.addEventListener("click", function () {
+    var r = currentRound();
+    if (!r) { return; }
+    running = true;
+    opened = 0;
+    renderCount();
+    elFeedback.textContent = "";
+    elQ.textContent = r.q;
+    elQ.classList.add("live");
+    elStart.disabled = true;
+    t0 = Date.now();
+    if (tick) { clearInterval(tick); }
+    tick = setInterval(renderClock, 100);
+    renderClock();
+    document.getElementById("intro").classList.add("dim");
+  });
+
+  function renderClock() {
+    var s = t0 === null ? 0 : (Date.now() - t0) / 1000;
+    elClock.textContent = s.toFixed(1) + " s";
+  }
+
+  function submit(n) {
+    var r = currentRound();
+    if (!running || !r) { return; }
+    if (n !== r.cardNumber) {
+      elFeedback.textContent = "Not that one. Keep looking.";
+      elFeedback.className = "hint wrong";
+      return;
+    }
+    var secs = (Date.now() - t0) / 1000;
+    clearInterval(tick); tick = null; t0 = null;
+    running = false;
+    elClock.textContent = secs.toFixed(1) + " s";
+    results[idx] = { round: idx + 1, seconds: Math.round(secs * 10) / 10, opened: opened,
+                     q: r.id, card: r.cardNumber };
+    elFeedback.innerHTML = 'Yes: <strong>' + atob(r.a64) + "</strong>";
+    elFeedback.className = "hint right";
+    renderTimes();
+    save();
+
+    idx += 1;
+    if (idx >= ROUNDS.length) {
+      elQ.textContent = "That is all six. Look at your times.";
+      elQ.classList.remove("live");
+      elTag.textContent = "done";
+      elStart.hidden = true;
+      finalWord();
+    } else {
+      elTag.textContent = "round " + (idx + 1) + " of " + ROUNDS.length;
+      elQ.textContent = "Press start when you are ready.";
+      elQ.classList.remove("live");
+      elStart.textContent = "Start round " + (idx + 1);
+      elStart.disabled = false;
+    }
+    openCard(n);   // leave the winning card open, so its FIRST LINE is the last thing seen
+  }
+
+  // ==== the times, which are the whole payoff ===============================
+
+  function renderTimes() {
+    var done = results.filter(Boolean);
+    if (!done.length) { elTimes.hidden = true; return; }
+    elTimes.hidden = false;
+    elTimes.textContent = "";
+    var max = Math.max.apply(null, done.map(function (r) { return r.seconds; }));
+    done.forEach(function (r) {
+      var col = document.createElement("div");
+      col.className = "tcol";
+      var bar = document.createElement("div");
+      bar.className = "tbar";
+      bar.style.height = Math.max(4, Math.round(64 * r.seconds / max)) + "px";
+      var lab = document.createElement("div");
+      lab.className = "tlab";
+      lab.textContent = r.seconds.toFixed(0) + "s";
+      var sub = document.createElement("div");
+      sub.className = "tsub";
+      sub.textContent = r.opened + " opened";
+      col.appendChild(lab); col.appendChild(bar); col.appendChild(sub);
+      elTimes.appendChild(col);
+    });
+  }
+
+  function finalWord() {
+    var done = results.filter(Boolean);
+    if (done.length < 2) { return; }
+    var first = done[0], last = done[done.length - 1];
+    var box = document.createElement("div");
+    box.className = "verdict";
+    var ratio = last.seconds > 0 ? first.seconds / last.seconds : 0;
+    box.innerHTML = "Round 1 took <strong>" + first.seconds.toFixed(0) + " s</strong> and "
+      + first.opened + " cards. Round " + last.round + " took <strong>"
+      + last.seconds.toFixed(0) + " s</strong> and " + last.opened + " cards."
+      + (ratio >= 1.6 ? "  You got faster. What did you change?"
+                      : "  Try it again, and this time arrange the pile first.");
+    elTimes.parentNode.insertBefore(box, elTimes.nextSibling);
+  }
+
+  // ==== housekeeping ========================================================
+
+  function save() {
+    try {
+      localStorage.setItem("vorlen_solo",
+        JSON.stringify({ order: order, results: results, idx: idx, seen: seen }));
+    } catch (e) {}
+  }
+
+  document.getElementById("reshuffle").addEventListener("click", function () {
+    // Reverse the current arrangement. NOT a random shuffle: this page has no randomness in it,
+    // so two players who sort the same way see the same board, and a pilot is reproducible.
+    order.reverse();
+    renderBoard();
+    save();
+  });
+
+  document.getElementById("restart").addEventListener("click", function () {
+    try { localStorage.removeItem("vorlen_solo"); } catch (e) {}
+    location.reload();
+  });
+
+  // Find is the one thing that would end the game in two seconds. It cannot be blocked properly,
+  // and this does not pretend to: the card bodies are simply not in the page, so find has nothing
+  // to match but the category labels. This nudge exists so a player who reaches for it understands
+  // why it will not help, rather than concluding the game is broken.
+  document.addEventListener("keydown", function (ev) {
+    if ((ev.ctrlKey || ev.metaKey) && (ev.key === "f" || ev.key === "F")) {
+      ev.preventDefault();
+      document.getElementById("modal").hidden = false;
+    }
+    if (ev.key === "Escape") { document.getElementById("modal").hidden = true; }
+  });
+  document.getElementById("modalok").addEventListener("click", function () {
+    document.getElementById("modal").hidden = true;
+  });
+
+  try {
+    var st = JSON.parse(localStorage.getItem("vorlen_solo") || "null");
+    if (st && st.order && st.order.length === CARDS.length) {
+      order = st.order; results = st.results || []; idx = st.idx || 0; seen = st.seen || {};
+      opened = 0;
+      elTag.textContent = idx < ROUNDS.length
+        ? "round " + (idx + 1) + " of " + ROUNDS.length : "done";
+      elStart.textContent = "Start round " + (idx + 1);
+      if (idx >= ROUNDS.length) { elStart.hidden = true; }
+    }
+  } catch (e) {}
+
+  renderBoard();
+  renderCount();
+  renderTimes();
+}());
+</script>
+</body>
+</html>
