@@ -1209,7 +1209,7 @@ export const weekends: Weekend[] = [
       { time: '09:00', title: 'Embeddings', type: 'exercise' },
       { time: '10:00', title: 'ANN: vector and hybrid search', type: 'lecture', who: 'Suei-Wen' },
       { time: '10:30', title: 'Coffee break', type: 'break' },
-      { time: '11:00', title: 'Coding Exercise', type: 'exercise' },
+      { time: '11:00', title: 'ANN: vector and hybrid search', type: 'exercise' },
       { time: '12:00', title: 'Reranking and context engineering', type: 'lecture', who: 'Carlos' },
       { time: '13:00', title: 'Lunch break', type: 'break' },
       {
@@ -1221,27 +1221,42 @@ export const weekends: Weekend[] = [
       },
       { time: '15:00', title: 'Multimodal RAG and image data extraction', type: 'lecture', who: 'Sofia' },
       { time: '15:30', title: 'Coffee break', type: 'break' },
-      { time: '16:00', title: 'Coding Exercise', type: 'exercise' },
+      { time: '16:00', title: 'Multimodal RAG and image data extraction', type: 'exercise' },
     ],
     saturday: [
       { time: '08:00', title: 'Agentic RAG and Graph RAG', type: 'lecture', who: 'Adrian' },
-      { time: '09:00', title: 'Coding Exercise', type: 'exercise' },
+      { time: '09:00', title: 'Agentic RAG and Graph RAG', type: 'exercise' },
       { time: '10:00', title: 'Coffee break', type: 'break' },
       { time: '10:30', title: 'RAG evaluation and failure analysis', type: 'lecture', who: 'Loric' },
-      { time: '11:00', title: 'Coding Exercise', type: 'exercise' },
+      { time: '11:00', title: 'RAG evaluation and failure analysis', type: 'exercise' },
       { time: '12:00', title: 'Project', type: 'project', who: 'Adrian' },
     ],
     resources: [
-      { group: 'Lecture slides', label: 'Lecture slides (to be added)', url: '#' },
+      {
+        group: 'Lecture slides',
+        label: 'RAG pipeline, embeddings and chunking (Carlos, Friday 08:00)',
+        url: 'slides/we5-rag-foundations-slides.pdf',
+      },
+      { group: 'Lecture slides', label: 'Other lecture slides (to be added)', url: '#' },
       {
         group: 'In-class games',
-        label: 'The Vorlen document pile (pub quiz, play in your browser)',
-        url: 'vorlen-quiz/index.html',
+        label: 'The Vorlen document pile (play in your browser)',
+        url: 'document-pile/index.html',
       },
       {
         group: 'In-class games',
         label: 'The Vorlen document pile (presenter view)',
-        url: 'vorlen-quiz/presenter.html',
+        url: 'document-pile/presenter.html',
+      },
+      {
+        group: 'In-class games',
+        label: 'The yogurt cup game (play in your browser)',
+        url: 'yogurt-cups/index.html',
+      },
+      {
+        group: 'In-class games',
+        label: 'The yogurt cup game (catalogues and target cards, for printing)',
+        url: 'yogurt-cups/review.html',
       },
       {
         group: 'Exercises',
