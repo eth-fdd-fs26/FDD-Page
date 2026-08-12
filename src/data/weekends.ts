@@ -1205,12 +1205,12 @@ export const weekends: Weekend[] = [
     fridayRoom: 'HG D 7.1',
     saturdayRoom: 'HG D 7.1',
     friday: [
-      { time: '08:00', title: 'RAG pipeline, embeddings and chunking', type: 'lecture', who: 'Carlos' },
+      { time: '08:00', title: 'RAG pipeline, embeddings and chunking', type: 'lecture', who: 'Carlos', url: 'slides/we5-rag-foundations-slides.pdf' },
       { time: '09:00', title: 'Embeddings', type: 'exercise' },
       { time: '10:00', title: 'ANN: vector and hybrid search', type: 'lecture', who: 'Suei-Wen' },
       { time: '10:30', title: 'Coffee break', type: 'break' },
       { time: '11:00', title: 'ANN: vector and hybrid search', type: 'exercise' },
-      { time: '12:00', title: 'Reranking and context engineering', type: 'lecture', who: 'Carlos' },
+      { time: '12:00', title: 'Reranking and context engineering', type: 'lecture', who: 'Carlos', url: 'slides/we5-reranking-slides.pdf' },
       { time: '13:00', title: 'Lunch break', type: 'break' },
       {
         time: '14:00',
