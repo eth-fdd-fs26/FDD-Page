@@ -1224,7 +1224,7 @@ export const weekends: Weekend[] = [
         ],
       },
       { time: '09:00', title: 'Embeddings', type: 'exercise' },
-      { time: '10:00', title: 'ANN: vector and hybrid search', type: 'lecture', who: 'Suei-Wen', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE5-public/lectures/FDD26-W5-ANN-Hybrid-Search.pdf' },
+      { time: '10:00', title: 'ANN: vector and hybrid search', type: 'lecture', who: 'Suei-Wen', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE5-public/main/lectures/FDD26-W5-ANN-Hybrid-Search.pdf' },
       { time: '10:30', title: 'Coffee break', type: 'break' },
       { time: '11:00', title: 'ANN: vector and hybrid search', type: 'exercise' },
       { time: '12:00', title: 'Reranking and context engineering', type: 'lecture', who: 'Carlos', url: 'slides/we5-reranking-slides.pdf' },
@@ -1262,7 +1262,7 @@ export const weekends: Weekend[] = [
       {
         group: 'Lecture slides',
         label: 'ANN: vector and hybrid search (Suei-Wen, Friday 10:00)',
-        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE5-public/lectures/FDD26-W5-ANN-Hybrid-Search.pdf',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE5-public/main/lectures/FDD26-W5-ANN-Hybrid-Search.pdf',
       },
       { group: 'Lecture slides', label: 'Other lecture slides (to be added)', url: '#' },
       {
