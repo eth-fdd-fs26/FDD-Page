@@ -1223,7 +1223,7 @@ export const weekends: Weekend[] = [
           { label: 'The yogurt cup game', url: 'yogurt-cups/index.html' },
         ],
       },
-      { time: '09:00', title: 'Embeddings', type: 'exercise' },
+      { time: '09:00', title: 'Embeddings (Download and Open in Browser)', type: 'exercise', url: 'https://github.com/eth-fdd-fs26/FDD-WE5-public/blob/main/exercises/01_cx_needless-goods-co.html' },
       { time: '10:00', title: 'ANN: vector and hybrid search', type: 'lecture', who: 'Suei-Wen', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE5-public/main/lectures/FDD26-W5-ANN-Hybrid-Search.pdf' },
       { time: '10:30', title: 'Coffee break', type: 'break' },
       { time: '11:00', title: 'ANN: vector and hybrid search', type: 'exercise' },
@@ -1279,6 +1279,11 @@ export const weekends: Weekend[] = [
         group: 'In-class games',
         label: 'The yogurt cup game (catalogues and target cards, for printing)',
         url: 'yogurt-cups/review.html',
+      },
+      {
+        group: 'Exercises',
+        label: 'Embeddings (Download and Open in Browser)',
+        url: 'https://github.com/eth-fdd-fs26/FDD-WE5-public/blob/main/exercises/01_cx_needless-goods-co.html',
       },
       {
         group: 'Exercises',
