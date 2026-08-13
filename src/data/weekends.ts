@@ -1100,6 +1100,11 @@ export const weekends: Weekend[] = [
     ],
     resources: [
       {
+        group: 'Quiz',
+        label: 'Quiz',
+        url: 'https://docs.google.com/forms/d/e/1FAIpQLSe0pMWgQqLfS4h297isVW2mg5Yts8MHO5q8yDMo4pNoj34Zwg/viewform?usp=header',
+      },
+      {
         group: 'Lecture slides',
         label: 'Introduction',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE4-public/main/1_rl_intro/lecture/FDD26-W4-ReIntroToRL.pdf',
