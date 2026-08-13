@@ -1217,8 +1217,10 @@ export const weekends: Weekend[] = [
         who: 'Carlos',
         url: 'slides/we5-rag-foundations-slides.pdf',
         // Both games are played inside this hour: pairs are formed at 08:03 in
-        // the pub quiz and reused for the yogurt game.
+        // the pub quiz and reused for the yogurt game. The Three Questions deck
+        // runs in front of the lecture and opens all three mandatory weekends.
         links: [
+          { label: 'The Three Questions (opens the mandatory weekends)', url: 'slides/we5-three-questions-slides.pdf' },
           { label: 'The Vorlen document pile', url: 'document-pile/index.html' },
           { label: 'The yogurt cup game', url: 'yogurt-cups/index.html' },
         ],
@@ -1254,6 +1256,11 @@ export const weekends: Weekend[] = [
       { time: '12:00', title: 'Project', type: 'project', who: 'Adrian' },
     ],
     resources: [
+      {
+        group: 'Lecture slides',
+        label: 'The Three Questions: the opening of the mandatory weekends (Carlos, Friday 08:00)',
+        url: 'slides/we5-three-questions-slides.pdf',
+      },
       {
         group: 'Lecture slides',
         label: 'RAG pipeline, embeddings and chunking (Carlos, Friday 08:00)',
