@@ -1243,7 +1243,7 @@ export const weekends: Weekend[] = [
         who: 'Carlos',
         url: 'https://colab.research.google.com/github/fdd-hs26/projects/blob/main/weekend-05-rag-research/carlos-lectures/reranking/exercises/reranking_exercises.ipynb',
       },
-      { time: '15:00', title: 'Multimodal RAG and image data extraction', type: 'lecture', who: 'Sofia' },
+      { time: '15:00', title: 'Multimodal RAG and image data extraction', type: 'lecture', who: 'Sofia', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE5-public/main/lectures/FDD26-Multimodal-RAG.pdf' },
       { time: '15:30', title: 'Coffee break', type: 'break' },
       { time: '16:00', title: 'Multimodal RAG and image data extraction', type: 'exercise' },
     ],
