@@ -1249,10 +1249,10 @@ export const weekends: Weekend[] = [
     ],
     saturday: [
       { time: '08:00', title: 'Agentic RAG and Graph RAG', type: 'lecture', who: 'Adrian' },
-      { time: '09:00', title: 'Agentic RAG and Graph RAG', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE5-public/blob/main/exercises/05_agentic_graph_rag.ipynb' },
+      { time: '09:00', title: 'Agentic RAG and Graph RAG', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE5-public/blob/main/exercises/05_cx_agentic_graph_rag_student.ipynb' },
       { time: '10:00', title: 'Coffee break', type: 'break' },
       { time: '10:30', title: 'RAG evaluation and failure analysis', type: 'lecture', who: 'Loric' },
-      { time: '11:00', title: 'RAG evaluation and failure analysis', type: 'exercise' },
+      { time: '11:00', title: 'RAG evaluation and failure analysis', type: 'exercise' , url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE5-public/blob/main/exercises/06_cx_rag_evaluation_student.ipynb' },
       { time: '12:00', title: 'Project', type: 'project', who: 'Adrian' },
     ],
     resources: [
@@ -1307,7 +1307,16 @@ export const weekends: Weekend[] = [
         label: 'Reranking: monoBERT, ColBERT and RankGPT (exercise, open in Colab)',
         url: 'https://colab.research.google.com/github/fdd-hs26/projects/blob/main/weekend-05-rag-research/carlos-lectures/reranking/exercises/reranking_exercises.ipynb',
       },
-      { group: 'Exercises', label: 'Agentic RAG and Graph RAG', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE5-public/blob/main/exercises/05_agentic_graph_rag.ipynb' },
+      { 
+        group: 'Exercises', 
+        label: 'Agentic RAG and Graph RAG', 
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE5-public/blob/main/exercises/05_cx_agentic_graph_rag_student.ipynb',
+      },
+      {
+        group: 'Exercises',
+        label: 'RAG evaluation and failure analysis (exercise, open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE5-public/blob/main/exercises/06_cx_rag_evaluation_student.ipynb',
+      },
     ],
   },
   {
