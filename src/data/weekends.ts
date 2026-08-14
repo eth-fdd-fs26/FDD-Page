@@ -1233,7 +1233,7 @@ export const weekends: Weekend[] = [
       },
       { time: '10:00', title: 'ANN: vector and hybrid search', type: 'lecture', who: 'Suei-Wen', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE5-public/main/lectures/FDD26-W5-ANN-Hybrid-Search.pdf' },
       { time: '10:30', title: 'Coffee break', type: 'break' },
-      { time: '11:00', title: 'ANN: vector and hybrid search', type: 'exercise' },
+      { time: '11:00', title: 'ANN: vector and hybrid search', type: 'exercise' , url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE5-public/blob/main/exercises/02_cx_hybrid_search_student.ipynb' },
       { time: '12:00', title: 'Reranking and context engineering', type: 'lecture', who: 'Carlos', url: 'slides/we5-reranking-slides.pdf' },
       { time: '13:00', title: 'Lunch break', type: 'break' },
       {
@@ -1296,6 +1296,11 @@ export const weekends: Weekend[] = [
         group: 'Exercises',
         label: 'Embeddings Exercise (interactive)',
         url: 'exercises/we5-embeddings-needless-goods.html',
+      },
+      {
+        group: 'Exercises',
+        label: 'ANN: vector and hybrid search (exercise, open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE5-public/blob/main/exercises/02_cx_hybrid_search_student.ipynb',
       },
       {
         group: 'Exercises',
