@@ -1251,7 +1251,7 @@ export const weekends: Weekend[] = [
       { time: '08:00', title: 'Agentic RAG and Graph RAG', type: 'lecture', who: 'Adrian', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE5-public/main/lectures/Agentic%20and%20Graph%20RAG%20(1).pdf' },
       { time: '09:00', title: 'Agentic RAG and Graph RAG', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE5-public/blob/main/exercises/05_cx_agentic_graph_rag_student.ipynb' },
       { time: '10:00', title: 'Coffee break', type: 'break' },
-      { time: '10:30', title: 'RAG evaluation and failure analysis', type: 'lecture', who: 'Loric' },
+      { time: '10:30', title: 'RAG evaluation and failure analysis', type: 'lecture', who: 'Loric', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE5-public/main/lectures/Evaluating%20RAG.pdf' },
       { time: '11:00', title: 'RAG evaluation and failure analysis', type: 'exercise' , url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE5-public/blob/main/exercises/06_cx_rag_evaluation_student.ipynb' },
       { time: '12:00', title: 'Project', type: 'project', who: 'Adrian' },
     ],
@@ -1280,6 +1280,11 @@ export const weekends: Weekend[] = [
         group: 'Lecture slides',
         label: 'Agentic RAG and Graph RAG (Adrian, Saturday 08:00)',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE5-public/main/lectures/Agentic%20and%20Graph%20RAG%20(1).pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'RAG evaluation and failure analysis (Loric, Saturday 10:30)',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE5-public/main/lectures/Evaluating%20RAG.pdf',
       },
       { group: 'Lecture slides', label: 'Other lecture slides (to be added)', url: '#' },
       {
