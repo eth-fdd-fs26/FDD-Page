@@ -22,6 +22,8 @@ export function ScheduleTable({ day, date, sessions, room }: Props) {
         {sessions.map((s, i) => {
           // Coding exercises are prefixed with "CX" to match the course convention.
           const title = s.type === 'exercise' ? `CX ${s.title}` : s.title;
+          // PDFs are offered as a download rather than opened in the browser viewer.
+          const isPdf = !!s.url && s.url.toLowerCase().endsWith('.pdf');
           return (
           <div key={i} className={`srow${s.type === 'break' ? ' srow--break' : ''}`}>
             <div className="srow__time">{s.time}</div>
@@ -32,10 +34,11 @@ export function ScheduleTable({ day, date, sessions, room }: Props) {
                   href={s.url}
                   target="_blank"
                   rel="noopener noreferrer"
+                  {...(isPdf ? { download: '' } : {})}
                 >
                   {title}
                   <span className="srow__ext" aria-hidden="true">
-                    ↗
+                    {isPdf ? '↓' : '↗'}
                   </span>
                 </a>
               ) : (

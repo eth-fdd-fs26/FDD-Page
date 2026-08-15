@@ -1248,7 +1248,7 @@ export const weekends: Weekend[] = [
       { time: '16:00', title: 'Multimodal RAG and image data extraction', type: 'exercise',  who: 'Sofia', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE5-public/blob/main/exercises/04_cx_multimodal_fraud_student.ipynb' },
     ],
     saturday: [
-      { time: '08:00', title: 'Agentic RAG and Graph RAG', type: 'lecture', who: 'Adrian' },
+      { time: '08:00', title: 'Agentic RAG and Graph RAG', type: 'lecture', who: 'Adrian', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE5-public/main/lectures/Agentic%20and%20Graph%20RAG%20(1).pdf' },
       { time: '09:00', title: 'Agentic RAG and Graph RAG', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE5-public/blob/main/exercises/05_cx_agentic_graph_rag_student.ipynb' },
       { time: '10:00', title: 'Coffee break', type: 'break' },
       { time: '10:30', title: 'RAG evaluation and failure analysis', type: 'lecture', who: 'Loric' },
@@ -1275,6 +1275,11 @@ export const weekends: Weekend[] = [
         group: 'Lecture slides',
         label: 'ANN: vector and hybrid search (Suei-Wen, Friday 10:00)',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE5-public/main/lectures/FDD26-W5-ANN-Hybrid-Search.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'Agentic RAG and Graph RAG (Adrian, Saturday 08:00)',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE5-public/main/lectures/Agentic%20and%20Graph%20RAG%20(1).pdf',
       },
       { group: 'Lecture slides', label: 'Other lecture slides (to be added)', url: '#' },
       {
