@@ -1257,6 +1257,11 @@ export const weekends: Weekend[] = [
     ],
     resources: [
       {
+        group: 'Quiz',
+        label: 'Quiz',
+        url: 'https://docs.google.com/forms/d/e/1FAIpQLScl4a2batMLhFxzM-pTAsdPMTPSuBd92sFc6Lfj0YzcJhChdw/viewform?usp=header',
+      },
+      {
         group: 'Lecture slides',
         label: 'The Three Questions: the opening of the mandatory weekends (Carlos, Friday 08:00)',
         url: 'slides/we5-three-questions-slides.pdf',
