@@ -1353,9 +1353,9 @@ export const weekends: Weekend[] = [
       { time: '10:00', title: 'Monte Carlo Tree Search (MCTS)', type: 'lecture', who: 'Carlos' },
       { time: '10:30', title: 'Coffee break', type: 'break' },
       { time: '11:00', title: 'Monte Carlo Tree Search (MCTS)', type: 'exercise' },
-      { time: '12:00', title: 'Agentic AI in SwEng', type: 'lecture', who: 'Piyushi' },
+      { time: '12:00', title: 'Agentic AI in SwEng', type: 'lecture', who: 'Piyushi', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE6-public/main/03_agentic_ai_sweng/Agentic%20AI%20SwEng.pdf' },
       { time: '13:00', title: 'Lunch break', type: 'break' },
-      { time: '14:00', title: 'Agentic AI in SwEng', type: 'exercise' },
+      { time: '14:00', title: 'Agentic AI in SwEng', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/03_agentic_ai_sweng/03_scoutai_workshop_student.ipynb' },
       { time: '15:00', title: 'Intergalactic Football Tournament', type: 'lecture', who: 'Adrian' },
       { time: '15:30', title: 'Coffee break', type: 'break' },
       { time: '16:00', title: 'Intergalactic Football Tournament', type: 'exercise' },
@@ -1368,7 +1368,20 @@ export const weekends: Weekend[] = [
       { time: '11:00', title: 'Evolutionary Coding Agent (OpenEvole)', type: 'exercise' },
       { time: '12:00', title: 'Project', type: 'project' },
     ],
-    resources: placeholderResources(),
+    resources: [
+      {
+        group: 'Lecture slides',
+        label: 'Agentic AI in SwEng (Piyushi, Friday 12:00)',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE6-public/main/03_agentic_ai_sweng/Agentic%20AI%20SwEng.pdf',
+      },
+      { group: 'Lecture slides', label: 'Other lecture slides (to be added)', url: '#' },
+      {
+        group: 'Exercises',
+        label: 'Agentic AI in SwEng (exercise, open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/03_agentic_ai_sweng/03_scoutai_workshop_student.ipynb',
+      },
+      { group: 'Exercises', label: 'Other exercise notebooks (to be added)', url: '#' },
+    ],
   },
   {
     id: 'we7',
