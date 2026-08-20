@@ -1348,9 +1348,9 @@ export const weekends: Weekend[] = [
     fridayRoom: 'HG D 7.1',
     saturdayRoom: 'HG D 7.1',
     friday: [
-      { time: '08:00', title: 'Agents, ReAct, and UCB', type: 'lecture', who: 'Carlos' },
+      { time: '08:00', title: 'Agents, ReAct, and UCB', type: 'lecture', who: 'Carlos', url: 'slides/we6-intro-agents-slides.pdf' },
       { time: '09:00', title: 'Agents, ReAct, and UCB', type: 'exercise' },
-      { time: '10:00', title: 'Monte Carlo Tree Search (MCTS)', type: 'lecture', who: 'Carlos' },
+      { time: '10:00', title: 'Monte Carlo Tree Search (MCTS)', type: 'lecture', who: 'Carlos', url: 'slides/we6-mcts-slides.pdf' },
       { time: '10:30', title: 'Coffee break', type: 'break' },
       { time: '11:00', title: 'Monte Carlo Tree Search (MCTS)', type: 'exercise' },
       { time: '12:00', title: 'Agentic AI in SwEng', type: 'lecture', who: 'Piyushi', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE6-public/main/03_agentic_ai_sweng/Agentic%20AI%20SwEng.pdf' },
@@ -1369,6 +1369,16 @@ export const weekends: Weekend[] = [
       { time: '12:00', title: 'Project', type: 'project' },
     ],
     resources: [
+      {
+        group: 'Lecture slides',
+        label: 'Agents, ReAct, and UCB (Carlos, Friday 08:00)',
+        url: 'slides/we6-intro-agents-slides.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'Monte Carlo Tree Search (Carlos, Friday 10:00)',
+        url: 'slides/we6-mcts-slides.pdf',
+      },
       {
         group: 'Lecture slides',
         label: 'Agentic AI in SwEng (Piyushi, Friday 12:00)',
