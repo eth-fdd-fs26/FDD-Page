@@ -1421,9 +1421,9 @@ export const weekends: Weekend[] = [
       { time: '12:00', title: 'Agentic AI in SwEng', type: 'lecture', who: 'Piyushi', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE6-public/main/03_agentic_ai_sweng/Agentic%20AI%20SwEng.pdf' },
       { time: '13:00', title: 'Lunch break', type: 'break' },
       { time: '14:00', title: 'Agentic AI in SwEng', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/03_agentic_ai_sweng/03_scoutai_workshop_student.ipynb' },
-      { time: '15:00', title: 'Intergalactic Football Tournament', type: 'lecture', who: 'Adrian' },
+      { time: '15:00', title: 'Intergalactic Football Tournament', type: 'lecture', who: 'Adrian', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE6-public/main/04_langchain_betting/Intergalactic%20Football.pdf' },
       { time: '15:30', title: 'Coffee break', type: 'break' },
-      { time: '16:00', title: 'Intergalactic Football Tournament', type: 'exercise' },
+      { time: '16:00', title: 'Intergalactic Football Tournament', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/04_langchain_betting/04_langchain_agents_student.ipynb' },
     ],
     saturday: [
       { time: '08:00', title: 'Language Agent Tree Search (LATS) & Limitations of Agents', type: 'lecture', who: 'Carlos & Adrian' },
@@ -1459,6 +1459,11 @@ export const weekends: Weekend[] = [
         label: 'Agentic AI in SwEng (Piyushi, Friday 12:00)',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE6-public/main/03_agentic_ai_sweng/Agentic%20AI%20SwEng.pdf',
       },
+      {
+        group: 'Lecture slides',
+        label: 'Intergalactic Football Tournament (Adrian, Friday 15:00)',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE6-public/main/04_langchain_betting/Intergalactic%20Football.pdf',
+      },
       { group: 'Lecture slides', label: 'Other lecture slides (to be added)', url: '#' },
       {
         group: 'Exercises',
@@ -1474,6 +1479,11 @@ export const weekends: Weekend[] = [
         group: 'Exercises',
         label: 'Agentic AI in SwEng (exercise, open in Colab)',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/03_agentic_ai_sweng/03_scoutai_workshop_student.ipynb',
+      },
+      {
+        group: 'Exercises',
+        label: 'Intergalactic Football Tournament — LangChain agents (exercise, open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/04_langchain_betting/04_langchain_agents_student.ipynb',
       },
       { group: 'Exercises', label: 'Other exercise notebooks (to be added)', url: '#' },
     ],
