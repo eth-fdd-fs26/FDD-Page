@@ -1426,7 +1426,15 @@ export const weekends: Weekend[] = [
       { time: '16:00', title: 'Intergalactic Football Tournament', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/04_langchain_betting/04_langchain_agents_student.ipynb' },
     ],
     saturday: [
-      { time: '08:00', title: 'Language Agent Tree Search (LATS) & Limitations of Agents', type: 'lecture', who: 'Carlos & Adrian' },
+      {
+        time: '08:00',
+        title: 'Language Agent Tree Search (LATS) & Limitations of Agents',
+        type: 'lecture',
+        who: 'Carlos & Adrian',
+        // Co-taught. This deck is Carlos's LATS half; Adrian's limitations half
+        // is not published yet and should join as a second entry in `links`.
+        url: 'slides/we6-lats-slides.pdf',
+      },
       { time: '09:00', title: 'Language Agent Tree Search (LATS)', type: 'exercise' },
       { time: '10:00', title: 'Coffee break', type: 'break' },
       { time: '10:30', title: 'Evolutionary Coding Agent (OpenEvole)', type: 'lecture', who: 'Sanziana' },
@@ -1463,6 +1471,11 @@ export const weekends: Weekend[] = [
         group: 'Lecture slides',
         label: 'Intergalactic Football Tournament (Adrian, Friday 15:00)',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE6-public/main/04_langchain_betting/Intergalactic%20Football.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'Language Agent Tree Search (Carlos, Saturday 08:00)',
+        url: 'slides/we6-lats-slides.pdf',
       },
       { group: 'Lecture slides', label: 'Other lecture slides (to be added)', url: '#' },
       {
