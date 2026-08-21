@@ -1435,7 +1435,16 @@ export const weekends: Weekend[] = [
         // is not published yet and should join as a second entry in `links`.
         url: 'slides/we6-lats-slides.pdf',
       },
-      { time: '09:00', title: 'Language Agent Tree Search (LATS)', type: 'exercise' },
+      {
+        time: '09:00',
+        title: 'Language Agent Tree Search (LATS)',
+        type: 'exercise',
+        // The interactive below is the warm up, not the exercise. `url` is left
+        // free for the Colab notebook when it is published.
+        links: [
+          { label: 'Play the intranet by hand', url: 'exercises/we6-lats-intranet.html' },
+        ],
+      },
       { time: '10:00', title: 'Coffee break', type: 'break' },
       { time: '10:30', title: 'Evolutionary Coding Agent (OpenEvole)', type: 'lecture', who: 'Sanziana' },
       { time: '11:00', title: 'Evolutionary Coding Agent (OpenEvole)', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/06_openevolve/06_mini_evolve_student.ipynb' },
@@ -1502,6 +1511,11 @@ export const weekends: Weekend[] = [
         group: 'Exercises',
         label: 'Evolutionary Coding Agent (OpenEvole) (exercise, open in Colab)',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/06_openevolve/06_mini_evolve_student.ipynb',
+      },
+      {
+        group: 'Exercises',
+        label: 'The intranet, by hand (interactive warm-up for the LATS exercise)',
+        url: 'exercises/we6-lats-intranet.html',
       },
       { group: 'Exercises', label: 'Other exercise notebooks (to be added)', url: '#' },
     ],
