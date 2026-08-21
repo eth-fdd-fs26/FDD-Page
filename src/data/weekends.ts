@@ -1349,7 +1349,7 @@ export const weekends: Weekend[] = [
     saturdayRoom: 'HG D 7.1',
     friday: [
       { time: '08:00', title: 'Agents, ReAct, and UCB', type: 'lecture', who: 'Carlos', url: 'slides/we6-intro-agents-slides.pdf' },
-      { time: '09:00', title: 'Agents, ReAct, and UCB', type: 'exercise' },
+      { time: '09:00', title: 'Agents, ReAct, and UCB', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/01_react_sherlock/01_react_sherlock_student.ipynb' },
       { time: '10:00', title: 'Monte Carlo Tree Search (MCTS)', type: 'lecture', who: 'Carlos', url: 'slides/we6-mcts-slides.pdf' },
       { time: '10:30', title: 'Coffee break', type: 'break' },
       { time: '11:00', title: 'Monte Carlo Tree Search (MCTS)', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/02_tictactoe_mcts_exercises.ipynb' },
@@ -1386,6 +1386,11 @@ export const weekends: Weekend[] = [
       },
       { group: 'Lecture slides', label: 'Other lecture slides (to be added)', url: '#' },
       {
+        group: 'Exercises',
+        label: 'Agents, ReAct, and UCB (exercise, open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/01_react_sherlock/01_react_sherlock_student.ipynb',
+      },
+      { 
         group: 'Exercises',
         label: 'Monte Carlo Tree Search (MCTS) (exercise, open in Colab)',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/02_tictactoe_mcts_exercises.ipynb',
