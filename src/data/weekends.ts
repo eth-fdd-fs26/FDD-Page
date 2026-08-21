@@ -1430,7 +1430,7 @@ export const weekends: Weekend[] = [
       { time: '09:00', title: 'Language Agent Tree Search (LATS)', type: 'exercise' },
       { time: '10:00', title: 'Coffee break', type: 'break' },
       { time: '10:30', title: 'Evolutionary Coding Agent (OpenEvole)', type: 'lecture', who: 'Sanziana' },
-      { time: '11:00', title: 'Evolutionary Coding Agent (OpenEvole)', type: 'exercise' },
+      { time: '11:00', title: 'Evolutionary Coding Agent (OpenEvole)', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/06_openevolve/06_mini_evolve_student.ipynb' },
       { time: '12:00', title: 'Project', type: 'project' },
     ],
     resources: [
@@ -1484,6 +1484,11 @@ export const weekends: Weekend[] = [
         group: 'Exercises',
         label: 'Intergalactic Football Tournament — LangChain agents (exercise, open in Colab)',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/04_langchain_betting/04_langchain_agents_student.ipynb',
+      },
+      {
+        group: 'Exercises',
+        label: 'Evolutionary Coding Agent (OpenEvole) (exercise, open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/06_openevolve/06_mini_evolve_student.ipynb',
       },
       { group: 'Exercises', label: 'Other exercise notebooks (to be added)', url: '#' },
     ],
