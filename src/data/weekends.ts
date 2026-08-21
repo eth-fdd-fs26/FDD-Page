@@ -1439,10 +1439,9 @@ export const weekends: Weekend[] = [
         time: '09:00',
         title: 'Language Agent Tree Search (LATS)',
         type: 'exercise',
-        // The interactive below is the warm up, not the exercise. `url` is left
-        // free for the Colab notebook when it is published.
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/05_lats/lats_intranet_exercises_student.ipynb',
         links: [
-          { label: 'Play the intranet by hand', url: 'exercises/we6-lats-intranet.html' },
+          { label: 'Play the intranet by hand', url: 'exercises/we6-lats-intranet-page.html' },
         ],
       },
       { time: '10:00', title: 'Coffee break', type: 'break' },
