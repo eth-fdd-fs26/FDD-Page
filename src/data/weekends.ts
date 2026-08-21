@@ -562,13 +562,28 @@ export const weekends: Weekend[] = [
       },
       {
         group: 'Lecture slides',
+        label: 'Gaussian Processes — intro & roadmap slides, annotated (PDF)',
+        url: 'https://fdd-hs26.github.io/projects/w1-intro-roadmap-slides-annotated.pdf',
+      },
+      {
+        group: 'Lecture slides',
         label: 'Gaussian Distributions & Gaussian Processes — lecture slides (Carlos, PDF)',
         url: 'https://fdd-hs26.github.io/projects/w1-gaussian-processes-slides.pdf',
       },
       {
         group: 'Lecture slides',
+        label: 'Gaussian Distributions & Gaussian Processes — lecture slides, annotated (Carlos, PDF)',
+        url: 'https://fdd-hs26.github.io/projects/w1-gaussian-processes-slides-annotated.pdf',
+      },
+      {
+        group: 'Lecture slides',
         label: 'IT Active Learning & Bayesian Optimization — lecture slides (Carlos, PDF)',
         url: 'https://fdd-hs26.github.io/projects/w1-active-learning-slides.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'IT Active Learning & Bayesian Optimization — lecture slides, annotated (Carlos, PDF)',
+        url: 'https://fdd-hs26.github.io/projects/w1-active-learning-slides-annotated.pdf',
       },
       {
         group: 'Lecture slides',
@@ -1059,6 +1074,7 @@ export const weekends: Weekend[] = [
         type: 'lecture',
         links: [
           { label: 'Slides: Modern reinforcement learning (Carlos)', url: 'https://fdd-hs26.github.io/projects/w4-rl-slides.pdf' },
+          { label: 'Slides: Modern reinforcement learning (annotated)', url: 'https://fdd-hs26.github.io/projects/w4-rl-slides-annotated.pdf' },
           { label: 'Fly the lander (interactive)', url: 'https://fdd-hs26.github.io/projects/fly-the-lander/' },
           { label: 'Grasshopper (interactive)', url: 'https://fdd-hs26.github.io/projects/grasshopper/' },
         ],
@@ -1123,6 +1139,11 @@ export const weekends: Weekend[] = [
         group: 'Lecture slides',
         label: 'Modern reinforcement learning: the lecture deck',
         url: 'https://fdd-hs26.github.io/projects/w4-rl-slides.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'Modern reinforcement learning: the lecture deck — annotated (Carlos)',
+        url: 'https://fdd-hs26.github.io/projects/w4-rl-slides-annotated.pdf',
       },
       {
         group: 'Lecture slides',
@@ -1220,7 +1241,9 @@ export const weekends: Weekend[] = [
         // the pub quiz and reused for the yogurt game. The Three Questions deck
         // runs in front of the lecture and opens all three mandatory weekends.
         links: [
+          { label: 'Slides (annotated)', url: 'slides/we5-rag-foundations-slides-annotated.pdf' },
           { label: 'The Three Questions (opens the mandatory weekends)', url: 'slides/we5-three-questions-slides.pdf' },
+          { label: 'The Three Questions (annotated)', url: 'slides/we5-three-questions-slides-annotated.pdf' },
           { label: 'The Vorlen document pile', url: 'document-pile/index.html' },
           { label: 'The yogurt cup game', url: 'yogurt-cups/index.html' },
         ],
@@ -1234,7 +1257,16 @@ export const weekends: Weekend[] = [
       { time: '10:00', title: 'ANN: vector and hybrid search', type: 'lecture', who: 'Suei-Wen', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE5-public/main/lectures/FDD26-W5-ANN-Hybrid-Search.pdf' },
       { time: '10:30', title: 'Coffee break', type: 'break' },
       { time: '11:00', title: 'ANN: vector and hybrid search', type: 'exercise' , url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE5-public/blob/main/exercises/02_cx_hybrid_search_student.ipynb' },
-      { time: '12:00', title: 'Reranking and context engineering', type: 'lecture', who: 'Carlos', url: 'slides/we5-reranking-slides.pdf' },
+      {
+        time: '12:00',
+        title: 'Reranking and context engineering',
+        type: 'lecture',
+        who: 'Carlos',
+        url: 'slides/we5-reranking-slides.pdf',
+        links: [
+          { label: 'Slides (annotated)', url: 'slides/we5-reranking-slides-annotated.pdf' },
+        ],
+      },
       { time: '13:00', title: 'Lunch break', type: 'break' },
       {
         time: '14:00',
@@ -1268,13 +1300,28 @@ export const weekends: Weekend[] = [
       },
       {
         group: 'Lecture slides',
+        label: 'The Three Questions: the opening of the mandatory weekends — annotated (Carlos, Friday 08:00)',
+        url: 'slides/we5-three-questions-slides-annotated.pdf',
+      },
+      {
+        group: 'Lecture slides',
         label: 'RAG pipeline, embeddings and chunking (Carlos, Friday 08:00)',
         url: 'slides/we5-rag-foundations-slides.pdf',
       },
       {
         group: 'Lecture slides',
+        label: 'RAG pipeline, embeddings and chunking — annotated (Carlos, Friday 08:00)',
+        url: 'slides/we5-rag-foundations-slides-annotated.pdf',
+      },
+      {
+        group: 'Lecture slides',
         label: 'Reranking and context engineering (Carlos, Friday 12:00)',
         url: 'slides/we5-reranking-slides.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'Reranking and context engineering — annotated (Carlos, Friday 12:00)',
+        url: 'slides/we5-reranking-slides-annotated.pdf',
       },
       {
         group: 'Lecture slides',
@@ -1348,9 +1395,27 @@ export const weekends: Weekend[] = [
     fridayRoom: 'HG D 7.1',
     saturdayRoom: 'HG D 7.1',
     friday: [
-      { time: '08:00', title: 'Agents, ReAct, and UCB', type: 'lecture', who: 'Carlos', url: 'slides/we6-intro-agents-slides.pdf' },
+      {
+        time: '08:00',
+        title: 'Agents, ReAct, and UCB',
+        type: 'lecture',
+        who: 'Carlos',
+        url: 'slides/we6-intro-agents-slides.pdf',
+        links: [
+          { label: 'Slides (annotated)', url: 'slides/we6-intro-agents-slides-annotated.pdf' },
+        ],
+      },
       { time: '09:00', title: 'Agents, ReAct, and UCB', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/01_react_sherlock/01_react_sherlock_student.ipynb' },
-      { time: '10:00', title: 'Monte Carlo Tree Search (MCTS)', type: 'lecture', who: 'Carlos', url: 'slides/we6-mcts-slides.pdf' },
+      {
+        time: '10:00',
+        title: 'Monte Carlo Tree Search (MCTS)',
+        type: 'lecture',
+        who: 'Carlos',
+        url: 'slides/we6-mcts-slides.pdf',
+        links: [
+          { label: 'Slides (annotated)', url: 'slides/we6-mcts-slides-annotated.pdf' },
+        ],
+      },
       { time: '10:30', title: 'Coffee break', type: 'break' },
       { time: '11:00', title: 'Monte Carlo Tree Search (MCTS)', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/02_tictactoe_mcts_exercises.ipynb' },
       { time: '12:00', title: 'Agentic AI in SwEng', type: 'lecture', who: 'Piyushi', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE6-public/main/03_agentic_ai_sweng/Agentic%20AI%20SwEng.pdf' },
@@ -1376,8 +1441,18 @@ export const weekends: Weekend[] = [
       },
       {
         group: 'Lecture slides',
+        label: 'Agents, ReAct, and UCB — annotated (Carlos, Friday 08:00)',
+        url: 'slides/we6-intro-agents-slides-annotated.pdf',
+      },
+      {
+        group: 'Lecture slides',
         label: 'Monte Carlo Tree Search (Carlos, Friday 10:00)',
         url: 'slides/we6-mcts-slides.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'Monte Carlo Tree Search — annotated (Carlos, Friday 10:00)',
+        url: 'slides/we6-mcts-slides-annotated.pdf',
       },
       {
         group: 'Lecture slides',
