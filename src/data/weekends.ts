@@ -1460,7 +1460,6 @@ export const weekends: Weekend[] = [
         // is not published yet and should join as a second entry in `links`.
         url: 'slides/we6-lats-slides.pdf',
         links: [
-          { label: 'Slides with the fundamentals recapped', url: 'slides/we6-lats-slides-recap.pdf' },
           { label: 'Grasshopper (gradient ascent)', url: 'grasshopper/index.html' },
           { label: 'The bandit problem', url: 'bandits/index.html' },
         ],
@@ -1515,11 +1514,6 @@ export const weekends: Weekend[] = [
         label: 'Language Agent Tree Search (Carlos, Saturday 08:00)',
         url: 'slides/we6-lats-slides.pdf',
       },
-      {
-        group: 'Lecture slides',
-        label: 'Language Agent Tree Search, with the fundamentals recapped (Carlos, Saturday 08:00)',
-        url: 'slides/we6-lats-slides-recap.pdf',
-      },
       { group: 'Lecture slides', label: 'Other lecture slides (to be added)', url: '#' },
       {
         group: 'Exercises',
@@ -1549,7 +1543,7 @@ export const weekends: Weekend[] = [
       {
         group: 'Exercises',
         label: 'The intranet, by hand (interactive warm-up for the LATS exercise)',
-        url: 'exercises/we6-lats-intranet.html',
+        url: 'exercises/we6-lats-intranet-page.html',
       },
       {
         group: 'Exercises',
