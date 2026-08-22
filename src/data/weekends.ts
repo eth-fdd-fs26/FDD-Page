@@ -1285,7 +1285,17 @@ export const weekends: Weekend[] = [
       { time: '10:00', title: 'Coffee break', type: 'break' },
       { time: '10:30', title: 'RAG evaluation and failure analysis', type: 'lecture', who: 'Loric', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE5-public/main/lectures/Evaluating%20RAG.pdf' },
       { time: '11:00', title: 'RAG evaluation and failure analysis', type: 'exercise' , url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE5-public/blob/main/exercises/06_cx_rag_evaluation_student.ipynb' },
-      { time: '12:00', title: 'Project', type: 'project', who: 'Adrian' },
+      {
+        time: '12:00',
+        title: 'Project: Compliance Q&A — a RAG system you build yourself',
+        type: 'project',
+        who: 'Adrian',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE5-public/blob/main/project/notebook/compliance_rag_project.ipynb',
+        links: [
+          { label: 'Project README — setup and instructions', url: 'https://github.com/eth-fdd-fs26/FDD-WE5-public/blob/main/project/README.md' },
+          { label: 'Project repository (GitHub)', url: 'https://github.com/eth-fdd-fs26/FDD-WE5-public/tree/main/project' },
+        ],
+      },
     ],
     resources: [
       {
@@ -1378,6 +1388,21 @@ export const weekends: Weekend[] = [
         group: 'Exercises',
         label: 'RAG evaluation and failure analysis (exercise, open in Colab)',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE5-public/blob/main/exercises/06_cx_rag_evaluation_student.ipynb',
+      },
+      {
+        group: 'Project',
+        label: 'Project notebook — Compliance Q&A RAG (open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE5-public/blob/main/project/notebook/compliance_rag_project.ipynb',
+      },
+      {
+        group: 'Project',
+        label: 'Project README — how to run everything (setup, tests, web app)',
+        url: 'https://github.com/eth-fdd-fs26/FDD-WE5-public/blob/main/project/README.md',
+      },
+      {
+        group: 'Project',
+        label: 'Project repository (GitHub)',
+        url: 'https://github.com/eth-fdd-fs26/FDD-WE5-public/tree/main/project',
       },
     ],
   },
