@@ -1475,7 +1475,7 @@ export const weekends: Weekend[] = [
         ],
       },
       { time: '10:00', title: 'Coffee break', type: 'break' },
-      { time: '10:30', title: 'Evolutionary Coding Agent (OpenEvolve)', type: 'lecture', who: 'Sanziana', url: 'slides/we6-openevolve-slides.pdf' },
+      { time: '10:30', title: 'Evolutionary Coding Agent (OpenEvolve)', type: 'lecture', who: 'Sanziana', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE6-public/main/06_openevolve/lecture/Evolutionary%20coding%20agent_%20OpenEvolve%20%282%29.pdf' },
       { time: '11:00', title: 'Evolutionary Coding Agent (OpenEvolve)', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/06_openevolve/06_mini_evolve_student.ipynb' },
       { time: '12:00', title: 'Project', type: 'project', links: [
         { label: 'Project notebook', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/project/WE6_project_student.ipynb' },
@@ -1510,8 +1510,8 @@ export const weekends: Weekend[] = [
       },
       {
         group: 'Lecture slides',
-        label: 'Evolutionary Coding Agent (OpenEvolve) (Sanziana, Saturday 10:30)',
-        url: 'slides/we6-openevolve-slides.pdf',
+        label: 'Evolutionary Coding Agent (OpenEvolve)',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE6-public/main/06_openevolve/lecture/Evolutionary%20coding%20agent_%20OpenEvolve%20%282%29.pdf',
       },
       {
         group: 'Lecture slides',
