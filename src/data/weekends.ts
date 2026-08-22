@@ -1540,11 +1540,6 @@ export const weekends: Weekend[] = [
       },
       {
         group: 'Exercises',
-        label: 'Evolutionary Coding Agent (OpenEvole) (exercise, open in Colab)',
-        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/06_openevolve/06_mini_evolve_student.ipynb',
-      },
-      {
-        group: 'Exercises',
         label: 'Intergalactic Football Tournament — LangChain agents (exercise, open in Colab)',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/04_langchain_betting/04_langchain_agents_student.ipynb',
       },
