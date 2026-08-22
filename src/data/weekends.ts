@@ -1364,9 +1364,12 @@ export const weekends: Weekend[] = [
       { time: '08:00', title: 'Language Agent Tree Search (LATS) & Limitations of Agents', type: 'lecture', who: 'Carlos & Adrian' },
       { time: '09:00', title: 'Language Agent Tree Search (LATS)', type: 'exercise' },
       { time: '10:00', title: 'Coffee break', type: 'break' },
-      { time: '10:30', title: 'Evolutionary Coding Agent (OpenEvole)', type: 'lecture', who: 'Sanziana' },
-      { time: '11:00', title: 'Evolutionary Coding Agent (OpenEvole)', type: 'exercise' },
-      { time: '12:00', title: 'Project', type: 'project' },
+      { time: '10:30', title: 'Evolutionary Coding Agent (OpenEvole)', type: 'lecture', who: 'Sanziana', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE6-public/main/06_openevolve/lecture/Evolutionary_Coding_Agents_FDD.pptx' },
+      { time: '11:00', title: 'Evolutionary Coding Agent (OpenEvole)', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/06_openevolve/06_mini_evolve_student.ipynb' },
+      { time: '12:00', title: 'Project', type: 'project', links: [
+        { label: 'Project notebook', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/project/WE6_project_student.ipynb' },
+        { label: 'Project slides', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE6-public/project/FDD26-W6-Project.pdf' }, 
+      ]},
     ],
     resources: [
       {
@@ -1384,6 +1387,11 @@ export const weekends: Weekend[] = [
         label: 'Agentic AI in SwEng (Piyushi, Friday 12:00)',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE6-public/main/03_agentic_ai_sweng/Agentic%20AI%20SwEng.pdf',
       },
+      {
+        group: 'Lecture slides',
+        label: 'Evolutionary Coding Agent (OpenEvole)',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE6-public/main/06_openevolve/lecture/Evolutionary_Coding_Agents_FDD.pptx',
+      },
       { group: 'Lecture slides', label: 'Other lecture slides (to be added)', url: '#' },
       {
         group: 'Exercises',
@@ -1400,6 +1408,11 @@ export const weekends: Weekend[] = [
         label: 'Agentic AI in SwEng (exercise, open in Colab)',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/03_agentic_ai_sweng/03_scoutai_workshop_student.ipynb',
       },
+      {
+        group: 'Exercises',
+        label: 'Evolutionary Coding Agent (OpenEvole) (exercise, open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/06_openevolve/06_mini_evolve_student.ipynb',
+      }
       { group: 'Exercises', label: 'Other exercise notebooks (to be added)', url: '#' },
     ],
   },
