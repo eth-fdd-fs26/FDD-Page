@@ -1475,8 +1475,8 @@ export const weekends: Weekend[] = [
         ],
       },
       { time: '10:00', title: 'Coffee break', type: 'break' },
-      { time: '10:30', title: 'Evolutionary Coding Agent (OpenEvole)', type: 'lecture', who: 'Sanziana', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE6-public/main/06_openevolve/lecture/Evolutionary_Coding_Agents_FDD.pptx' },
-      { time: '11:00', title: 'Evolutionary Coding Agent (OpenEvole)', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/06_openevolve/06_mini_evolve_student.ipynb' },
+      { time: '10:30', title: 'Evolutionary Coding Agent (OpenEvolve)', type: 'lecture', who: 'Sanziana', url: 'slides/we6-openevolve-slides.pdf' },
+      { time: '11:00', title: 'Evolutionary Coding Agent (OpenEvolve)', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/06_openevolve/06_mini_evolve_student.ipynb' },
       { time: '12:00', title: 'Project', type: 'project', links: [
         { label: 'Project notebook', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/project/WE6_project_student.ipynb' },
         { label: 'Project slides', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE6-public/project/FDD26-W6-Project.pdf' }, 
@@ -1510,8 +1510,8 @@ export const weekends: Weekend[] = [
       },
       {
         group: 'Lecture slides',
-        label: 'Evolutionary Coding Agent (OpenEvole)',
-        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE6-public/main/06_openevolve/lecture/Evolutionary_Coding_Agents_FDD.pptx',
+        label: 'Evolutionary Coding Agent (OpenEvolve) (Sanziana, Saturday 10:30)',
+        url: 'slides/we6-openevolve-slides.pdf',
       },
       {
         group: 'Lecture slides',
@@ -1551,7 +1551,7 @@ export const weekends: Weekend[] = [
       },
       {
         group: 'Exercises',
-        label: 'Evolutionary Coding Agent (OpenEvole) (exercise, open in Colab)',
+        label: 'Evolutionary Coding Agent (OpenEvolve) (exercise, open in Colab)',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/06_openevolve/06_mini_evolve_student.ipynb',
       },
       {
