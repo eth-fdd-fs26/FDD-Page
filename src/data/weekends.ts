@@ -562,13 +562,28 @@ export const weekends: Weekend[] = [
       },
       {
         group: 'Lecture slides',
+        label: 'Gaussian Processes — intro & roadmap slides, annotated (PDF)',
+        url: 'https://fdd-hs26.github.io/projects/w1-intro-roadmap-slides-annotated.pdf',
+      },
+      {
+        group: 'Lecture slides',
         label: 'Gaussian Distributions & Gaussian Processes — lecture slides (Carlos, PDF)',
         url: 'https://fdd-hs26.github.io/projects/w1-gaussian-processes-slides.pdf',
       },
       {
         group: 'Lecture slides',
+        label: 'Gaussian Distributions & Gaussian Processes — lecture slides, annotated (Carlos, PDF)',
+        url: 'https://fdd-hs26.github.io/projects/w1-gaussian-processes-slides-annotated.pdf',
+      },
+      {
+        group: 'Lecture slides',
         label: 'IT Active Learning & Bayesian Optimization — lecture slides (Carlos, PDF)',
         url: 'https://fdd-hs26.github.io/projects/w1-active-learning-slides.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'IT Active Learning & Bayesian Optimization — lecture slides, annotated (Carlos, PDF)',
+        url: 'https://fdd-hs26.github.io/projects/w1-active-learning-slides-annotated.pdf',
       },
       {
         group: 'Lecture slides',
@@ -1059,8 +1074,9 @@ export const weekends: Weekend[] = [
         type: 'lecture',
         links: [
           { label: 'Slides: Modern reinforcement learning (Carlos)', url: 'https://fdd-hs26.github.io/projects/w4-rl-slides.pdf' },
+          { label: 'Slides: Modern reinforcement learning (annotated)', url: 'https://fdd-hs26.github.io/projects/w4-rl-slides-annotated.pdf' },
           { label: 'Fly the lander (interactive)', url: 'https://fdd-hs26.github.io/projects/fly-the-lander/' },
-          { label: 'Grasshopper (interactive)', url: 'https://fdd-hs26.github.io/projects/grasshopper/' },
+          { label: 'Grasshopper (interactive)', url: 'grasshopper/index.html' },
         ],
       },
       { time: '15:30', title: 'Coffee break', type: 'break' },
@@ -1126,6 +1142,11 @@ export const weekends: Weekend[] = [
       },
       {
         group: 'Lecture slides',
+        label: 'Modern reinforcement learning: the lecture deck — annotated (Carlos)',
+        url: 'https://fdd-hs26.github.io/projects/w4-rl-slides-annotated.pdf',
+      },
+      {
+        group: 'Lecture slides',
         label: 'RL in Large Language Models',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE4-public/main/5_llm_rl/lecture/RL_in_LLMs.pdf',
       },
@@ -1182,7 +1203,7 @@ export const weekends: Weekend[] = [
       {
         group: 'Interactive',
         label: 'Grasshopper: gradient ascent by feel (GAE & PPO session)',
-        url: 'https://fdd-hs26.github.io/projects/grasshopper/',
+        url: 'grasshopper/index.html',
       },
       {
         group: 'Project',
@@ -1220,7 +1241,9 @@ export const weekends: Weekend[] = [
         // the pub quiz and reused for the yogurt game. The Three Questions deck
         // runs in front of the lecture and opens all three mandatory weekends.
         links: [
+          { label: 'Slides (annotated)', url: 'slides/we5-rag-foundations-slides-annotated.pdf' },
           { label: 'The Three Questions (opens the mandatory weekends)', url: 'slides/we5-three-questions-slides.pdf' },
+          { label: 'The Three Questions (annotated)', url: 'slides/we5-three-questions-slides-annotated.pdf' },
           { label: 'The Vorlen document pile', url: 'document-pile/index.html' },
           { label: 'The yogurt cup game', url: 'yogurt-cups/index.html' },
         ],
@@ -1234,7 +1257,16 @@ export const weekends: Weekend[] = [
       { time: '10:00', title: 'ANN: vector and hybrid search', type: 'lecture', who: 'Suei-Wen', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE5-public/main/lectures/FDD26-W5-ANN-Hybrid-Search.pdf' },
       { time: '10:30', title: 'Coffee break', type: 'break' },
       { time: '11:00', title: 'ANN: vector and hybrid search', type: 'exercise' , url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE5-public/blob/main/exercises/02_cx_hybrid_search_student.ipynb' },
-      { time: '12:00', title: 'Reranking and context engineering', type: 'lecture', who: 'Carlos', url: 'slides/we5-reranking-slides.pdf' },
+      {
+        time: '12:00',
+        title: 'Reranking and context engineering',
+        type: 'lecture',
+        who: 'Carlos',
+        url: 'slides/we5-reranking-slides.pdf',
+        links: [
+          { label: 'Slides (annotated)', url: 'slides/we5-reranking-slides-annotated.pdf' },
+        ],
+      },
       { time: '13:00', title: 'Lunch break', type: 'break' },
       {
         time: '14:00',
@@ -1253,7 +1285,17 @@ export const weekends: Weekend[] = [
       { time: '10:00', title: 'Coffee break', type: 'break' },
       { time: '10:30', title: 'RAG evaluation and failure analysis', type: 'lecture', who: 'Loric', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE5-public/main/lectures/Evaluating%20RAG.pdf' },
       { time: '11:00', title: 'RAG evaluation and failure analysis', type: 'exercise' , url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE5-public/blob/main/exercises/06_cx_rag_evaluation_student.ipynb' },
-      { time: '12:00', title: 'Project', type: 'project', who: 'Adrian' },
+      {
+        time: '12:00',
+        title: 'Project: Compliance Q&A — a RAG system you build yourself',
+        type: 'project',
+        who: 'Adrian',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE5-public/blob/main/project/notebook/compliance_rag_project.ipynb',
+        links: [
+          { label: 'Project README — setup and instructions', url: 'https://github.com/eth-fdd-fs26/FDD-WE5-public/blob/main/project/README.md' },
+          { label: 'Project repository (GitHub)', url: 'https://github.com/eth-fdd-fs26/FDD-WE5-public/tree/main/project' },
+        ],
+      },
     ],
     resources: [
       {
@@ -1268,13 +1310,28 @@ export const weekends: Weekend[] = [
       },
       {
         group: 'Lecture slides',
+        label: 'The Three Questions: the opening of the mandatory weekends — annotated (Carlos, Friday 08:00)',
+        url: 'slides/we5-three-questions-slides-annotated.pdf',
+      },
+      {
+        group: 'Lecture slides',
         label: 'RAG pipeline, embeddings and chunking (Carlos, Friday 08:00)',
         url: 'slides/we5-rag-foundations-slides.pdf',
       },
       {
         group: 'Lecture slides',
+        label: 'RAG pipeline, embeddings and chunking — annotated (Carlos, Friday 08:00)',
+        url: 'slides/we5-rag-foundations-slides-annotated.pdf',
+      },
+      {
+        group: 'Lecture slides',
         label: 'Reranking and context engineering (Carlos, Friday 12:00)',
         url: 'slides/we5-reranking-slides.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'Reranking and context engineering — annotated (Carlos, Friday 12:00)',
+        url: 'slides/we5-reranking-slides-annotated.pdf',
       },
       {
         group: 'Lecture slides',
@@ -1332,6 +1389,21 @@ export const weekends: Weekend[] = [
         label: 'RAG evaluation and failure analysis (exercise, open in Colab)',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE5-public/blob/main/exercises/06_cx_rag_evaluation_student.ipynb',
       },
+      {
+        group: 'Project',
+        label: 'Project notebook — Compliance Q&A RAG (open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE5-public/blob/main/project/notebook/compliance_rag_project.ipynb',
+      },
+      {
+        group: 'Project',
+        label: 'Project README — how to run everything (setup, tests, web app)',
+        url: 'https://github.com/eth-fdd-fs26/FDD-WE5-public/blob/main/project/README.md',
+      },
+      {
+        group: 'Project',
+        label: 'Project repository (GitHub)',
+        url: 'https://github.com/eth-fdd-fs26/FDD-WE5-public/tree/main/project',
+      },
     ],
   },
   {
@@ -1348,21 +1420,59 @@ export const weekends: Weekend[] = [
     fridayRoom: 'HG D 7.1',
     saturdayRoom: 'HG D 7.1',
     friday: [
-      { time: '08:00', title: 'Agents, ReAct, and UCB', type: 'lecture', who: 'Carlos', url: 'slides/we6-intro-agents-slides.pdf' },
+      {
+        time: '08:00',
+        title: 'Agents, ReAct, and UCB',
+        type: 'lecture',
+        who: 'Carlos',
+        url: 'slides/we6-intro-agents-slides.pdf',
+        links: [
+          { label: 'Slides (annotated)', url: 'slides/we6-intro-agents-slides-annotated.pdf' },
+        ],
+      },
       { time: '09:00', title: 'Agents, ReAct, and UCB', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/01_react_sherlock/01_react_sherlock_student.ipynb' },
-      { time: '10:00', title: 'Monte Carlo Tree Search (MCTS)', type: 'lecture', who: 'Carlos', url: 'slides/we6-mcts-slides.pdf' },
+      {
+        time: '10:00',
+        title: 'Monte Carlo Tree Search (MCTS)',
+        type: 'lecture',
+        who: 'Carlos',
+        url: 'slides/we6-mcts-slides.pdf',
+        links: [
+          { label: 'Slides (annotated)', url: 'slides/we6-mcts-slides-annotated.pdf' },
+        ],
+      },
       { time: '10:30', title: 'Coffee break', type: 'break' },
       { time: '11:00', title: 'Monte Carlo Tree Search (MCTS)', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/02_tictactoe_mcts_exercises.ipynb' },
       { time: '12:00', title: 'Agentic AI in SwEng', type: 'lecture', who: 'Piyushi', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE6-public/main/03_agentic_ai_sweng/Agentic%20AI%20SwEng.pdf' },
       { time: '13:00', title: 'Lunch break', type: 'break' },
       { time: '14:00', title: 'Agentic AI in SwEng', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/03_agentic_ai_sweng/03_scoutai_workshop_student.ipynb' },
-      { time: '15:00', title: 'Intergalactic Football Tournament', type: 'lecture', who: 'Adrian' },
+      { time: '15:00', title: 'Intergalactic Football Tournament', type: 'lecture', who: 'Adrian', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE6-public/main/04_langchain_betting/Intergalactic%20Football.pdf' },
       { time: '15:30', title: 'Coffee break', type: 'break' },
-      { time: '16:00', title: 'Intergalactic Football Tournament', type: 'exercise' },
+      { time: '16:00', title: 'Intergalactic Football Tournament', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/04_langchain_betting/04_langchain_agents_student.ipynb' },
     ],
     saturday: [
-      { time: '08:00', title: 'Language Agent Tree Search (LATS) & Limitations of Agents', type: 'lecture', who: 'Carlos & Adrian' },
-      { time: '09:00', title: 'Language Agent Tree Search (LATS)', type: 'exercise' },
+      {
+        time: '08:00',
+        title: 'Language Agent Tree Search (LATS) & Limitations of Agents',
+        type: 'lecture',
+        who: 'Carlos & Adrian',
+        // Co-taught. This deck is Carlos's LATS half; Adrian's limitations half
+        // is not published yet and should join as a second entry in `links`.
+        url: 'slides/we6-lats-slides.pdf',
+        links: [
+          { label: 'Grasshopper (gradient ascent)', url: 'grasshopper/index.html' },
+          { label: 'The bandit problem', url: 'bandits/index.html' },
+        ],
+      },
+      {
+        time: '09:00',
+        title: 'Language Agent Tree Search (LATS)',
+        type: 'exercise',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/05_lats/lats_intranet_exercises_student.ipynb',
+        links: [
+          { label: 'Play the intranet by hand', url: 'exercises/we6-lats-intranet-page.html' },
+        ],
+      },
       { time: '10:00', title: 'Coffee break', type: 'break' },
       { time: '10:30', title: 'Evolutionary Coding Agent (OpenEvole)', type: 'lecture', who: 'Sanziana', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE6-public/main/06_openevolve/lecture/Evolutionary_Coding_Agents_FDD.pptx' },
       { time: '11:00', title: 'Evolutionary Coding Agent (OpenEvole)', type: 'exercise', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/06_openevolve/06_mini_evolve_student.ipynb' },
@@ -1379,8 +1489,18 @@ export const weekends: Weekend[] = [
       },
       {
         group: 'Lecture slides',
+        label: 'Agents, ReAct, and UCB — annotated (Carlos, Friday 08:00)',
+        url: 'slides/we6-intro-agents-slides-annotated.pdf',
+      },
+      {
+        group: 'Lecture slides',
         label: 'Monte Carlo Tree Search (Carlos, Friday 10:00)',
         url: 'slides/we6-mcts-slides.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'Monte Carlo Tree Search — annotated (Carlos, Friday 10:00)',
+        url: 'slides/we6-mcts-slides-annotated.pdf',
       },
       {
         group: 'Lecture slides',
@@ -1391,6 +1511,16 @@ export const weekends: Weekend[] = [
         group: 'Lecture slides',
         label: 'Evolutionary Coding Agent (OpenEvole)',
         url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE6-public/main/06_openevolve/lecture/Evolutionary_Coding_Agents_FDD.pptx',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'Intergalactic Football Tournament (Adrian, Friday 15:00)',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE6-public/main/04_langchain_betting/Intergalactic%20Football.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'Language Agent Tree Search (Carlos, Saturday 08:00)',
+        url: 'slides/we6-lats-slides.pdf',
       },
       { group: 'Lecture slides', label: 'Other lecture slides (to be added)', url: '#' },
       {
@@ -1413,6 +1543,31 @@ export const weekends: Weekend[] = [
         label: 'Evolutionary Coding Agent (OpenEvole) (exercise, open in Colab)',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/06_openevolve/06_mini_evolve_student.ipynb',
       }
+      {
+        group: 'Exercises',
+        label: 'Intergalactic Football Tournament — LangChain agents (exercise, open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/04_langchain_betting/04_langchain_agents_student.ipynb',
+      },
+      {
+        group: 'Exercises',
+        label: 'Evolutionary Coding Agent (OpenEvole) (exercise, open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE6-public/blob/main/06_openevolve/06_mini_evolve_student.ipynb',
+      },
+      {
+        group: 'Exercises',
+        label: 'The intranet, by hand (interactive warm-up for the LATS exercise)',
+        url: 'exercises/we6-lats-intranet-page.html',
+      },
+      {
+        group: 'Exercises',
+        label: 'Grasshopper: gradient ascent by hand (interactive)',
+        url: 'grasshopper/index.html',
+      },
+      {
+        group: 'Exercises',
+        label: 'The bandit problem: five unknown machines (interactive)',
+        url: 'bandits/index.html',
+      },
       { group: 'Exercises', label: 'Other exercise notebooks (to be added)', url: '#' },
     ],
   },

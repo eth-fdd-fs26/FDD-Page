@@ -1,0 +1,509 @@
+/* ============================================================================
+   game.css : the game area.
+
+   Two columns, a flexible main column and a fixed 330px sidebar. The main
+   column stacks the grasshopper's window, the whole landscape and the
+   verdict, which together stand about as tall as the sidebar.
+
+   Every SVG box is locked in width and height with flex: 0 0 auto, so the
+   headless renderer and the live page agree. Every colour routes through a
+   token already defined in css/style.css: nothing here invents one.
+   ============================================================================ */
+
+.game {
+  padding-bottom: 6px;
+}
+
+.game .section-rule {
+  margin: 46px 0 18px;
+}
+
+/* The one utility class in the file. It is declared first, so any LATER rule
+   that sets a display of its own ties on specificity and wins: such a rule has
+   to spell out its own .is-hidden pair (see .side-actions below). */
+.is-hidden {
+  display: none;
+}
+
+/* === the two columns ===
+   The left column grows with the game (window, landscape, verdict) while the
+   right column carries every control. The right column is therefore sticky and
+   capped at the viewport: the controls, the switches and the log stay on
+   screen while the left column scrolls underneath them. The controls card is
+   first inside it and the level list second, because the cap means the top of
+   this column is the part that is always visible. */
+.game-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 330px;
+  gap: 20px;
+  align-items: start;
+}
+
+.game-main {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
+}
+
+.game-side {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+  position: sticky;
+  top: calc(var(--topbar-h) + 12px);
+  max-height: calc(100vh - var(--topbar-h) - 24px);
+  overflow-y: auto;
+}
+
+/* Every card in this column is a scroll container, because .card sets
+   overflow: hidden. That makes its automatic minimum size zero, so the flex
+   column shrinks the cards to meet the cap above instead of overflowing it.
+   A shrunken card does not scroll, it clips: at 1400 by 900 the natural
+   column is 1124px against 729px of room, and the difference was being cut
+   off the bottom of the two cards with no scrollbar to get it back. The
+   switches, the reset button and the whole jump log simply vanished.
+   Locking the children to their natural height turns that silent clip into a
+   real scrollbar on the column itself, so everything stays reachable. On a
+   screen tall enough for all 1124px no scrollbar appears at all. */
+.game-side > * {
+  flex: 0 0 auto;
+}
+
+/* === the grasshopper's window === */
+.lv-body {
+  padding: 12px 14px 14px;
+}
+
+.lv-scroll {
+  overflow-x: auto;
+}
+
+.lv-host {
+  width: 620px;
+  height: 380px;
+  flex: 0 0 auto;
+  margin: 0 auto;
+}
+
+.lv-host svg,
+.lv-svg {
+  width: 620px;
+  height: 380px;
+  display: block;
+}
+
+.lv-caption {
+  max-width: 620px;
+  margin: 10px auto 0;
+}
+
+/* === the whole landscape === */
+.wv-body {
+  padding: 12px 10px 14px;
+}
+
+.wv-scroll {
+  overflow-x: auto;
+}
+
+/* The covered state of the landscape card. It stands in for the plot at very
+   close to the plot's own height, so flipping the toggle swaps content without
+   moving anything below it. .wv-cover sets a display of its own, so it has to
+   spell out its own .is-hidden pair (see the note on .is-hidden above). */
+.wv-cover {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 314px;
+  border: 1px dashed var(--rule-strong);
+  border-radius: 3px;
+  background: var(--panel-2);
+  text-align: center;
+  padding: 0 40px;
+}
+.wv-cover.is-hidden {
+  display: none;
+}
+
+.wv-cover-line {
+  font-family: "Iowan Old Style", Palatino, Georgia, serif;
+  font-size: 19px;
+  color: var(--muted);
+  margin: 0;
+}
+
+.wv-cover-sub {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--faint);
+  max-width: 40em;
+  margin: 0;
+}
+
+.wv-cover-sub em {
+  font-style: normal;
+  color: var(--muted);
+}
+
+.wv-host {
+  width: 740px;
+  height: 280px;
+  flex: 0 0 auto;
+  margin: 0 auto;
+}
+
+.wv-host svg,
+.wv-svg {
+  width: 740px;
+  height: 280px;
+  display: block;
+}
+
+.wv-caption {
+  max-width: 740px;
+  margin: 8px auto 0;
+}
+
+/* the trail is the second most important thing in this panel, so it is
+   stronger here than the shared default */
+.wv-trail .trail-line {
+  stroke: var(--trail);
+  stroke-opacity: 0.5;
+}
+.wv-trail .trail-dot {
+  fill-opacity: 0.8;
+}
+
+/* === the level list === */
+.level-body {
+  padding: 0;
+}
+
+.level-row {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: baseline;
+  width: 100%;
+  font: inherit;
+  text-align: left;
+  background: none;
+  border: 0;
+  border-top: 1px solid var(--rule);
+  padding: 7px 13px 8px;
+  color: var(--ink);
+  cursor: pointer;
+}
+.level-row:first-child { border-top: 0; }
+.level-row:hover { background: var(--panel-2); }
+.level-row:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; }
+
+.level-row.is-current {
+  background: var(--panel-2);
+  box-shadow: inset 3px 0 0 var(--hopper);
+}
+.level-row.is-current .level-name { font-weight: 600; }
+
+.level-rank {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 11.5px;
+  color: var(--faint);
+}
+
+.level-name {
+  display: block;
+  font-family: "Iowan Old Style", Palatino, Georgia, serif;
+  font-size: 14.5px;
+  line-height: 1.2;
+}
+
+.level-teaches {
+  display: block;
+  font-size: 11.5px;
+  line-height: 1.35;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.level-meta {
+  text-align: right;
+  font-size: 10.5px;
+  line-height: 1.35;
+  color: var(--faint);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.level-best {
+  display: block;
+  color: var(--good);
+}
+
+/* === controls ===
+   The sidebar is capped at the viewport, so every vertical margin in it is
+   spent deliberately: the three switches and the log have to survive a 900px
+   laptop without an internal scrollbar swallowing them. */
+.game-side .card-body {
+  padding: 12px 14px 13px;
+}
+
+.game-side .kpi {
+  padding: 7px 10px;
+}
+
+.game-side .kpi-label {
+  font-size: 9.8px;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+}
+
+.game-side .control-group {
+  margin-bottom: 13px;
+}
+
+.control-group.side-gap {
+  margin-top: 13px;
+}
+
+.seg-arrow {
+  font-size: 13px;
+  line-height: 1;
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.chip {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 11.5px;
+  padding: 3px 8px;
+  border: 1px solid var(--rule-strong);
+  border-radius: 3px;
+  background: var(--panel);
+  color: var(--muted);
+  cursor: pointer;
+}
+.chip:hover { background: var(--panel-2); color: var(--ink); }
+.chip.is-on { border-color: var(--hopper); color: var(--hopper); }
+.chip:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
+
+.side-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 13px 0 12px;
+}
+/* display: flex above ties with .is-hidden and beats it, because it comes
+   later in the file. Without this pair the two dead buttons stay on screen
+   after the flag is planted, which is exactly what the status line replaces. */
+.side-actions.is-hidden {
+  display: none;
+}
+
+/* after the flag is planted the Jump and Plant buttons are dead weight, so
+   the slot carries one quiet line of state instead of two grey pills */
+.side-status {
+  margin: 13px 0 12px;
+  padding: 8px 10px;
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--peak);
+  border-radius: 3px;
+  background: var(--panel-2);
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.side-status .mono {
+  color: var(--ink);
+}
+
+.switch-block {
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 2px 0;
+  margin-bottom: 12px;
+}
+
+button.switch-row {
+  width: 100%;
+  font: inherit;
+  text-align: left;
+  background: none;
+  border: 0;
+  color: var(--ink);
+}
+button.switch-row + button.switch-row {
+  border-top: 1px solid var(--rule);
+}
+
+/* === the jump log === */
+.log {
+  margin-top: 12px;
+  border-top: 1px solid var(--rule);
+  padding-top: 8px;
+}
+
+.log-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 6px;
+}
+
+.log-list {
+  max-height: 104px;
+  overflow-y: auto;
+}
+
+.log-row {
+  display: grid;
+  grid-template-columns: 20px 14px 1fr auto;
+  gap: 8px;
+  align-items: baseline;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  padding: 3px 0;
+  border-top: 1px solid var(--rule);
+  color: var(--ink);
+}
+.log-row:first-child { border-top: 0; }
+.log-turn { color: var(--faint); }
+.log-dir { color: var(--hopper); }
+.log-height { color: var(--muted); }
+
+.log-empty {
+  font-size: 12.5px;
+  color: var(--faint);
+  padding: 2px 0 4px;
+}
+
+/* === the verdict === */
+.verdict-body {
+  margin: 0 0 6px;
+}
+.verdict-stats {
+  margin: 0;
+  color: var(--muted);
+}
+.verdict-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+/* === the keyboard line === */
+.kbd-hint {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--faint);
+}
+
+/* === SVG vocabulary owned by the two views === */
+
+/* eyesight running out at the edges of the local view */
+.fade-stop-full { stop-color: var(--sky); stop-opacity: 1; }
+.fade-stop-none { stop-color: var(--sky); stop-opacity: 0; }
+
+/* the world running out at the edges of the domain */
+.lv-edge {
+  fill: none;
+  stroke: var(--rule-strong);
+  stroke-width: 1.4;
+  stroke-dasharray: 3 4;
+}
+
+/* the glyph */
+.lv-halo { stroke-width: 2.6; }
+.hopper-leg {
+  fill: none;
+  stroke: var(--hopper-dark);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.hopper-antenna {
+  fill: none;
+  stroke: var(--hopper-dark);
+  stroke-width: 1;
+  stroke-linecap: round;
+}
+.hopper-wing {
+  fill: none;
+  stroke: var(--hopper-dark);
+  stroke-width: 1.1;
+  stroke-opacity: 0.7;
+}
+
+/* the two scale bars */
+/* an unstroked plate behind the bars, not a box: a stroked rect reads as a
+   second frame inside the panel. It is opaque, so the profile never shows
+   through the labels; localview.js parks it in whichever corner the profile
+   is not in. */
+.scale-plate {
+  fill: var(--panel);
+  stroke: none;
+}
+.scale-bar {
+  fill: none;
+  stroke: var(--faint);
+  stroke-width: 1.3;
+}
+.scale-ink {
+  fill: var(--muted);
+  font-size: 10.5px;
+}
+
+/* the gradient readout */
+.badge-box {
+  fill: var(--panel);
+  stroke: var(--tangent);
+  stroke-width: 1;
+}
+.badge-ink {
+  fill: var(--tangent);
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 12.5px;
+}
+
+/* the world view profile is thinner than the local one */
+.wv-curve { stroke-width: 1.7; }
+.window-edge { fill: none; }
+.peak-mark { fill: none; }
+.trail-line { stroke-width: 1.4; }
+
+/* === narrow screens: stack the sidebar under the main column ===
+   Stacked, there is no second column to scroll past, so the sticky cap comes
+   back off: capping height here would put the controls in a box of their own
+   inside an already scrolling page. */
+@media (max-width: 1080px) {
+  .game-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .game-side {
+    max-width: 420px;
+    position: static;
+    max-height: none;
+    overflow-y: visible;
+  }
+}
+
+/* === short viewports: the cap would leave a sliver, so drop it === */
+@media (max-height: 620px) {
+  .game-side {
+    position: static;
+    max-height: none;
+    overflow-y: visible;
+  }
+}
