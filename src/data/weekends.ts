@@ -1076,7 +1076,7 @@ export const weekends: Weekend[] = [
           { label: 'Slides: Modern reinforcement learning (Carlos)', url: 'https://fdd-hs26.github.io/projects/w4-rl-slides.pdf' },
           { label: 'Slides: Modern reinforcement learning (annotated)', url: 'https://fdd-hs26.github.io/projects/w4-rl-slides-annotated.pdf' },
           { label: 'Fly the lander (interactive)', url: 'https://fdd-hs26.github.io/projects/fly-the-lander/' },
-          { label: 'Grasshopper (interactive)', url: 'https://fdd-hs26.github.io/projects/grasshopper/' },
+          { label: 'Grasshopper (interactive)', url: 'grasshopper/index.html' },
         ],
       },
       { time: '15:30', title: 'Coffee break', type: 'break' },
@@ -1203,7 +1203,7 @@ export const weekends: Weekend[] = [
       {
         group: 'Interactive',
         label: 'Grasshopper: gradient ascent by feel (GAE & PPO session)',
-        url: 'https://fdd-hs26.github.io/projects/grasshopper/',
+        url: 'grasshopper/index.html',
       },
       {
         group: 'Project',
@@ -1461,8 +1461,8 @@ export const weekends: Weekend[] = [
         url: 'slides/we6-lats-slides.pdf',
         links: [
           { label: 'Slides with the fundamentals recapped', url: 'slides/we6-lats-slides-recap.pdf' },
-          { label: 'Grasshopper (gradient ascent)', url: 'https://fdd-hs26.github.io/projects/grasshopper/' },
-          { label: 'The bandit problem', url: 'https://fdd-hs26.github.io/projects/bandits/' },
+          { label: 'Grasshopper (gradient ascent)', url: 'grasshopper/index.html' },
+          { label: 'The bandit problem', url: 'bandits/index.html' },
         ],
       },
       {
@@ -1554,12 +1554,12 @@ export const weekends: Weekend[] = [
       {
         group: 'Exercises',
         label: 'Grasshopper: gradient ascent by hand (interactive)',
-        url: 'https://fdd-hs26.github.io/projects/grasshopper/',
+        url: 'grasshopper/index.html',
       },
       {
         group: 'Exercises',
         label: 'The bandit problem: five unknown machines (interactive)',
-        url: 'https://fdd-hs26.github.io/projects/bandits/',
+        url: 'bandits/index.html',
       },
       { group: 'Exercises', label: 'Other exercise notebooks (to be added)', url: '#' },
     ],

@@ -1,0 +1,245 @@
+/* ============================================================================
+   explain.css : styles for the explanation that sits below the game.
+   Prose column, figure hosts (every SVG box locked in width and height so the
+   headless renderer and the live page agree), the two centred formulas, the
+   failure list and the game / REINFORCE mapping table.
+
+   Colour rule: nothing here invents a colour. Every value routes through a
+   token already defined in css/style.css, so both themes follow for free.
+   ============================================================================ */
+
+/* === the column ===
+   The section keeps the page wrap, so its left edge lines up with the hero.
+   Everything inside is capped instead: prose at a readable measure, figures
+   at their own locked widths, the section rules at the widest figure. */
+.explain {
+  padding-bottom: 10px;
+}
+
+.exp-title {
+  font-size: clamp(24px, 2.4vw, 31px);
+  line-height: 1.18;
+  max-width: 18em;
+  margin-bottom: 14px;
+}
+
+.exp-h {
+  font-size: 21px;
+  line-height: 1.25;
+  max-width: 22em;
+  margin: 0 0 12px;
+}
+
+.exp-p {
+  max-width: 34em;
+  font-size: 16.5px;
+  line-height: 1.62;
+  margin: 0 0 13px;
+  color: var(--ink);
+}
+
+.exp-p.quiet {
+  color: var(--muted);
+}
+
+.exp-p .m {
+  white-space: nowrap;
+}
+
+/* the section rule needs less air inside the explanation than the page default */
+.explain .section-rule {
+  margin: 46px 0 18px;
+  max-width: 820px;
+}
+.explain .section-rule:first-child {
+  margin-top: 30px;
+}
+
+/* === figures === */
+.exp-fig {
+  margin: 24px 0 30px;
+}
+
+.fig-host {
+  display: flex;
+  justify-content: flex-start;
+  overflow-x: auto;
+  padding: 2px 0;
+}
+
+.fig-host .caption,
+.exp-fig .caption {
+  max-width: 34em;
+}
+
+/* every figure box is locked : flex must not stretch or squash it */
+.fig-a { width: 560px; height: 250px; flex: 0 0 auto; }
+.fig-b { width: 660px; height: 186px; flex: 0 0 auto; }
+.fig-c { width: 780px; height: 242px; flex: 0 0 auto; }
+.fig-d { width: 560px; height: 262px; flex: 0 0 auto; }
+
+/* Figure C is the widest thing on the page and its third panel, the one that
+   overshoots, is the panel a reader most needs. Below 860px the .fig-host
+   scrollbar is invisible until it is used, so the panel simply disappears.
+   Every figure carries a viewBox, so let them scale instead. */
+@media (max-width: 860px) {
+  .fig-a, .fig-b, .fig-c, .fig-d {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* === figure drawing vocabulary (colours from style.css tokens only) === */
+.fig-math {
+  font-family: "KaTeX_Math", "Iowan Old Style", Palatino, Georgia, serif;
+  font-style: italic;
+}
+.fig-nabla {
+  font-family: "KaTeX_Main", "Iowan Old Style", Palatino, Georgia, serif;
+  font-style: normal;
+}
+.fig-sym   { font-size: 14px; }
+.fig-note  { font-size: 11.5px; }
+.fig-mono  {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 12.5px;
+  fill: var(--ink);
+}
+
+.fig-frame { fill: var(--sky); stroke: var(--rule); stroke-width: 1; }
+.fig-slope {
+  fill: none;
+  stroke: var(--tangent);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+}
+.fig-dot   { fill: var(--ink); }
+.fig-start { fill: var(--panel); stroke: var(--trail); stroke-width: 1.6; }
+.fig-hop   { fill: none; stroke: var(--trail); stroke-width: 1.4; stroke-opacity: 0.8; }
+
+/* The captions in figures C and D tell the reader to count the landings, so
+   the landings have to be countable. The shared .trail-dot is a half opaque
+   dot meant to stack under a dense trail; here it disappears under the hop
+   arcs. Full opacity plus a sky coloured rim separates successive dots.
+   --trail at full opacity is 5.25:1 on light and 6.19:1 on dark. */
+.fig-c .trail-dot,
+.fig-d .trail-dot {
+  fill-opacity: 1;
+  stroke: var(--sky);
+  stroke-width: 1;
+}
+.fig-leg   {
+  fill: none;
+  stroke: var(--hopper-dark);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.fig-antenna {
+  fill: none;
+  stroke: var(--hopper-dark);
+  stroke-width: 0.9;
+  stroke-linecap: round;
+}
+.fig-eye   { fill: var(--hopper-ring); }
+.fig-ink   { fill: var(--ink); }
+
+/* === the two centred formulas === */
+.exp-formula {
+  max-width: 34em;
+  margin: 22px 0 14px;
+  padding: 15px 0 13px;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  text-align: center;
+}
+.exp-formula .katex { font-size: 1.28em; }
+.exp-formula .katex-display { margin: 0; }
+
+.exp-formula-note {
+  max-width: 34em;
+  margin: 0 0 20px;
+  font-size: 13px;
+  color: var(--faint);
+  text-align: center;
+}
+
+.exp-name {
+  max-width: 34em;
+  font-family: "Iowan Old Style", Palatino, Georgia, serif;
+  font-size: 19px;
+  margin: 20px 0 16px;
+  color: var(--ink);
+}
+
+/* === the four failure modes === */
+.fail-list {
+  max-width: 34em;
+  margin: 18px 0 6px;
+  border-top: 1px solid var(--rule);
+}
+.fail-item {
+  padding: 13px 0 14px;
+  border-bottom: 1px solid var(--rule);
+}
+.fail-name {
+  font-family: "Iowan Old Style", Palatino, Georgia, serif;
+  font-size: 16px;
+  color: var(--ink);
+  margin: 0 0 4px;
+}
+.fail-body {
+  font-size: 15.5px;
+  line-height: 1.58;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* === the game / REINFORCE table === */
+.exp-table-host {
+  overflow-x: auto;
+  margin: 24px 0 6px;
+}
+
+.exp-table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 560px;
+  max-width: 760px;
+  font-size: 14.5px;
+  line-height: 1.5;
+}
+/* --muted, not --faint: these two headers are what tells the reader the table
+   holds two different worlds, and at 11px uppercase --faint sits under the
+   4.5:1 floor in both themes */
+.exp-table th {
+  text-align: left;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 0 16px 9px 0;
+  border-bottom: 1px solid var(--rule-strong);
+}
+.exp-table td {
+  padding: 12px 16px 12px 0;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+  color: var(--ink);
+}
+.exp-table tr:last-child td {
+  border-bottom: 1px solid var(--rule-strong);
+}
+.exp-table .sym {
+  width: 116px;
+  white-space: nowrap;
+}
+.exp-table .sym .katex { font-size: 1.12em; }
+.exp-table .sym-words {
+  font-family: "Iowan Old Style", Palatino, Georgia, serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--muted);
+  white-space: normal;
+}
