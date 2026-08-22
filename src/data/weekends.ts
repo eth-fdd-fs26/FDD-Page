@@ -1459,6 +1459,11 @@ export const weekends: Weekend[] = [
         // Co-taught. This deck is Carlos's LATS half; Adrian's limitations half
         // is not published yet and should join as a second entry in `links`.
         url: 'slides/we6-lats-slides.pdf',
+        links: [
+          { label: 'Slides with the fundamentals recapped', url: 'slides/we6-lats-slides-recap.pdf' },
+          { label: 'Grasshopper (gradient ascent)', url: 'https://fdd-hs26.github.io/projects/grasshopper/' },
+          { label: 'The bandit problem', url: 'https://fdd-hs26.github.io/projects/bandits/' },
+        ],
       },
       {
         time: '09:00',
@@ -1510,6 +1515,11 @@ export const weekends: Weekend[] = [
         label: 'Language Agent Tree Search (Carlos, Saturday 08:00)',
         url: 'slides/we6-lats-slides.pdf',
       },
+      {
+        group: 'Lecture slides',
+        label: 'Language Agent Tree Search, with the fundamentals recapped (Carlos, Saturday 08:00)',
+        url: 'slides/we6-lats-slides-recap.pdf',
+      },
       { group: 'Lecture slides', label: 'Other lecture slides (to be added)', url: '#' },
       {
         group: 'Exercises',
@@ -1540,6 +1550,16 @@ export const weekends: Weekend[] = [
         group: 'Exercises',
         label: 'The intranet, by hand (interactive warm-up for the LATS exercise)',
         url: 'exercises/we6-lats-intranet.html',
+      },
+      {
+        group: 'Exercises',
+        label: 'Grasshopper: gradient ascent by hand (interactive)',
+        url: 'https://fdd-hs26.github.io/projects/grasshopper/',
+      },
+      {
+        group: 'Exercises',
+        label: 'The bandit problem: five unknown machines (interactive)',
+        url: 'https://fdd-hs26.github.io/projects/bandits/',
       },
       { group: 'Exercises', label: 'Other exercise notebooks (to be added)', url: '#' },
     ],
