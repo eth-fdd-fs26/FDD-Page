@@ -12,21 +12,21 @@ body { display: flex; flex-direction: column; min-height: 0; }
 * { box-sizing: border-box; }
 .fdd-ui { display: flex; flex-direction: column; width: 100%; height: 100%;
   min-height: 0; overflow: hidden; padding: 8px 10px; font-family: -apple-system, Segoe UI, Roboto, sans-serif;
-  font-size: 16px; color: #1a1a1a; }
-.fdd-net { font-family: inherit; font-size: 16px; color: #1a1a1a; background: #ffffff;
+  font-size: 13px; color: #1a1a1a; }
+.fdd-net { font-family: inherit; font-size: 13px; color: #1a1a1a; background: #ffffff;
   border: 1px solid #d7dce2; border-radius: 10px; overflow: hidden; margin: 0;
   width: 100%; flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
 .fdd-task { background: #215CAF; color: #ffffff; padding: 10px 14px;
   display: flex; justify-content: space-between; align-items: center; gap: 16px;
   flex: none; flex-wrap: wrap; }
-.fdd-q { font-weight: 600; font-size: 22px; line-height: 1.35; min-width: 0; }
+.fdd-q { font-weight: 600; min-width: 0; }
 .fdd-meter { display: flex; gap: 2px; align-items: center; white-space: nowrap; }
 .fdd-blk { width: 9px; height: 14px; border-radius: 2px; background: #ffffff59; }
 .fdd-blk.used { background: #ffffff; }
-.fdd-steps { margin-left: 8px; opacity: .85; font-size: 15px; }
+.fdd-steps { margin-left: 8px; opacity: .85; font-size: 12px; }
 .fdd-log { padding: 8px 14px; background: #f7f9fc; border-bottom: 1px solid #e6eaf0;
   flex: none; }
-.fdd-act { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 15px;
+.fdd-act { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px;
   background: #e8eef7; color: #1c3f6e; border-radius: 4px; padding: 1px 6px; }
 .fdd-okd { color: #2f7d4f; }
 .fdd-nod { color: #b3261e; }
@@ -40,33 +40,33 @@ body { display: flex; flex-direction: column; min-height: 0; }
 .fdd-site { padding: 6px 12px; border-left: 3px solid transparent; }
 .fdd-site.here { border-left-color: #215CAF; background: #eaf0f9; }
 .fdd-site .k { font-weight: 600; }
-.fdd-site .b { color: #5a6472; font-size: 14px; line-height: 1.35; }
+.fdd-site .b { color: #5a6472; font-size: 11.5px; line-height: 1.35; }
 .fdd-site .a { white-space: nowrap; margin-top: 2px; }
 .fdd-page { flex: 1; padding: 12px 16px; min-width: 0; min-height: 0; overflow: auto; }
-.fdd-crumb { color: #5a6472; font-size: 14px; }
-.fdd-title { font-size: 20px; font-weight: 650; margin: 2px 0 8px; }
+.fdd-crumb { color: #5a6472; font-size: 11.5px; }
+.fdd-title { font-size: 16px; font-weight: 650; margin: 2px 0 8px; }
 .fdd-line { margin: 3px 0; line-height: 1.45; }
 .fdd-links { margin-top: 12px; padding-top: 10px; border-top: 1px dashed #d7dce2; }
 .fdd-link { margin: 4px 0; }
 .fdd-link a { color: #215CAF; text-decoration: underline; }
-.fdd-tgt { color: #5a6472; font-size: 14px; }
+.fdd-tgt { color: #5a6472; font-size: 11.5px; }
 .fdd-trail { padding: 7px 14px; background: #f7f9fc; border-top: 1px solid #e6eaf0;
-  color: #5a6472; font-size: 14px; flex: none; }
+  color: #5a6472; font-size: 11.5px; flex: none; }
 .fdd-empty { color: #5a6472; font-style: italic; }
 .fdd-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
   margin: 6px 0; flex: none; }
-.fdd-row b { font-size: 16px; }
-.fdd-ui button { font: 16px inherit; padding: 6px 10px; border-radius: 4px;
+.fdd-row b { font-size: 13px; }
+.fdd-ui button { font: 13px inherit; padding: 6px 10px; border-radius: 4px;
   border: 1px solid #c5c5c5; background: #f4f4f4; cursor: pointer; }
 .fdd-ui button.info { background: #5bc0de; border-color: #46b8da; color: #fff; }
 .fdd-ui button.warning { background: #f0ad4e; border-color: #eea236; color: #fff; }
 .fdd-ui button.success { background: #5cb85c; border-color: #4cae4c; color: #fff; }
 .fdd-ui button.danger { background: #d9534f; border-color: #d43f3a; color: #fff; }
 .fdd-ui button:disabled { opacity: .55; cursor: default; }
-.fdd-ui input[type=text] { font: 16px inherit; padding: 6px 8px; flex: 1 1 220px;
+.fdd-ui input[type=text] { font: 13px inherit; padding: 6px 8px; flex: 1 1 220px;
   min-width: 160px; width: auto; border: 1px solid #ccc; border-radius: 4px; }
-.fdd-ui select { font: 16px inherit; padding: 6px 8px; }
-.fdd-banner { font: 16px sans-serif; padding: 6px 2px; flex: none; }
+.fdd-ui select { font: 13px inherit; padding: 6px 8px; }
+.fdd-banner { font: 13px sans-serif; padding: 6px 2px; flex: none; }
 @media (max-width: 640px) {
   .fdd-body { flex-direction: column; }
   .fdd-pane { width: 100%; min-width: 0; max-height: 28%; border-right: none;
