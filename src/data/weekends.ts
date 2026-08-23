@@ -1484,6 +1484,11 @@ export const weekends: Weekend[] = [
     ],
     resources: [
       {
+        group: 'Quiz',
+        label: 'Quiz',
+        url: 'https://docs.google.com/forms/d/e/1FAIpQLSfWeIhm_a3GDJG0aihHPJuEOtBhaPkefID2jVwosCeKVsXcFg/viewform?usp=dialog',
+      },
+      {
         group: 'Lecture slides',
         label: 'Agents, ReAct, and UCB (Carlos, Friday 08:00)',
         url: 'slides/we6-intro-agents-slides.pdf',
