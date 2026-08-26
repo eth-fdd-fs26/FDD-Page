@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fly the lander: the MDP behind LunarLander</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/game.css">
+  <script src="js/theme.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-name">Fly the lander</span>
+    </div>
+    <div class="brand-sub">The Markov decision process, from the pilot's seat</div>
+    <div class="topbar-right">
+      <button class="theme-toggle" id="theme-toggle" type="button">Dark</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero wrap">
+      <h1>You are the policy.</h1>
+      <p class="lede">
+        Four actions, eight numbers, one reward per step. This is the environment
+        your agent will train on in the exercise. Fly it yourself first, and the
+        numbers stop being notation.
+      </p>
+    </section>
+
+    <section class="wrap game-wrap">
+      <div class="game-grid">
+
+        <div class="stage-col">
+          <canvas id="stage" class="stage" width="620" height="440"></canvas>
+          <div class="stage-bar">
+            <div class="keys">
+              <button class="keycap" data-act="1" type="button"><span>&#8592;</span>left</button>
+              <button class="keycap" data-act="2" type="button"><span>&#8593;</span>main</button>
+              <button class="keycap" data-act="3" type="button"><span>&#8594;</span>right</button>
+            </div>
+            <div class="stage-actions">
+              <button class="btn" id="btn-reset" type="button">New descent</button>
+              <button class="btn btn-ghost" id="btn-demo" type="button">Watch a pilot</button>
+            </div>
+          </div>
+          <p class="hint">
+            Arrow keys or the buttons. Nothing pressed is action <b>0</b>, which is
+            also a choice: it costs no fuel and gravity keeps working.
+          </p>
+        </div>
+
+        <div class="panel-col">
+
+          <div class="card">
+            <div class="card-head">
+              <h2>Reward, this step</h2>
+              <span class="step-count" id="step-count">step 0</span>
+            </div>
+            <table class="rtable">
+              <tr>
+                <td class="rlabel">nearer, slower, more upright</td>
+                <td class="rval" id="r-shaping">0.00</td>
+              </tr>
+              <tr>
+                <td class="rlabel">fuel burned</td>
+                <td class="rval" id="r-fuel">0.00</td>
+              </tr>
+              <tr class="rterm" id="row-terminal">
+                <td class="rlabel">landed or crashed</td>
+                <td class="rval" id="r-terminal">0.00</td>
+              </tr>
+              <tr class="rsum">
+                <td class="rlabel">reward this step</td>
+                <td class="rval" id="r-step">0.00</td>
+              </tr>
+            </table>
+            <div class="return-row">
+              <span class="return-label">Return so far</span>
+              <span class="return-val" id="r-return">0.00</span>
+            </div>
+            <div class="meter"><div class="meter-fill" id="meter"></div></div>
+            <p class="meter-note">200 counts as solved</p>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h2>The state</h2></div>
+            <table class="stable" id="state-table"></table>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="verdict" id="verdict" hidden></div>
+    </section>
+
+    <section class="wrap notes">
+      <h2>What to notice</h2>
+      <div class="note-grid">
+        <div class="note">
+          <h3>The reward is mostly not the landing</h3>
+          <p>
+            Almost every step pays a small amount for getting nearer the pad,
+            slower and more upright, and charges you for fuel. The big
+            <b>+100</b> or <b>&minus;100</b> arrives once, at the end. Most of
+            your return is earned before you touch down.
+          </p>
+        </div>
+        <div class="note">
+          <h3>Doing nothing is an action</h3>
+          <p>
+            Action <b>0</b> costs nothing and is often right. Every frame of main
+            engine costs <b>0.30</b>, so a pilot who holds the button down pays
+            for it even while flying well.
+          </p>
+        </div>
+        <div class="note">
+          <h3>You only choose the action</h3>
+          <p>
+            You pick one of four. What happens next is the environment's business:
+            gravity, momentum, and where you happened to start. That split is what
+            makes this a Markov decision process rather than a puzzle.
+          </p>
+        </div>
+      </div>
+      <p class="fineprint">
+        The reward function and the eight state numbers are transcribed from the
+        environment used in the exercise (gymnasium's <code>LunarLander-v3</code>).
+        The physics here is a lightweight stand-in for Box2D, tuned so it flies
+        like the original: a plain automatic pilot lands 19 of 24 starts with a
+        median return of 191. Use it to build intuition, not to compare scores
+        with the notebook.
+      </p>
+    </section>
+  </main>
+
+  <script src="js/lander.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

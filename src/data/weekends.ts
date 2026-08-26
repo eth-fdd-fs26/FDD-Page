@@ -364,10 +364,10 @@ export const weekends: Weekend[] = [
         type: 'lecture',
         who: 'Carlos',
         links: [
-          { label: 'Roadmap', url: 'https://fdd-hs26.github.io/projects/w1-intro-roadmap-slides.pdf' },
-          { label: 'Roadmap (annotated)', url: 'https://fdd-hs26.github.io/projects/w1-intro-roadmap-slides-annotated.pdf' },
-          { label: 'Slides', url: 'https://fdd-hs26.github.io/projects/w1-gaussian-processes-slides.pdf' },
-          { label: 'Slides (annotated)', url: 'https://fdd-hs26.github.io/projects/w1-gaussian-processes-slides-annotated.pdf' },
+          { label: 'Roadmap', url: 'slides/we1-intro-roadmap-slides.pdf' },
+          { label: 'Roadmap (annotated)', url: 'slides/we1-intro-roadmap-slides-annotated.pdf' },
+          { label: 'Slides', url: 'slides/we1-gaussian-processes-slides.pdf' },
+          { label: 'Slides (annotated)', url: 'slides/we1-gaussian-processes-slides-annotated.pdf' },
         ],
       },
       { 
@@ -400,8 +400,8 @@ export const weekends: Weekend[] = [
         type: 'lecture',
         who: 'Carlos',
         links: [
-          { label: 'Slides', url: 'https://fdd-hs26.github.io/projects/w1-active-learning-slides.pdf' },
-          { label: 'Annotated', url: 'https://fdd-hs26.github.io/projects/w1-active-learning-slides-annotated.pdf' },
+          { label: 'Slides', url: 'slides/we1-active-learning-slides.pdf' },
+          { label: 'Annotated', url: 'slides/we1-active-learning-slides-annotated.pdf' },
         ],
       },
       { time: '13:00', title: 'Lunch break', type: 'break' },
@@ -558,32 +558,32 @@ export const weekends: Weekend[] = [
       {
         group: 'Lecture slides',
         label: 'Gaussian Processes — intro & roadmap slides (PDF)',
-        url: 'https://fdd-hs26.github.io/projects/w1-intro-roadmap-slides.pdf',
+        url: 'slides/we1-intro-roadmap-slides.pdf',
       },
       {
         group: 'Lecture slides',
         label: 'Gaussian Processes — intro & roadmap slides, annotated (PDF)',
-        url: 'https://fdd-hs26.github.io/projects/w1-intro-roadmap-slides-annotated.pdf',
+        url: 'slides/we1-intro-roadmap-slides-annotated.pdf',
       },
       {
         group: 'Lecture slides',
         label: 'Gaussian Distributions & Gaussian Processes — lecture slides (Carlos, PDF)',
-        url: 'https://fdd-hs26.github.io/projects/w1-gaussian-processes-slides.pdf',
+        url: 'slides/we1-gaussian-processes-slides.pdf',
       },
       {
         group: 'Lecture slides',
         label: 'Gaussian Distributions & Gaussian Processes — lecture slides, annotated (Carlos, PDF)',
-        url: 'https://fdd-hs26.github.io/projects/w1-gaussian-processes-slides-annotated.pdf',
+        url: 'slides/we1-gaussian-processes-slides-annotated.pdf',
       },
       {
         group: 'Lecture slides',
         label: 'IT Active Learning & Bayesian Optimization — lecture slides (Carlos, PDF)',
-        url: 'https://fdd-hs26.github.io/projects/w1-active-learning-slides.pdf',
+        url: 'slides/we1-active-learning-slides.pdf',
       },
       {
         group: 'Lecture slides',
         label: 'IT Active Learning & Bayesian Optimization — lecture slides, annotated (Carlos, PDF)',
-        url: 'https://fdd-hs26.github.io/projects/w1-active-learning-slides-annotated.pdf',
+        url: 'slides/we1-active-learning-slides-annotated.pdf',
       },
       {
         group: 'Lecture slides',
@@ -631,19 +631,19 @@ export const weekends: Weekend[] = [
         links: [
           {
             label: 'Slides (PDF)',
-            url: 'https://fdd-hs26.github.io/projects/w2-intro-block-slides.pdf',
+            url: 'slides/we2-intro-block-slides.pdf',
           },
           {
             label: 'Slides (annotated, PDF)',
-            url: 'https://fdd-hs26.github.io/projects/w2-intro-block-slides-annotated.pdf',
+            url: 'slides/we2-intro-block-slides-annotated.pdf',
           },
           {
             label: "Simpson's paradox explorer",
-            url: 'https://fdd-hs26.github.io/projects/interactive-simpson/',
+            url: 'interactive-simpson/index.html',
           },
           {
             label: 'Collider bias explorer',
-            url: 'https://fdd-hs26.github.io/projects/interactive-collider/',
+            url: 'interactive-collider/index.html',
           },
         ],
       },
@@ -745,12 +745,12 @@ export const weekends: Weekend[] = [
       {
         group: 'Lecture slides',
         label: 'Confounding and Selection: introductory block (Carlos, PDF)',
-        url: 'https://fdd-hs26.github.io/projects/w2-intro-block-slides.pdf',
+        url: 'slides/we2-intro-block-slides.pdf',
       },
       {
         group: 'Lecture slides',
         label: 'Confounding and Selection: introductory block, annotated (Carlos, PDF)',
-        url: 'https://fdd-hs26.github.io/projects/w2-intro-block-slides-annotated.pdf',
+        url: 'slides/we2-intro-block-slides-annotated.pdf',
       },
       {
         group: 'Lecture slides',
@@ -785,12 +785,12 @@ export const weekends: Weekend[] = [
       {
         group: 'Interactive',
         label: "Simpson's paradox explorer",
-        url: 'https://fdd-hs26.github.io/projects/interactive-simpson/',
+        url: 'interactive-simpson/index.html',
       },
       {
         group: 'Interactive',
         label: 'Collider bias explorer (hot guys are jerks)',
-        url: 'https://fdd-hs26.github.io/projects/interactive-collider/',
+        url: 'interactive-collider/index.html',
       },
       {
         group: 'Exercises',
@@ -1073,9 +1073,9 @@ export const weekends: Weekend[] = [
         title: 'GAE (Generalized Advantage Estimation) & PPO (Proximal Policy Optimization)',
         type: 'lecture',
         links: [
-          { label: 'Slides: Modern reinforcement learning (Carlos)', url: 'https://fdd-hs26.github.io/projects/w4-rl-slides.pdf' },
-          { label: 'Slides: Modern reinforcement learning (annotated)', url: 'https://fdd-hs26.github.io/projects/w4-rl-slides-annotated.pdf' },
-          { label: 'Fly the lander (interactive)', url: 'https://fdd-hs26.github.io/projects/fly-the-lander/' },
+          { label: 'Slides: Modern reinforcement learning (Carlos)', url: 'slides/we4-rl-slides.pdf' },
+          { label: 'Slides: Modern reinforcement learning (annotated)', url: 'slides/we4-rl-slides-annotated.pdf' },
+          { label: 'Fly the lander (interactive)', url: 'fly-the-lander/index.html' },
           { label: 'Grasshopper (interactive)', url: 'grasshopper/index.html' },
         ],
       },
@@ -1138,12 +1138,12 @@ export const weekends: Weekend[] = [
       {
         group: 'Lecture slides',
         label: 'Modern reinforcement learning: the lecture deck',
-        url: 'https://fdd-hs26.github.io/projects/w4-rl-slides.pdf',
+        url: 'slides/we4-rl-slides.pdf',
       },
       {
         group: 'Lecture slides',
         label: 'Modern reinforcement learning: the lecture deck — annotated (Carlos)',
-        url: 'https://fdd-hs26.github.io/projects/w4-rl-slides-annotated.pdf',
+        url: 'slides/we4-rl-slides-annotated.pdf',
       },
       {
         group: 'Lecture slides',
@@ -1198,7 +1198,7 @@ export const weekends: Weekend[] = [
       {
         group: 'Interactive',
         label: 'Fly the lander: the MDP from the pilot\'s seat (GAE & PPO session)',
-        url: 'https://fdd-hs26.github.io/projects/fly-the-lander/',
+        url: 'fly-the-lander/index.html',
       },
       {
         group: 'Interactive',
@@ -1273,7 +1273,7 @@ export const weekends: Weekend[] = [
         title: 'Reranking: monoBERT, ColBERT and RankGPT',
         type: 'exercise',
         who: 'Carlos',
-        url: 'https://colab.research.google.com/github/fdd-hs26/projects/blob/main/weekend-05-rag-research/carlos-lectures/reranking/exercises/reranking_exercises.ipynb',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE5-public/blob/main/exercises/03_cx_reranking_student.ipynb',
       },
       { time: '15:00', title: 'Multimodal RAG and image data extraction', type: 'lecture', who: 'Sofia', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE5-public/main/lectures/FDD26-Multimodal-RAG.pdf' },
       { time: '15:30', title: 'Coffee break', type: 'break' },
@@ -1377,7 +1377,7 @@ export const weekends: Weekend[] = [
       {
         group: 'Exercises',
         label: 'Reranking: monoBERT, ColBERT and RankGPT (exercise, open in Colab)',
-        url: 'https://colab.research.google.com/github/fdd-hs26/projects/blob/main/weekend-05-rag-research/carlos-lectures/reranking/exercises/reranking_exercises.ipynb',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE5-public/blob/main/exercises/03_cx_reranking_student.ipynb',
       },
       { 
         group: 'Exercises', 

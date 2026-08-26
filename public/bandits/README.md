@@ -40,6 +40,6 @@ Open `index.html`. No build step, no server, no network: KaTeX is vendored under
 
 ## Where it is published
 
-- Internal Pages: https://fdd-hs26.github.io/projects/bandits/
+- Served from this site at bandits/index.html (the internal fdd-hs26 Pages was retired when that repo went private)
 - Linked from the official course site on the Weekend 6 page, in the schedule and in the
   resources, beside the grasshopper game.

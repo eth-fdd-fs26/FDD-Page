@@ -1,0 +1,911 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Collider bias: hot guys really are jerks</title>
+<style>
+  /* ==================================================================
+     Palette and chrome inherited verbatim from the course site
+     (site/index.html) so this page belongs to it.
+     ================================================================== */
+  :root{
+    --bg:#1b1e2b; --panel:#2a2d3a; --panel2:#323647;
+    --fg:#e8eaf0; --muted:#9aa3b8; --accent:#38bdf8; --accent2:#fbbf24;
+    --good:#34d399; --radius:16px;
+    --hair:#ffffff14;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:radial-gradient(1200px 600px at 70% -10%, #243049 0%, var(--bg) 55%) no-repeat, var(--bg);
+    color:var(--fg);
+    font-family:"Fira Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.5; -webkit-font-smoothing:antialiased; min-height:100vh;
+  }
+  .wrap{max-width:1000px;margin:0 auto;padding:clamp(20px,5vw,56px)}
+
+  /* ===== masthead ===== */
+  .back{
+    display:inline-block;color:var(--muted);text-decoration:none;font-size:.85rem;
+    margin-bottom:22px;transition:color .12s ease;
+  }
+  .back:hover,.back:focus-visible{color:var(--accent);outline:none}
+  .eyebrow{color:var(--accent);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600}
+  h1{font-size:clamp(1.7rem,6vw,2.6rem);line-height:1.1;margin:.25em 0 .15em}
+  .lede{color:var(--muted);font-size:clamp(1rem,2.6vw,1.12rem);max-width:56ch;margin:0}
+  h2.sec{font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
+     margin:38px 0 14px;font-weight:600}
+
+  /* ===== the demo panel ===== */
+  .demo{
+    margin-top:30px;background:var(--panel);border:1px solid var(--hair);
+    border-radius:var(--radius);padding:clamp(16px,3vw,24px);
+  }
+  .demo-grid{display:grid;gap:22px;grid-template-columns:1fr}
+  @media (min-width:840px){
+    .demo-grid{grid-template-columns:minmax(0,1.45fr) minmax(240px,1fr);align-items:start}
+  }
+
+  /* plot column */
+  .plotcol{min-width:0}
+  .plotcard{
+    background:var(--bg);border:1px solid var(--hair);border-radius:12px;
+    padding:8px 8px 4px;display:flex;justify-content:center;
+  }
+  canvas{display:block;max-width:100%;height:auto;touch-action:none;cursor:grab}
+  canvas.dragging{cursor:grabbing}
+  .legend{
+    display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:12px;
+    font-size:.78rem;color:var(--muted);
+  }
+  .legend span{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+  .dot{width:9px;height:9px;border-radius:50%;flex:none}
+  .bar{width:16px;height:0;border-top:2px solid;flex:none}
+  .bar.dash{border-top-style:dashed}
+  .hint{margin-top:9px;font-size:.78rem;color:var(--muted);opacity:.85}
+  .hint b{color:var(--accent);font-weight:600}
+
+  /* metrics column */
+  .metrics{min-width:0}
+  .bigstat{
+    background:var(--panel2);border:1px solid var(--hair);border-radius:12px;
+    padding:14px 16px 12px;
+  }
+  .bigstat .cap{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .bigstat .num{
+    font-family:var(--mono);font-size:2.5rem;line-height:1.05;font-weight:600;
+    color:var(--accent2);margin-top:6px;font-variant-numeric:tabular-nums;
+  }
+  .bigstat .sub{font-size:.8rem;color:var(--muted);margin-top:2px}
+
+  /* the correlation dial */
+  .dial{margin-top:14px}
+  .dial .track{
+    position:relative;height:8px;border-radius:999px;margin:16px 0 6px;
+    background:var(--bg);border:1px solid var(--hair);
+  }
+  .dial .fill{
+    position:absolute;top:0;bottom:0;background:var(--accent2);opacity:.32;
+    border-radius:999px;transition:left .12s ease,width .12s ease;
+  }
+  .dial .zero{position:absolute;left:50%;top:-5px;bottom:-5px;width:1px;background:var(--muted);opacity:.55;z-index:3}
+  .dial .pin{
+    position:absolute;top:50%;width:14px;height:14px;border-radius:50%;
+    transform:translate(-50%,-50%);border:2px solid var(--panel2);
+    transition:left .12s ease;
+  }
+  .dial .pin.sel{background:var(--accent2);z-index:2;box-shadow:0 0 0 3px #fbbf2433}
+  .dial .pin.pop{background:var(--good);z-index:1;box-shadow:0 0 0 3px #34d39933;display:none}
+  .dial.revealed .pin.pop{display:block}
+  .dial .ends{display:flex;justify-content:space-between;font-size:.68rem;color:var(--muted);font-family:var(--mono)}
+
+  /* readout rows */
+  .rows{margin-top:16px;display:flex;flex-direction:column;gap:0}
+  .row{
+    display:flex;justify-content:space-between;align-items:baseline;gap:10px;
+    padding:9px 0;border-bottom:1px solid var(--hair);font-size:.86rem;
+  }
+  .row:last-child{border-bottom:0}
+  .row .k{color:var(--muted)}
+  .row .v{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .v.sel{color:var(--accent2)}
+  .v.pop{color:var(--good)}
+  .v.veil{color:var(--muted);opacity:.55;font-style:italic}
+
+  /* ===== controls ===== */
+  .controls{
+    margin-top:22px;padding-top:20px;border-top:1px solid var(--hair);
+  }
+  .sliderrow{display:flex;flex-direction:column;gap:8px}
+  .sliderlab{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .sliderlab .t{font-weight:600;font-size:.95rem}
+  .sliderlab .r{font-family:var(--mono);font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums}
+  .sliderlab .r b{color:var(--accent);font-weight:600}
+  input[type=range]{
+    -webkit-appearance:none;appearance:none;width:100%;height:26px;background:transparent;cursor:pointer;
+  }
+  input[type=range]:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:8px}
+  input[type=range]::-webkit-slider-runnable-track{
+    height:6px;border-radius:999px;background:var(--panel2);border:1px solid var(--hair);
+  }
+  input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;
+    background:var(--accent);border:3px solid var(--panel);margin-top:-9px;
+    box-shadow:0 0 0 1px var(--accent);
+  }
+  input[type=range]::-moz-range-track{
+    height:6px;border-radius:999px;background:var(--panel2);border:1px solid var(--hair);
+  }
+  input[type=range]::-moz-range-thumb{
+    width:16px;height:16px;border-radius:50%;background:var(--accent);
+    border:3px solid var(--panel);box-shadow:0 0 0 1px var(--accent);
+  }
+  .scale{display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted);margin-top:-4px}
+
+  .btnrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  button{
+    font:inherit;font-size:.83rem;font-weight:500;color:var(--fg);
+    background:var(--panel2);border:1px solid var(--hair);border-radius:999px;
+    padding:7px 15px;cursor:pointer;transition:border-color .12s ease,color .12s ease,background .12s ease;
+  }
+  button:hover,button:focus-visible{border-color:var(--accent);color:var(--accent);outline:none}
+  button.primary{border-color:var(--accent);color:var(--accent)}
+  button.primary:hover,button.primary:focus-visible{background:var(--accent);color:#12202b}
+  button.chip[aria-pressed=true]{border-color:var(--accent2);color:var(--accent2);background:#fbbf2414}
+  .btnrow .spacer{flex:1 1 12px;min-width:0}
+
+  /* ===== narration ===== */
+  .narr{
+    margin-top:20px;padding:14px 16px;border-radius:12px;
+    background:var(--bg);border:1px solid var(--hair);border-left:3px solid var(--muted);
+    font-size:.92rem;color:var(--fg);transition:border-left-color .2s ease;
+  }
+  .narr.bad{border-left-color:var(--accent2)}
+  .narr.good{border-left-color:var(--good)}
+  .narr b{font-weight:600}
+  .narr .n{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  .narr .n.sel{color:var(--accent2)}
+  .narr .n.pop{color:var(--good)}
+
+  /* ===== article cards ===== */
+  .intro{color:var(--muted);font-size:.98rem;max-width:64ch;margin:0 0 18px}
+  .articles{display:grid;gap:14px;grid-template-columns:1fr}
+  @media (min-width:700px){ .articles{grid-template-columns:1fr 1fr} }
+  .article-card{
+    display:flex;flex-direction:column;gap:7px;text-decoration:none;color:inherit;
+    background:var(--panel);border:1px solid var(--hair);border-radius:var(--radius);
+    padding:18px 18px 16px;
+    transition:transform .12s ease,border-color .12s ease,background .12s ease;
+  }
+  .article-card:hover,.article-card:focus-visible{
+    transform:translateY(-3px);border-color:var(--accent);background:var(--panel2);outline:none;
+  }
+  .article-card .src{
+    font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600;
+  }
+  .article-card .headline{font-size:1.05rem;font-weight:600;line-height:1.3}
+  .article-card .desc{font-size:.88rem;color:var(--muted);margin:0}
+  .article-card .read{
+    margin-top:auto;padding-top:6px;font-size:.8rem;color:var(--accent2);font-weight:500;
+  }
+
+  footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--hair);color:var(--muted);font-size:.85rem}
+  footer a{color:var(--accent);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back" href="../">&#8592; Back to teaching materials</a>
+
+  <header>
+    <div class="eyebrow">Weekend 2 &middot; Explainability</div>
+    <h1>Hot guys really are jerks. The data says so.</h1>
+    <p class="lede">
+      Here is a sample of people you have dated. Their looks and their personality are plotted
+      against each other. The correlation is unmistakably negative. Then find out where the sample
+      came from.
+    </p>
+  </header>
+
+  <!-- ==================================================================
+       THE DEMO
+       ================================================================== -->
+  <section class="demo" id="demo">
+    <div class="demo-grid">
+
+      <div class="plotcol">
+        <div class="plotcard">
+          <canvas id="cv" role="img"
+            aria-label="Scatter plot of looks against personality. Drag anywhere to move the selection threshold."></canvas>
+        </div>
+        <div class="legend">
+          <span><i class="dot" style="background:#fbbf24"></i> You dated them</span>
+          <span id="lg-rest" style="display:none"><i class="dot" style="background:#9aa3b8;opacity:.45"></i> You never met them</span>
+          <span><i class="bar" style="border-color:#fbbf24"></i> Fit in your dating pool</span>
+          <span id="lg-popfit" style="display:none"><i class="bar dash" style="border-color:#34d399"></i> Fit in the population</span>
+        </div>
+        <p class="hint"><b>Drag the plot</b> (or use the slider) to move your standards. The dashed cyan line is the bar people must clear to get a date.</p>
+      </div>
+
+      <aside class="metrics" id="metrics">
+        <div class="bigstat">
+          <div class="cap">Correlation in your dating pool</div>
+          <div class="num" id="r-sel">0.000</div>
+          <div class="sub" id="r-sel-sub">looks vs personality, among the people you dated</div>
+        </div>
+
+        <div class="dial" id="dial">
+          <div class="track">
+            <div class="fill" id="dial-fill"></div>
+            <div class="zero"></div>
+            <div class="pin pop" id="pin-pop"></div>
+            <div class="pin sel" id="pin-sel"></div>
+          </div>
+          <div class="ends"><span>-1</span><span>0</span><span>+1</span></div>
+        </div>
+
+        <div class="rows">
+          <div class="row">
+            <span class="k">People you dated</span>
+            <span class="v" id="n-sel">0</span>
+          </div>
+          <div class="row">
+            <span class="k">Slope of your fit</span>
+            <span class="v sel" id="slope-sel">0.00</span>
+          </div>
+          <div class="row pop">
+            <span class="k">Correlation in the population</span>
+            <span class="v pop" id="r-pop">0.000</span>
+          </div>
+          <div class="row pop">
+            <span class="k">Slope in the population</span>
+            <span class="v pop" id="slope-pop">0.00</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <div class="controls">
+      <div class="sliderrow">
+        <div class="sliderlab">
+          <span class="t">Your standards</span>
+          <span class="r">looks + personality &#8805; <b id="t-val">1.20</b> &middot; <span id="t-pct">the top 19.6%</span></span>
+        </div>
+        <input type="range" id="thresh" min="-5" max="2.8" step="0.05" value="1.2"
+               aria-label="Selection threshold on looks plus personality">
+        <div class="scale"><span>Date anyone</span><span>Date almost nobody</span></div>
+      </div>
+
+      <div class="btnrow">
+        <button class="chip" data-frac="1"    aria-pressed="false">Everyone</button>
+        <button class="chip" data-frac="0.5"  aria-pressed="false">Top 50%</button>
+        <button class="chip" data-frac="0.2"  aria-pressed="false">Top 20%</button>
+        <button class="chip" data-frac="0.05" aria-pressed="false">Top 5%</button>
+        <span class="spacer"></span>
+        <button class="primary" id="reveal">Reveal the whole population</button>
+        <button id="resample">Resample</button>
+      </div>
+    </div>
+
+    <div class="narr bad" id="narr"></div>
+  </section>
+
+  <!-- ==================================================================
+       CLOSING SECTION: colliders in the wild
+       ================================================================== -->
+  <section>
+    <h2 class="sec">In the wild</h2>
+    <h3 style="margin:0 0 8px;font-size:1.32rem">Colliders in real journalism and real science</h3>
+    <p class="intro">
+      Every one of these headlines is a collider in disguise. The mechanism is the same each time:
+      the writer (or the scientist) has unknowingly conditioned on a common effect.
+    </p>
+
+    <div class="articles">
+      <a class="article-card" href="https://www.medicalnewstoday.com/articles/288998" target="_blank" rel="noopener">
+        <span class="src">Medical News Today</span>
+        <span class="headline">Really hot guys are also really not nice, says science</span>
+        <p class="desc">
+          The data: dating-app users. But the app pre-filters on being noticed at all, and
+          attractiveness and personality are both inputs to that filter, so a negative correlation
+          appears in the filtered sample even when none exists in the population.
+        </p>
+        <span class="read">Read original &#8594;</span>
+      </a>
+
+      <a class="article-card" href="https://www.attitude.co.uk/news/world/new-study-finds-that-hot-guys-are-more-selfish-283534/" target="_blank" rel="noopener">
+        <span class="src">Attitude</span>
+        <span class="headline">New study finds that hot guys are more selfish</span>
+        <p class="desc">
+          A press write-up of the Brunel University study framing attractiveness as a trade-off
+          against niceness. Same collider: the dating-pool sample conditions on being noticed, so
+          looks and kindness look negatively correlated in the filtered data even when they are
+          independent in the population.
+        </p>
+        <span class="read">Read original &#8594;</span>
+      </a>
+
+      <a class="article-card" href="https://archive.org/details/hownottobewrongp0000elle_e9m3" target="_blank" rel="noopener">
+        <span class="src">Internet Archive &middot; Jordan Ellenberg</span>
+        <span class="headline">How Not to Be Wrong: the Great Square of Men</span>
+        <p class="desc">
+          Ellenberg's essay that popularised the <em>Great Square of Men</em>: why the nice-and-hot
+          subset of famous people looks like a tradeoff even when, in the full population, niceness
+          and hotness are statistically independent.
+        </p>
+        <span class="read">Read the book &#8594;</span>
+      </a>
+
+      <a class="article-card" href="https://www.nature.com/articles/s41467-020-19478-2" target="_blank" rel="noopener">
+        <span class="src">Nature Communications &middot; Griffith et al. 2020</span>
+        <span class="headline">Collider bias undermines our understanding of COVID-19 disease risk and severity</span>
+        <p class="desc">
+          Early pandemic hospital data seemed to show smoking was <em>protective</em> against severe
+          COVID. But being in the hospital sample is itself a collider: smoking and COVID both affect
+          hospitalisation, so conditioning on it manufactured the paradox.
+        </p>
+        <span class="read">Read paper &#8594;</span>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    Built for the ETH "From Data to Solutions" workshop.
+  </footer>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ==================================================================
+     1. Data generating process
+     Looks and personality are drawn INDEPENDENTLY. Nothing links them.
+     The collider is the sum: you only date someone whose looks plus
+     personality clear a bar. Everything below is computed honestly from
+     the points that are actually on screen.
+     ================================================================== */
+
+  var N = 1000;            /* people in the population            */
+  var DEFAULT_T = 1.2;     /* default bar on (looks + personality) */
+  /* T_MIN sits below the smallest score any sample of this size plausibly
+     produces, so the far left of the slider really does admit all N people. */
+  var T_MIN = -5, T_MAX = 2.8;
+
+  /* Mulberry32: tiny deterministic PRNG. */
+  function seededRandom(seed) {
+    var a = seed >>> 0;
+    return function () {
+      a |= 0;
+      a = (a + 0x6D2B79F5) | 0;
+      var t = a;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  /* Box Muller: one standard normal from two uniforms. */
+  function randn(rng) {
+    var u = 0, v = 0;
+    while (u === 0) u = rng();
+    while (v === 0) v = rng();
+    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+  }
+
+  function generate(seed) {
+    var rng = seededRandom(seed);
+    var looks = new Float64Array(N);
+    var nice  = new Float64Array(N);
+    var score = new Float64Array(N);
+    for (var i = 0; i < N; i++) {
+      looks[i] = randn(rng);          /* independent */
+      nice[i]  = randn(rng);          /* independent */
+      score[i] = looks[i] + nice[i];  /* the collider */
+    }
+    var sorted = Array.prototype.slice.call(score).sort(function (a, b) { return a - b; });
+    return { looks: looks, nice: nice, score: score, sorted: sorted };
+  }
+
+  /* Pearson correlation, computed from scratch. */
+  function pearson(xs, ys) {
+    var n = xs.length, i;
+    if (n < 2) return NaN;
+    var mx = 0, my = 0;
+    for (i = 0; i < n; i++) { mx += xs[i]; my += ys[i]; }
+    mx /= n; my /= n;
+    var sxy = 0, sxx = 0, syy = 0;
+    for (i = 0; i < n; i++) {
+      var dx = xs[i] - mx, dy = ys[i] - my;
+      sxy += dx * dy; sxx += dx * dx; syy += dy * dy;
+    }
+    var den = Math.sqrt(sxx * syy);
+    return den > 0 ? sxy / den : NaN;
+  }
+
+  /* Least squares fit of y on x: returns {a, b} for y = a + b x. */
+  function fitLine(xs, ys) {
+    var n = xs.length, i;
+    if (n < 2) return null;
+    var mx = 0, my = 0;
+    for (i = 0; i < n; i++) { mx += xs[i]; my += ys[i]; }
+    mx /= n; my /= n;
+    var sxy = 0, sxx = 0;
+    for (i = 0; i < n; i++) {
+      var dx = xs[i] - mx, dy = ys[i] - my;
+      sxy += dx * dy; sxx += dx * dx;
+    }
+    if (sxx <= 0) return null;
+    var b = sxy / sxx;
+    return { a: my - b * mx, b: b };
+  }
+
+  /* ==================================================================
+     2. State
+     ================================================================== */
+
+  var seed = 42;
+  var T = DEFAULT_T;
+  var revealed = false;
+  var data = generate(seed);
+  var stats = null;      /* recomputed on every change */
+  var anim = null;       /* preset animation handle    */
+
+  function recompute() {
+    var sx = [], sy = [], i;
+    var lo = Infinity, hi = -Infinity;
+    for (i = 0; i < N; i++) {
+      if (data.score[i] < T) continue;
+      sx.push(data.looks[i]);
+      sy.push(data.nice[i]);
+      if (data.looks[i] < lo) lo = data.looks[i];
+      if (data.looks[i] > hi) hi = data.looks[i];
+    }
+    var all = Array.prototype.slice.call(data.looks);
+    var allY = Array.prototype.slice.call(data.nice);
+    stats = {
+      nSel: sx.length,
+      rSel: sx.length >= 3 ? pearson(sx, sy) : NaN,
+      selFit: sx.length >= 3 ? fitLine(sx, sy) : null,
+      selLo: lo, selHi: hi,
+      rPop: pearson(all, allY),
+      popFit: fitLine(all, allY),
+      popLo: Math.min.apply(null, all),
+      popHi: Math.max.apply(null, all)
+    };
+  }
+
+  /* ==================================================================
+     3. Canvas plot
+     ================================================================== */
+
+  var CV   = document.getElementById('cv');
+  var ctx  = CV.getContext('2d');
+  var PAD  = { l: 52, r: 16, t: 16, b: 44 };
+  var DOM  = 3.6;                       /* axis range, both axes */
+  var inner = 380;                      /* square data area, set on layout */
+  var W = 0, H = 0;
+
+  var C = {
+    sel:    '#fbbf24',
+    rest:   '#9aa3b8',
+    accent: '#38bdf8',
+    good:   '#34d399',
+    muted:  '#9aa3b8',
+    grid:   'rgba(255,255,255,0.055)',
+    axis:   'rgba(255,255,255,0.16)'
+  };
+
+  function sx(v) { return PAD.l + (v + DOM) / (2 * DOM) * inner; }
+  function sy(v) { return PAD.t + (DOM - v) / (2 * DOM) * inner; }
+  function ix(px) { return (px - PAD.l) / inner * (2 * DOM) - DOM; }
+  function iy(py) { return DOM - (py - PAD.t) / inner * (2 * DOM); }
+
+  function layout() {
+    var host = CV.parentNode;
+    var avail = host.clientWidth - 16;               /* padding of .plotcard */
+    var size = avail - PAD.l - PAD.r;
+    inner = Math.max(230, Math.min(460, size));
+    W = inner + PAD.l + PAD.r;
+    H = inner + PAD.t + PAD.b;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    CV.width = Math.round(W * dpr);
+    CV.height = Math.round(H * dpr);
+    /* Width only. The CSS keeps height auto, so if a very narrow phone forces
+       max-width to kick in, the canvas shrinks without distorting its aspect,
+       and the pointer mapping below rescales through getBoundingClientRect. */
+    CV.style.width = W + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function clipPlot() {
+    ctx.beginPath();
+    ctx.rect(PAD.l, PAD.t, inner, inner);
+    ctx.clip();
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    /* plot face */
+    ctx.fillStyle = '#1b1e2b';
+    ctx.fillRect(PAD.l, PAD.t, inner, inner);
+
+    /* accepted half plane, only once the trap is exposed */
+    if (revealed) {
+      ctx.save();
+      clipPlot();
+      ctx.beginPath();
+      ctx.moveTo(sx(-DOM), sy(T + DOM));
+      ctx.lineTo(sx(DOM),  sy(T - DOM));
+      ctx.lineTo(sx(DOM),  sy(DOM));
+      ctx.lineTo(sx(-DOM), sy(DOM));
+      ctx.closePath();
+      ctx.fillStyle = 'rgba(251,191,36,0.055)';
+      ctx.fill();
+      ctx.restore();
+    }
+
+    /* grid and zero axes */
+    ctx.save();
+    clipPlot();
+    ctx.lineWidth = 1;
+    for (var g = -3; g <= 3; g++) {
+      ctx.strokeStyle = (g === 0) ? C.axis : C.grid;
+      ctx.beginPath();
+      ctx.moveTo(Math.round(sx(g)) + 0.5, PAD.t);
+      ctx.lineTo(Math.round(sx(g)) + 0.5, PAD.t + inner);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(PAD.l, Math.round(sy(g)) + 0.5);
+      ctx.lineTo(PAD.l + inner, Math.round(sy(g)) + 0.5);
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    /* frame */
+    ctx.strokeStyle = 'rgba(255,255,255,0.10)';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(PAD.l + 0.5, PAD.t + 0.5, inner - 1, inner - 1);
+
+    /* points */
+    ctx.save();
+    clipPlot();
+    var i, px, py;
+    if (revealed) {
+      ctx.fillStyle = 'rgba(154,163,184,0.32)';
+      for (i = 0; i < N; i++) {
+        if (data.score[i] >= T) continue;
+        px = sx(data.looks[i]); py = sy(data.nice[i]);
+        ctx.beginPath(); ctx.arc(px, py, 2.1, 0, 6.2831853); ctx.fill();
+      }
+    }
+    ctx.fillStyle = C.sel;
+    for (i = 0; i < N; i++) {
+      if (data.score[i] < T) continue;
+      px = sx(data.looks[i]); py = sy(data.nice[i]);
+      ctx.beginPath(); ctx.arc(px, py, 3.0, 0, 6.2831853); ctx.fill();
+    }
+    ctx.restore();
+
+    /* A fit is only drawn across the range where its own data live, so no line
+       is extrapolated into a region it was never fitted on. */
+    function drawFit(fit, lo, hi) {
+      var x0 = Math.max(-DOM, lo - 0.25);
+      var x1 = Math.min(DOM, hi + 0.25);
+      ctx.beginPath();
+      ctx.moveTo(sx(x0), sy(fit.a + fit.b * x0));
+      ctx.lineTo(sx(x1), sy(fit.a + fit.b * x1));
+      ctx.stroke();
+    }
+
+    /* population fit (flat), only once revealed */
+    ctx.save();
+    clipPlot();
+    if (revealed && stats.popFit) {
+      ctx.strokeStyle = C.good;
+      ctx.lineWidth = 2;
+      ctx.setLineDash([7, 5]);
+      drawFit(stats.popFit, stats.popLo, stats.popHi);
+      ctx.setLineDash([]);
+    }
+
+    /* fit inside the dating pool: the line that sells the lie */
+    if (stats.selFit) {
+      ctx.strokeStyle = C.sel;
+      ctx.lineWidth = 2.6;
+      drawFit(stats.selFit, stats.selLo, stats.selHi);
+    }
+
+    /* the collider threshold: looks + personality = T */
+    if (revealed) {
+      ctx.strokeStyle = C.accent;
+      ctx.lineWidth = 2;
+      ctx.setLineDash([6, 5]);
+      ctx.beginPath();
+      ctx.moveTo(sx(-DOM), sy(T + DOM));
+      ctx.lineTo(sx(DOM),  sy(T - DOM));
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+    ctx.restore();
+
+    /* draggable handle sits on the line at (T/2, T/2) */
+    if (revealed) {
+      var hx = sx(T / 2), hy = sy(T / 2);
+      ctx.fillStyle = C.accent;
+      ctx.strokeStyle = '#1b1e2b';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath(); ctx.arc(hx, hy, 6.5, 0, 6.2831853); ctx.fill(); ctx.stroke();
+    }
+
+    /* region labels, only when there is room for them */
+    if (revealed && stats.nSel < 0.92 * N) {
+      ctx.font = '600 11px "Fira Sans",-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif';
+      ctx.fillStyle = 'rgba(251,191,36,0.75)';
+      ctx.textAlign = 'right';
+      ctx.textBaseline = 'top';
+      ctx.fillText('you date them', PAD.l + inner - 10, PAD.t + 8);
+      ctx.fillStyle = 'rgba(154,163,184,0.65)';
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'bottom';
+      ctx.fillText('you never meet them', PAD.l + 10, PAD.t + inner - 8);
+    }
+
+    /* ticks and axis titles */
+    ctx.font = '11px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+    ctx.fillStyle = C.muted;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    for (var t = -3; t <= 3; t++) {
+      ctx.fillText(String(t), sx(t), PAD.t + inner + 7);
+    }
+    ctx.textAlign = 'right';
+    ctx.textBaseline = 'middle';
+    for (var u = -3; u <= 3; u++) {
+      ctx.fillText(String(u), PAD.l - 8, sy(u));
+    }
+
+    ctx.font = '600 12px "Fira Sans",-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif';
+    ctx.fillStyle = '#c7cddb';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'bottom';
+    ctx.fillText('Looks (z-score)', PAD.l + inner / 2, H - 6);
+    ctx.save();
+    ctx.translate(13, PAD.t + inner / 2);
+    ctx.rotate(-Math.PI / 2);
+    ctx.textBaseline = 'top';
+    ctx.fillText('Personality (z-score)', 0, 0);
+    ctx.restore();
+  }
+
+  /* ==================================================================
+     4. Readouts
+     ================================================================== */
+
+  var elRSel   = document.getElementById('r-sel');
+  var elRSub   = document.getElementById('r-sel-sub');
+  var elNSel   = document.getElementById('n-sel');
+  var elSlope  = document.getElementById('slope-sel');
+  var elRPop   = document.getElementById('r-pop');
+  var elSlopeP = document.getElementById('slope-pop');
+  var elTVal   = document.getElementById('t-val');
+  var elTPct   = document.getElementById('t-pct');
+  var elNarr   = document.getElementById('narr');
+  var elDial   = document.getElementById('dial');
+  var elPinS   = document.getElementById('pin-sel');
+  var elPinP   = document.getElementById('pin-pop');
+  var elFill   = document.getElementById('dial-fill');
+  var elSlider = document.getElementById('thresh');
+  var elReveal = document.getElementById('reveal');
+  var elLgRest = document.getElementById('lg-rest');
+  var elLgFit  = document.getElementById('lg-popfit');
+
+  function fmt(x, d) {
+    if (!isFinite(x)) return 'n/a';
+    var s = Math.abs(x).toFixed(d);
+    return (x < 0 ? '-' : '+') + s;
+  }
+
+  function refresh() {
+    recompute();
+
+    var pct = stats.nSel / N;
+
+    elRSel.textContent  = isFinite(stats.rSel) ? fmt(stats.rSel, 3) : 'n/a';
+    elNSel.textContent  = stats.nSel + ' of ' + N;
+    elSlope.textContent = stats.selFit ? fmt(stats.selFit.b, 2) : 'n/a';
+
+    /* The population numbers exist from the first frame. They are only veiled,
+       so the reveal is a curtain lifting, not a recomputation. */
+    if (revealed) {
+      elRPop.textContent   = fmt(stats.rPop, 3);
+      elSlopeP.textContent = stats.popFit ? fmt(stats.popFit.b, 2) : 'n/a';
+      elRPop.className     = 'v pop';
+      elSlopeP.className   = 'v pop';
+    } else {
+      elRPop.textContent   = 'not looked at';
+      elSlopeP.textContent = 'not looked at';
+      elRPop.className     = 'v veil';
+      elSlopeP.className   = 'v veil';
+    }
+    elTVal.textContent  = T.toFixed(2);
+    elTPct.textContent  = pct >= 0.995
+      ? 'you date everyone'
+      : 'the top ' + (pct * 100).toFixed(1) + '%';
+
+    elRSub.textContent = stats.nSel >= 3
+      ? 'looks vs personality, among the ' + stats.nSel + ' you dated'
+      : 'too few people to compute a correlation';
+
+    /* dial: map r in [-1, 1] onto the track, and grow a bar out from zero */
+    var pinAt = function (el, r) {
+      if (!isFinite(r)) { el.style.display = 'none'; return; }
+      el.style.display = '';
+      el.style.left = ((r + 1) / 2 * 100).toFixed(2) + '%';
+    };
+    pinAt(elPinS, stats.rSel);
+    pinAt(elPinP, stats.rPop);
+    if (isFinite(stats.rSel)) {
+      var at = (stats.rSel + 1) / 2 * 100;
+      elFill.style.display = '';
+      elFill.style.left = Math.min(50, at).toFixed(2) + '%';
+      elFill.style.width = Math.abs(50 - at).toFixed(2) + '%';
+    } else {
+      elFill.style.display = 'none';
+    }
+
+    elDial.classList.toggle('revealed', revealed);
+    elLgRest.style.display = revealed ? '' : 'none';
+    elLgFit.style.display = revealed ? '' : 'none';
+
+    /* preset chips light up when the threshold matches one of them */
+    var chips = document.querySelectorAll('.chip');
+    for (var i = 0; i < chips.length; i++) {
+      var f = parseFloat(chips[i].getAttribute('data-frac'));
+      chips[i].setAttribute('aria-pressed', Math.abs(T - quantileT(f)) < 0.03 ? 'true' : 'false');
+    }
+
+    narrate(pct);
+    draw();
+  }
+
+  function narrate(pct) {
+    var rS = isFinite(stats.rSel) ? fmt(stats.rSel, 2) : 'n/a';
+    var rP = fmt(stats.rPop, 3);
+
+    if (!revealed) {
+      elNarr.className = 'narr bad';
+      elNarr.innerHTML =
+        'The trend is unmistakable. Among the <b>' + stats.nSel + '</b> people you dated, the ' +
+        'correlation between looks and personality is <span class="n sel">' + rS + '</span>. ' +
+        'The fitted line slopes down. Better looking, less nice. Case closed?';
+      return;
+    }
+
+    if (pct >= 0.98) {
+      elNarr.className = 'narr good';
+      elNarr.innerHTML =
+        'Standards off. You now date everyone, so your sample <i>is</i> the population, and the ' +
+        'correlation is <span class="n pop">' + rP + '</span>. Flat. Looks and personality were ' +
+        'drawn independently: there was never anything there. Now raise your standards again and ' +
+        'watch the correlation go negative out of nothing.';
+      return;
+    }
+
+    elNarr.className = 'narr bad';
+    elNarr.innerHTML =
+      'Look again. In the full population of <b>' + N + '</b> people the correlation is ' +
+      '<span class="n pop">' + rP + '</span>, dead flat: looks and personality have nothing to do ' +
+      'with each other. But you never met a random sample. Everyone you dated cleared the same bar, ' +
+      '<b>looks + personality &#8805; ' + T.toFixed(2) + '</b>, which slices off the whole bottom left ' +
+      'corner. What survives is a ridge along the anti-diagonal, and inside it the correlation reads ' +
+      '<span class="n sel">' + rS + '</span>. Your own standards manufactured the tradeoff. That bar ' +
+      'is a <b>collider</b>: looks and personality both cause it, and conditioning on it makes two ' +
+      'independent traits look like enemies.';
+  }
+
+  /* Empirical threshold that admits the top `frac` of the population. */
+  function quantileT(frac) {
+    if (frac >= 1) return T_MIN;
+    var idx = Math.min(N - 1, Math.max(0, Math.floor((1 - frac) * N)));
+    return data.sorted[idx];
+  }
+
+  /* ==================================================================
+     5. Interaction
+     ================================================================== */
+
+  function setT(v, syncSlider) {
+    T = Math.max(T_MIN, Math.min(T_MAX, v));
+    if (syncSlider !== false) elSlider.value = String(T);
+    refresh();
+  }
+
+  elSlider.addEventListener('input', function () {
+    if (anim) { cancelAnimationFrame(anim); anim = null; }
+    setT(parseFloat(elSlider.value), false);
+  });
+
+  /* Drag anywhere on the plot: the bar follows your finger. */
+  var dragging = false;
+  function pointerT(ev) {
+    var rect = CV.getBoundingClientRect();
+    var px = (ev.clientX - rect.left) * (W / rect.width);
+    var py = (ev.clientY - rect.top) * (H / rect.height);
+    return ix(px) + iy(py);
+  }
+  CV.addEventListener('pointerdown', function (ev) {
+    if (anim) { cancelAnimationFrame(anim); anim = null; }
+    dragging = true;
+    CV.classList.add('dragging');
+    CV.setPointerCapture(ev.pointerId);
+    setT(pointerT(ev));
+    ev.preventDefault();
+  });
+  CV.addEventListener('pointermove', function (ev) {
+    if (!dragging) return;
+    setT(pointerT(ev));
+    ev.preventDefault();
+  });
+  function endDrag(ev) {
+    if (!dragging) return;
+    dragging = false;
+    CV.classList.remove('dragging');
+    if (CV.hasPointerCapture && CV.hasPointerCapture(ev.pointerId)) CV.releasePointerCapture(ev.pointerId);
+  }
+  CV.addEventListener('pointerup', endDrag);
+  CV.addEventListener('pointercancel', endDrag);
+
+  /* Preset chips glide the threshold so the flip is visible, not instant. */
+  function animateTo(target) {
+    if (anim) cancelAnimationFrame(anim);
+    var from = T, t0 = performance.now(), dur = 550;
+    function step(now) {
+      var k = Math.min(1, (now - t0) / dur);
+      var e = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;   /* ease in out */
+      setT(from + (target - from) * e);
+      if (k < 1) { anim = requestAnimationFrame(step); } else { anim = null; }
+    }
+    anim = requestAnimationFrame(step);
+  }
+
+  var chipEls = document.querySelectorAll('.chip');
+  for (var c = 0; c < chipEls.length; c++) {
+    chipEls[c].addEventListener('click', function () {
+      animateTo(quantileT(parseFloat(this.getAttribute('data-frac'))));
+    });
+  }
+
+  elReveal.addEventListener('click', function () {
+    revealed = !revealed;
+    elReveal.textContent = revealed ? 'Hide the population again' : 'Reveal the whole population';
+    elReveal.classList.toggle('primary', !revealed);
+    refresh();
+  });
+
+  document.getElementById('resample').addEventListener('click', function () {
+    seed = (seed + 7) | 0;
+    data = generate(seed);
+    refresh();
+  });
+
+  /* ==================================================================
+     6. Boot
+     ================================================================== */
+
+  function boot() { layout(); refresh(); }
+
+  if (window.ResizeObserver) {
+    var ro = new ResizeObserver(function () { layout(); draw(); });
+    ro.observe(CV.parentNode);
+  }
+  window.addEventListener('resize', function () { layout(); draw(); });
+
+  boot();
+})();
+</script>
+</body>
+</html>
