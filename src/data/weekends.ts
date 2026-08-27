@@ -10,11 +10,10 @@ import type { Weekend } from '../types';
  * available.
  */
 
-/** Default placeholder resources shown until real links are added. */
-const placeholderResources = (): Weekend['resources'] => [
-  { label: 'Lecture slides — to be added', url: '#' },
-  { label: 'Exercise notebooks — to be added', url: '#' },
-];
+// The placeholderResources() helper lived here until 2026-08-27. Weekend 7 was
+// its last caller, and now that Weekend 7 lists real slides, handouts and an
+// exercise, every weekend carries its own resources and the helper was dead
+// code that tsc rejects under noUnusedLocals.
 
 export const weekends: Weekend[] = [
   {
@@ -1581,38 +1580,173 @@ export const weekends: Weekend[] = [
     id: 'we7',
     number: 7,
     title: 'Large-Scale AI',
-    theme: 'Parallelism, distributed training and inference at scale',
-    dates: '28–29 August 2026',
+    theme: 'What training at scale costs, and how it is made to fit',
+    dates: '28-29 August 2026',
     startISO: '2026-08-28',
     category: 'mandatory',
+    project: 'Project: DP-SGD',
     summary:
-      'How modern AI is trained and served at scale: parallel computing, distributed training, efficient inference (quantization, batching), MLOps, and architectures like MoE and Flash Attention.',
+      'What a training run actually costs in FLOPs, GPU hours, francs and gigawatt hours; how GPUs and TPUs get that work done; how a shared cluster hands out machines; and how a model too big for one device is split across thousands, then adapted without retraining.',
     // The HG lecture rooms are blocked by the "Scientifica" event on 28 and 29
     // August, so this weekend moves to ML H 44 (which also supports recording).
     fridayRoom: 'ML H 44',
     saturdayRoom: 'ML H 44',
+    // Schedule re-read from the master spreadsheet on 2026-08-27 (W7 is column
+    // 21, "Who?" column 22). It had drifted a long way from the placeholder
+    // titles that were here: there is no "MLOps" and no "Model Architectures
+    // for Scale" block, Friday 16:00 is the Kaggle prize-giving, and Saturday
+    // 10:30 is fine-tuning.
     friday: [
-      { time: '08:00', title: 'Parallel Computing', type: 'lecture' },
-      { time: '09:00', title: 'Coding Exercise', type: 'exercise' },
-      { time: '10:00', title: 'Distributed Training', type: 'lecture' },
+      {
+        time: '08:00',
+        title: 'The cost of computation and supercomputers',
+        type: 'lecture',
+        who: 'Carlos',
+        url: 'slides/we7-cost-slides.pdf',
+        links: [{ label: 'Handout', url: 'slides/we7-cost-handout.pdf' }],
+      },
+      { time: '09:00', title: 'Visualizations, cost estimation exercises', type: 'exercise' },
+      {
+        time: '10:00',
+        title: 'GPU and TPU',
+        type: 'lecture',
+        // The spreadsheet still has Ankita in the "Who?" cell for this slot;
+        // Carlos took the block over on 2026-08-24 and these are his slides.
+        who: 'Carlos',
+        url: 'slides/we7-gpu-tpu-slides.pdf',
+        links: [{ label: 'Handout', url: 'slides/we7-gpu-tpu-handout.pdf' }],
+      },
       { time: '10:30', title: 'Coffee break', type: 'break' },
-      { time: '11:00', title: 'Coding Exercise', type: 'exercise' },
-      { time: '12:00', title: 'Inference at Scale (Quantization, Batching, …)', type: 'lecture' },
+      { time: '11:00', title: 'GPU and TPU visualizations', type: 'exercise' },
+      {
+        time: '12:00',
+        title: 'SLURM and FLOP',
+        type: 'lecture',
+        who: 'Carlos & Ghali',
+        // Two halves of one slot: Carlos counts the FLOPs, Ghali takes SLURM.
+        url: 'slides/we7-flop-slides.pdf',
+        links: [
+          { label: 'FLOPs (handout)', url: 'slides/we7-flop-handout.pdf' },
+          { label: 'SLURM', url: 'slides/we7-slurm-slides.pdf' },
+          { label: 'SLURM (handout)', url: 'slides/we7-slurm-handout.pdf' },
+        ],
+      },
       { time: '13:00', title: 'Lunch break', type: 'break' },
-      { time: '14:00', title: 'Coding Exercise', type: 'exercise' },
-      { time: '15:00', title: 'MLOps', type: 'lecture' },
+      { time: '14:00', title: 'SLURM', type: 'exercise' },
+      { time: '15:00', title: 'FLOP calculation', type: 'exercise' },
       { time: '15:30', title: 'Coffee break', type: 'break' },
-      { time: '16:00', title: 'Coding Exercise', type: 'exercise' },
+      { time: '16:00', title: 'Presentations: winners of the Kaggle competition', type: 'project', who: 'Participants' },
     ],
     saturday: [
-      { time: '08:00', title: 'Model Architectures for Scale (MoE, Flash Attention, Multimodal)', type: 'lecture' },
-      { time: '09:00', title: 'Coding Exercise', type: 'exercise' },
+      {
+        time: '08:00',
+        title: 'Training large models with distributed gradient descent',
+        type: 'lecture',
+        who: 'Carlos',
+        // Taught in two parts: splitting the batch, then splitting the model.
+        url: 'slides/we7-dgd-part1-slides.pdf',
+        links: [
+          { label: 'Part 1 (handout)', url: 'slides/we7-dgd-part1-handout.pdf' },
+          { label: 'Part 2', url: 'slides/we7-dgd-part2-slides.pdf' },
+          { label: 'Part 2 (handout)', url: 'slides/we7-dgd-part2-handout.pdf' },
+        ],
+      },
+      { time: '09:00', title: 'Distributed gradient descent', type: 'exercise' },
       { time: '10:00', title: 'Coffee break', type: 'break' },
-      { time: '10:30', title: 'Topic TBD', type: 'lecture' },
-      { time: '11:00', title: 'Coding Exercise (TBD)', type: 'exercise' },
-      { time: '12:00', title: 'Project', type: 'project' },
+      {
+        time: '10:30',
+        title: 'Fine-tuning methods for LLMs',
+        type: 'lecture',
+        who: 'Carlos',
+        url: 'slides/we7-fine-tuning-slides.pdf',
+        links: [{ label: 'Handout', url: 'slides/we7-fine-tuning-handout.pdf' }],
+      },
+      {
+        time: '11:00',
+        title: 'Fine-tuning (PEFT)',
+        type: 'exercise',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE7-public/blob/main/2_peft_finetuning/exercise/02_peft_finetuning_student.ipynb',
+      },
+      { time: '12:00', title: 'Project: DP-SGD', type: 'project' },
     ],
-    resources: placeholderResources(),
+    resources: [
+      {
+        group: 'Lecture slides',
+        label: 'The cost of computation and supercomputers (Carlos, Friday 08:00)',
+        url: 'slides/we7-cost-slides.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'GPU and TPU (Carlos, Friday 10:00)',
+        url: 'slides/we7-gpu-tpu-slides.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'Counting the FLOPs of a transformer (Carlos, Friday 12:00)',
+        url: 'slides/we7-flop-slides.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'SLURM: getting a job onto a cluster (Ghali, Friday 12:00)',
+        url: 'slides/we7-slurm-slides.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'Distributed gradient descent, part 1: splitting the batch (Carlos, Saturday 08:00)',
+        url: 'slides/we7-dgd-part1-slides.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'Distributed gradient descent, part 2: when the model does not fit (Carlos, Saturday 08:00)',
+        url: 'slides/we7-dgd-part2-slides.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'Fine-tuning methods for LLMs (Carlos, Saturday 10:30)',
+        url: 'slides/we7-fine-tuning-slides.pdf',
+      },
+      {
+        group: 'Handouts',
+        label: 'The cost of computation and supercomputers (handout, one page per slide)',
+        url: 'slides/we7-cost-handout.pdf',
+      },
+      {
+        group: 'Handouts',
+        label: 'GPU and TPU (handout, one page per slide)',
+        url: 'slides/we7-gpu-tpu-handout.pdf',
+      },
+      {
+        group: 'Handouts',
+        label: 'Counting the FLOPs of a transformer (handout, one page per slide)',
+        url: 'slides/we7-flop-handout.pdf',
+      },
+      {
+        group: 'Handouts',
+        label: 'SLURM: getting a job onto a cluster (handout, one page per slide)',
+        url: 'slides/we7-slurm-handout.pdf',
+      },
+      {
+        group: 'Handouts',
+        label: 'Distributed gradient descent, part 1 (handout, one page per slide)',
+        url: 'slides/we7-dgd-part1-handout.pdf',
+      },
+      {
+        group: 'Handouts',
+        label: 'Distributed gradient descent, part 2 (handout, one page per slide)',
+        url: 'slides/we7-dgd-part2-handout.pdf',
+      },
+      {
+        group: 'Handouts',
+        label: 'Fine-tuning methods for LLMs (handout, one page per slide)',
+        url: 'slides/we7-fine-tuning-handout.pdf',
+      },
+      {
+        group: 'Exercises',
+        label: 'Fine-tuning with PEFT (exercise, open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE7-public/blob/main/2_peft_finetuning/exercise/02_peft_finetuning_student.ipynb',
+      },
+      { group: 'Exercises', label: 'Other exercise notebooks (to be added)', url: '#' },
+    ],
   },
 ];
 
