@@ -1606,16 +1606,12 @@ export const weekends: Weekend[] = [
         links: [{ label: 'Handout', url: 'slides/we7-cost-handout.pdf' }],
       },
       { time: '09:00', title: 'Visualizations, cost estimation exercises', type: 'exercise' },
-      {
-        time: '10:00',
-        title: 'GPU and TPU',
-        type: 'lecture',
-        // Ankita runs this block. The deck is Carlos's, the same arrangement as
-        // the SLURM half of Friday 12:00, which Carlos wrote and Ghali presents.
-        who: 'Ankita',
-        url: 'slides/we7-gpu-tpu-slides.pdf',
-        links: [{ label: 'Handout', url: 'slides/we7-gpu-tpu-handout.pdf' }],
-      },
+      // Ankita runs this block and brings her own material. Carlos's GPU and TPU
+      // deck was published here until 2026-08-27 and was withdrawn on his
+      // instruction: "remove our version of gpu-tpu and slurm because someone
+      // else will present those parts". The PDFs are git rm'd from public/slides
+      // and recoverable from history if the handover changes again.
+      { time: '10:00', title: 'GPU and TPU', type: 'lecture', who: 'Ankita' },
       { time: '10:30', title: 'Coffee break', type: 'break' },
       { time: '11:00', title: 'GPU and TPU visualizations', type: 'exercise' },
       {
@@ -1624,12 +1620,10 @@ export const weekends: Weekend[] = [
         type: 'lecture',
         who: 'Carlos & Ghali',
         // Two halves of one slot: Carlos counts the FLOPs, Ghali takes SLURM.
+        // Carlos's FLOP half only. The SLURM deck was withdrawn on 2026-08-27:
+        // Ghali presents that half and brings his own.
         url: 'slides/we7-flop-slides.pdf',
-        links: [
-          { label: 'FLOPs (handout)', url: 'slides/we7-flop-handout.pdf' },
-          { label: 'SLURM', url: 'slides/we7-slurm-slides.pdf' },
-          { label: 'SLURM (handout)', url: 'slides/we7-slurm-handout.pdf' },
-        ],
+        links: [{ label: 'Handout', url: 'slides/we7-flop-handout.pdf' }],
       },
       { time: '13:00', title: 'Lunch break', type: 'break' },
       { time: '14:00', title: 'SLURM', type: 'exercise' },
@@ -1677,18 +1671,8 @@ export const weekends: Weekend[] = [
       },
       {
         group: 'Lecture slides',
-        label: 'GPU and TPU (Ankita, Friday 10:00)',
-        url: 'slides/we7-gpu-tpu-slides.pdf',
-      },
-      {
-        group: 'Lecture slides',
         label: 'Counting the FLOPs of a transformer (Carlos, Friday 12:00)',
         url: 'slides/we7-flop-slides.pdf',
-      },
-      {
-        group: 'Lecture slides',
-        label: 'SLURM: getting a job onto a cluster (Ghali, Friday 12:00)',
-        url: 'slides/we7-slurm-slides.pdf',
       },
       {
         group: 'Lecture slides',
@@ -1712,18 +1696,8 @@ export const weekends: Weekend[] = [
       },
       {
         group: 'Handouts',
-        label: 'GPU and TPU (handout, one page per slide)',
-        url: 'slides/we7-gpu-tpu-handout.pdf',
-      },
-      {
-        group: 'Handouts',
         label: 'Counting the FLOPs of a transformer (handout, one page per slide)',
         url: 'slides/we7-flop-handout.pdf',
-      },
-      {
-        group: 'Handouts',
-        label: 'SLURM: getting a job onto a cluster (handout, one page per slide)',
-        url: 'slides/we7-slurm-handout.pdf',
       },
       {
         group: 'Handouts',
