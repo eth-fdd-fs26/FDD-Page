@@ -1610,9 +1610,9 @@ export const weekends: Weekend[] = [
         time: '10:00',
         title: 'GPU and TPU',
         type: 'lecture',
-        // The spreadsheet still has Ankita in the "Who?" cell for this slot;
-        // Carlos took the block over on 2026-08-24 and these are his slides.
-        who: 'Carlos',
+        // Ankita runs this block. The deck is Carlos's, the same arrangement as
+        // the SLURM half of Friday 12:00, which Carlos wrote and Ghali presents.
+        who: 'Ankita',
         url: 'slides/we7-gpu-tpu-slides.pdf',
         links: [{ label: 'Handout', url: 'slides/we7-gpu-tpu-handout.pdf' }],
       },
@@ -1677,7 +1677,7 @@ export const weekends: Weekend[] = [
       },
       {
         group: 'Lecture slides',
-        label: 'GPU and TPU (Carlos, Friday 10:00)',
+        label: 'GPU and TPU (Ankita, Friday 10:00)',
         url: 'slides/we7-gpu-tpu-slides.pdf',
       },
       {
