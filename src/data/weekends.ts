@@ -1629,7 +1629,7 @@ export const weekends: Weekend[] = [
       { time: '14:00',
        title: 'SLURM',
        type: 'exercise',
-       url: 'https://colab.research.google.com/github/eth-fdd-fs26/1_slurm_scheduling/exercise/03_slurm_scheduling_student.ipynb'
+       url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE7-public/blob/main/1_slurm_scheduling/exercise/03_slurm_scheduling_student.ipynb'
       },
       {
         time: '15:00',
@@ -1726,7 +1726,7 @@ export const weekends: Weekend[] = [
       {
         group: 'Exercises',
         label: 'SLURM',
-        url: 'https://colab.research.google.com/github/eth-fdd-fs26/1_slurm_scheduling/exercise/03_slurm_scheduling_student.ipynb',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/1_slurm_scheduling/FDD-WE7-public/blob/main/exercise/03_slurm_scheduling_student.ipynb',
       },
       {
         group: 'Exercises',
