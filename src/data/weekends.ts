@@ -1626,7 +1626,11 @@ export const weekends: Weekend[] = [
         links: [{ label: 'Handout', url: 'slides/we7-flop-handout.pdf' }],
       },
       { time: '13:00', title: 'Lunch break', type: 'break' },
-      { time: '14:00', title: 'SLURM', type: 'exercise' },
+      { time: '14:00',
+       title: 'SLURM',
+       type: 'exercise',
+       url: 'https://colab.research.google.com/github/eth-fdd-fs26/1_slurm_scheduling/exercise/03_slurm_scheduling_student.ipynb'
+      },
       {
         time: '15:00',
         title: 'FLOP calculation',
@@ -1718,6 +1722,11 @@ export const weekends: Weekend[] = [
         group: 'Handouts',
         label: 'Fine-tuning methods for LLMs (handout, one page per slide)',
         url: 'slides/we7-fine-tuning-handout.pdf',
+      },
+      {
+        group: 'Exercises',
+        label: 'SLURM',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/1_slurm_scheduling/exercise/03_slurm_scheduling_student.ipynb',
       },
       {
         group: 'Exercises',
