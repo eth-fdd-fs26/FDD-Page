@@ -1631,8 +1631,10 @@ export const weekends: Weekend[] = [
         // Two halves of one slot: Carlos counts the FLOPs, Ghali takes SLURM.
         // Carlos's FLOP half only. The SLURM deck was withdrawn on 2026-08-27:
         // Ghali presents that half and brings his own.
-        url: 'slides/we7-flop-slides.pdf',
-        links: [{ label: 'Handout', url: 'slides/we7-flop-handout.pdf' }],
+        links: [
+          { label: 'SLURM', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE7-public/main/1_slurm_scheduling/slurm-lecture.pdf' },
+          { label: 'FLOP', url: 'slides/we7-flop-handout.pdf' },
+        ],
       },
       { time: '13:00', title: 'Lunch break', type: 'break' },
       { time: '14:00',
@@ -1691,6 +1693,11 @@ export const weekends: Weekend[] = [
         group: 'Lecture slides',
         label: 'Engines of AI: GPU and TPU (Ankita, Friday 10:00)',
         url: 'slides/we7-engines-of-AI.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'SLURM (Ghali, Friday 12:00)',
+        url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE7-public/main/1_slurm_scheduling/slurm-lecture.pdf',
       },
       {
         group: 'Lecture slides',
