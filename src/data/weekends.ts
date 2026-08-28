@@ -1665,7 +1665,13 @@ export const weekends: Weekend[] = [
           { label: 'Part 2 (handout)', url: 'slides/we7-dgd-part2-handout.pdf' },
         ],
       },
-      { time: '09:00', title: 'Distributed gradient descent', type: 'exercise' },
+      { 
+        time: '09:00',
+        title: 'Distributed gradient descent',
+        type: 'exercise',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE7-public/blob/main/5_dgd/exercise/05_dgd_exercise_student.ipynb'
+        
+      },
       { time: '10:00', title: 'Coffee break', type: 'break' },
       {
         time: '10:30',
