@@ -1611,12 +1611,16 @@ export const weekends: Weekend[] = [
         type: 'exercise',
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE7-public/blob/main/00_cx_training_budget_student.ipynb',
       },
-      // Ankita runs this block and brings her own material. Carlos's GPU and TPU
-      // deck was published here until 2026-08-27 and was withdrawn on his
-      // instruction: "remove our version of gpu-tpu and slurm because someone
-      // else will present those parts". The PDFs are git rm'd from public/slides
-      // and recoverable from history if the handover changes again.
-      { time: '10:00', title: 'GPU and TPU', type: 'lecture', who: 'Ankita' },
+      // Ankita's GPU and TPU deck (we7-engines-of-AI.pdf). Carlos's earlier
+      // version was withdrawn on 2026-08-27; recoverable from history if the
+      // handover changes again.
+      {
+        time: '10:00',
+        title: 'Engines of AI: GPU and TPU',
+        type: 'lecture',
+        who: 'Ankita',
+        url: 'slides/we7-engines-of-AI.pdf',
+      },
       { time: '10:30', title: 'Coffee break', type: 'break' },
       { time: '11:00', title: 'GPU and TPU visualizations', type: 'exercise', url: 'exercises/we7-gpu-tpu.html' },
       {
@@ -1682,6 +1686,11 @@ export const weekends: Weekend[] = [
         group: 'Lecture slides',
         label: 'The cost of computation and supercomputers (Carlos, Friday 08:00)',
         url: 'slides/we7-cost-slides.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'Engines of AI: GPU and TPU (Ankita, Friday 10:00)',
+        url: 'slides/we7-engines-of-AI.pdf',
       },
       {
         group: 'Lecture slides',
