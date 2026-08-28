@@ -1613,7 +1613,7 @@ export const weekends: Weekend[] = [
       // and recoverable from history if the handover changes again.
       { time: '10:00', title: 'GPU and TPU', type: 'lecture', who: 'Ankita' },
       { time: '10:30', title: 'Coffee break', type: 'break' },
-      { time: '11:00', title: 'GPU and TPU visualizations', type: 'exercise' },
+      { time: '11:00', title: 'GPU and TPU visualizations', type: 'exercise', url: 'exercises/we7-gpu-tpu.html' },
       {
         time: '12:00',
         title: 'SLURM and FLOP',
