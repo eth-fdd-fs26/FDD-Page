@@ -1605,7 +1605,12 @@ export const weekends: Weekend[] = [
         url: 'slides/we7-cost-slides.pdf',
         links: [{ label: 'Handout', url: 'slides/we7-cost-handout.pdf' }],
       },
-      { time: '09:00', title: 'Visualizations, cost estimation exercises', type: 'exercise' },
+      {
+        time: '09:00',
+        title: 'Visualizations, cost estimation exercises',
+        type: 'exercise',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE7-public/blob/main/00_cx_training_budget_student.ipynb',
+      },
       // Ankita runs this block and brings her own material. Carlos's GPU and TPU
       // deck was published here until 2026-08-27 and was withdrawn on his
       // instruction: "remove our version of gpu-tpu and slurm because someone
@@ -1722,6 +1727,11 @@ export const weekends: Weekend[] = [
         group: 'Handouts',
         label: 'Fine-tuning methods for LLMs (handout, one page per slide)',
         url: 'slides/we7-fine-tuning-handout.pdf',
+      },
+      {
+        group: 'Exercises',
+        label: 'Visualizations, cost estimation exercises (exercise, open in Colab)',
+        url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE7-public/blob/main/00_cx_training_budget_student.ipynb',
       },
       {
         group: 'Exercises',
