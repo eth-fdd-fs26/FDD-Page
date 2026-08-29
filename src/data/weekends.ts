@@ -1713,6 +1713,11 @@ export const weekends: Weekend[] = [
     ],
     resources: [
       {
+        group: 'Quiz',
+        label: 'Quiz',
+        url: 'https://docs.google.com/forms/d/e/1FAIpQLScmZWxZqxdm0I20yj5zD8RTYzXUP-j0vV6sOC4wo4K_DJMaew/viewform?usp=dialog',
+      },
+      {
         group: 'Lecture slides',
         label: 'The cost of computation and supercomputers (Carlos, Friday 08:00)',
         url: 'slides/we7-cost-slides.pdf',
