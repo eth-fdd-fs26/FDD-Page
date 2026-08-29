@@ -1603,7 +1603,10 @@ export const weekends: Weekend[] = [
         type: 'lecture',
         who: 'Carlos',
         url: 'slides/we7-cost-slides.pdf',
-        links: [{ label: 'Handout', url: 'slides/we7-cost-handout.pdf' }],
+        links: [
+          { label: 'Handout', url: 'slides/we7-cost-handout.pdf' },
+          { label: 'Slides (annotated)', url: 'slides/we7-cost-slides-annotated.pdf' },
+        ],
       },
       {
         time: '09:00',
@@ -1628,12 +1631,16 @@ export const weekends: Weekend[] = [
         title: 'SLURM and FLOP',
         type: 'lecture',
         who: 'Carlos & Ghali',
-        // Two halves of one slot: Carlos counts the FLOPs, Ghali takes SLURM.
-        // Carlos's FLOP half only. The SLURM deck was withdrawn on 2026-08-27:
-        // Ghali presents that half and brings his own.
+        // Two halves of one slot: Carlos counts the FLOPs, Ghali takes SLURM and
+        // brings his own deck, which is why ours was withdrawn on 2026-08-27.
+        // Merged 2026-08-29: Ghali's SLURM link came from the TAs' branch, the
+        // FLOP slides and the annotated copy from Carlos's. The row's primary
+        // link is the FLOP deck itself rather than its handout.
+        url: 'slides/we7-flop-slides.pdf',
         links: [
-          { label: 'SLURM', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE7-public/main/1_slurm_scheduling/slurm-lecture.pdf' },
-          { label: 'FLOP', url: 'slides/we7-flop-handout.pdf' },
+          { label: 'Handout', url: 'slides/we7-flop-handout.pdf' },
+          { label: 'Slides (annotated)', url: 'slides/we7-flop-slides-annotated.pdf' },
+          { label: 'SLURM (Ghali)', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE7-public/main/1_slurm_scheduling/slurm-lecture.pdf' },
         ],
       },
       { time: '13:00', title: 'Lunch break', type: 'break' },
@@ -1649,7 +1656,13 @@ export const weekends: Weekend[] = [
         url: 'exercises/we7-flops-pawgpt.html',
       },
       { time: '15:30', title: 'Coffee break', type: 'break' },
-      { time: '16:00', title: 'Presentations: winners of the Kaggle competition', type: 'project', who: 'Participants' },
+      {
+        time: '16:00',
+        title: 'Presentations: winners of the Kaggle competition',
+        type: 'project',
+        who: 'Participants',
+        url: 'slides/we7-competition-results-slides.pdf',
+      },
     ],
     saturday: [
       {
@@ -1663,6 +1676,9 @@ export const weekends: Weekend[] = [
           { label: 'Part 1 (handout)', url: 'slides/we7-dgd-part1-handout.pdf' },
           { label: 'Part 2', url: 'slides/we7-dgd-part2-slides.pdf' },
           { label: 'Part 2 (handout)', url: 'slides/we7-dgd-part2-handout.pdf' },
+          { label: 'Part 1 (annotated)', url: 'slides/we7-dgd-part1-slides-annotated.pdf' },
+          { label: 'Part 2 (annotated)', url: 'slides/we7-dgd-part2-slides-annotated.pdf' },
+          { label: 'Board notes', url: 'slides/we7-gradient-descent-board.pdf' },
         ],
       },
       { 
@@ -1679,7 +1695,10 @@ export const weekends: Weekend[] = [
         type: 'lecture',
         who: 'Carlos',
         url: 'slides/we7-fine-tuning-slides.pdf',
-        links: [{ label: 'Handout', url: 'slides/we7-fine-tuning-handout.pdf' }],
+        links: [
+          { label: 'Handout', url: 'slides/we7-fine-tuning-handout.pdf' },
+          { label: 'Board notes', url: 'slides/we7-fine-tuning-board.pdf' },
+        ],
       },
       {
         time: '11:00',
@@ -1727,6 +1746,41 @@ export const weekends: Weekend[] = [
         group: 'Lecture slides',
         label: 'Fine-tuning methods for LLMs (Carlos, Saturday 10:30)',
         url: 'slides/we7-fine-tuning-slides.pdf',
+      },
+      {
+        group: 'Lecture slides',
+        label: 'FDD Competition Results (Carlos, Friday 16:00)',
+        url: 'slides/we7-competition-results-slides.pdf',
+      },
+      {
+        group: 'As delivered',
+        label: 'The cost of computation and supercomputers, annotated (Carlos, Friday 08:00)',
+        url: 'slides/we7-cost-slides-annotated.pdf',
+      },
+      {
+        group: 'As delivered',
+        label: 'Counting the FLOPs of a transformer, annotated (Carlos, Friday 12:00)',
+        url: 'slides/we7-flop-slides-annotated.pdf',
+      },
+      {
+        group: 'As delivered',
+        label: 'Distributed gradient descent, part 1, annotated (Carlos, Saturday 08:00)',
+        url: 'slides/we7-dgd-part1-slides-annotated.pdf',
+      },
+      {
+        group: 'As delivered',
+        label: 'Distributed gradient descent, part 2, annotated (Carlos, Saturday 08:00)',
+        url: 'slides/we7-dgd-part2-slides-annotated.pdf',
+      },
+      {
+        group: 'As delivered',
+        label: 'Board notes: house prices by linear regression and gradient descent',
+        url: 'slides/we7-gradient-descent-board.pdf',
+      },
+      {
+        group: 'As delivered',
+        label: 'Board notes: the low rank update added to the original matrix',
+        url: 'slides/we7-fine-tuning-board.pdf',
       },
       {
         group: 'Handouts',
