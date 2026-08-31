@@ -1664,6 +1664,7 @@ export const weekends: Weekend[] = [
         url: 'slides/we7-competition-results-slides.pdf',
         links: [
           { label: 'Team KET (2nd place)', url: 'slides/we7-competition-team-ket-slides.pdf' },
+          { label: 'R.E.M. (3rd place, interactive)', url: 'lies-are-lonely/index.html' },
         ],
       },
     ],
@@ -1764,6 +1765,11 @@ export const weekends: Weekend[] = [
         group: 'Participant presentations',
         label: 'Team KET, 2nd place: brain age prediction (Kevin, Eva, Timarian, Friday 16:00)',
         url: 'slides/we7-competition-team-ket-slides.pdf',
+      },
+      {
+        group: 'Participant presentations',
+        label: 'R.E.M., 3rd place: "Lies Are Lonely", a narrated interactive deck (Friday 16:00)',
+        url: 'lies-are-lonely/index.html',
       },
       {
         group: 'As delivered',
