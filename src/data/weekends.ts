@@ -1662,6 +1662,9 @@ export const weekends: Weekend[] = [
         type: 'project',
         who: 'Participants',
         url: 'slides/we7-competition-results-slides.pdf',
+        links: [
+          { label: 'Team KET (2nd place)', url: 'slides/we7-competition-team-ket-slides.pdf' },
+        ],
       },
     ],
     saturday: [
@@ -1756,6 +1759,11 @@ export const weekends: Weekend[] = [
         group: 'Lecture slides',
         label: 'FDD Competition Results (Carlos, Friday 16:00)',
         url: 'slides/we7-competition-results-slides.pdf',
+      },
+      {
+        group: 'Participant presentations',
+        label: 'Team KET, 2nd place: brain age prediction (Kevin, Eva, Timarian, Friday 16:00)',
+        url: 'slides/we7-competition-team-ket-slides.pdf',
       },
       {
         group: 'As delivered',
