@@ -34,7 +34,7 @@ export const ZOOM_SLOT_SUFFIX = '-ZOOM';
 export const officeHourFirstMonday = '2026-06-22';
 
 /** Number of consecutive weeks to offer from the first Monday. */
-export const officeHourWeeks = 15;
+export const officeHourWeeks = 19;
 
 /** Minutes per slot — used to render the end time. Keep in sync with the times above. */
 export const SLOT_MINUTES = 30;
