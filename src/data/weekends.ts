@@ -1711,7 +1711,7 @@ export const weekends: Weekend[] = [
         url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE7-public/blob/main/2_peft_finetuning/exercise/02_peft_finetuning_student.ipynb',
       },
       { time: '12:00', title: 'Project: DP-SGD', type: 'project', links: [
-        // { label: 'Project notebook', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE7-public/blob/main/project/notebook/we7_project_federated_learning_student.ipynb' },
+        { label: 'Project notebook', url: 'https://colab.research.google.com/github/eth-fdd-fs26/FDD-WE7-public/blob/main/project/notebook/we7_project_federated_learning_student.ipynb' },
         { label: 'Project slides', url: 'https://raw.githubusercontent.com/eth-fdd-fs26/FDD-WE7-public/main/project/we7_project_federated_learning.pdf' }, 
       ]},
     ],
