@@ -145,12 +145,27 @@ h3 {
   color: var(--ink);
   border-bottom-color: var(--eth-blue);
 }
+@media (max-width: 680px) {
+  .site-header__inner {
+    flex-wrap: wrap;
+  }
+  .brand {
+    min-height: 56px;
+  }
+  .site-nav {
+    width: 100%;
+    gap: 14px;
+    min-height: 40px;
+  }
+  .site-nav__link {
+    font-size: 0.74rem;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+}
 @media (max-width: 560px) {
   .brand__course {
     display: none;
-  }
-  .site-nav {
-    gap: 18px;
   }
 }
 
@@ -1591,4 +1606,68 @@ textarea.field__input {
   .oh-legend__hint {
     flex-basis: 100%;
   }
+}
+
+/* ---------- Quiz progress ---------- */
+.quiz-summary {
+  font-size: 1.05rem;
+  margin: 0 0 16px;
+}
+.quiz-table {
+  width: 100%;
+  max-width: 720px;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.quiz-table th {
+  text-align: left;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  border-bottom: 2px solid var(--ink);
+  padding: 8px 12px 8px 0;
+}
+.quiz-table td {
+  border-bottom: 1px solid var(--line);
+  padding: 10px 12px 10px 0;
+}
+.quiz-missing {
+  color: var(--eth-red);
+  font-weight: 700;
+}
+.quiz-missing a {
+  font-weight: 400;
+}
+.quiz-updated {
+  margin-top: 20px;
+  font-size: 0.82rem;
+  color: var(--ink-faint);
+}
+.quiz-scroll {
+  overflow-x: auto;
+  max-width: 100%;
+}
+.quiz-table--grid {
+  max-width: none;
+  min-width: 560px;
+}
+.quiz-table .quiz-num {
+  text-align: center;
+  padding-right: 0;
+}
+.quiz-name {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: var(--eth-blue);
+  cursor: pointer;
+  text-align: left;
+}
+.quiz-name:hover {
+  text-decoration: underline;
+}
+.quiz-back {
+  margin-bottom: 16px;
 }

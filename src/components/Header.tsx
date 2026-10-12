@@ -20,6 +20,9 @@ export function Header() {
           <NavLink to="/office-hours" className="site-nav__link">
             Office hours
           </NavLink>
+          <NavLink to="/quizzes" className="site-nav__link">
+            Quizzes
+          </NavLink>
         </nav>
       </div>
     </header>

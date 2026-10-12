@@ -5,6 +5,7 @@ import { HomePage } from './pages/HomePage';
 import { WeekendPage } from './pages/WeekendPage';
 import { CalendarPage } from './pages/CalendarPage';
 import { OfficeHoursPage } from './pages/OfficeHoursPage';
+import { QuizPage } from './pages/QuizPage';
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
           <Route path="/weekend/:id" element={<WeekendPage />} />
           <Route path="/calendar" element={<CalendarPage />} />
           <Route path="/office-hours" element={<OfficeHoursPage />} />
+          <Route path="/quizzes" element={<QuizPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
