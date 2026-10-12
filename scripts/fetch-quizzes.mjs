@@ -5,10 +5,11 @@
 // spreadsheet. Both spreadsheets must stay readable by "anyone with the link"
 // so their tabs can be exported as CSV without credentials.
 //
-// The output lists every student with their name, group(s) and best score per
-// quiz, so TAs and students can search by name or group number. Emails and
-// answers are never written: each student carries only the SHA-256 of the
-// emails they used, so the page can still find them by email.
+// The output lists every student with their name, group(s) and which quizzes
+// they completed, so TAs and students can search by name or group number.
+// Scores, answers and emails are never written: the file is public. Each
+// student carries only the SHA-256 of the emails they used, so the page can
+// still find them by email.
 //
 // Run with `npm run quizzes`. The deploy workflow runs it hourly before the build.
 
@@ -164,7 +165,7 @@ QUIZZES.forEach((q, i) => {
     const name = t.name >= 0 ? (r[t.name] ?? '').trim() : '';
     const email = t.email >= 0 ? (r[t.email] ?? '').trim().toLowerCase() : '';
     if (!score || isTest(name)) continue;
-    records.push({ nodes: nodesFor(email, name), name, email, quiz: q.weekendId, score });
+    records.push({ nodes: nodesFor(email, name), name, email, quiz: q.weekendId });
   }
 });
 for (const m of groupSheet.members) {
@@ -177,11 +178,11 @@ for (const rec of records) {
 }
 
 const byRoot = new Map();
-const quizzes = QUIZZES.map((q) => ({ weekendId: q.weekendId, max: 0 }));
+const quizzes = QUIZZES.map((q) => q.weekendId);
 for (const rec of records) {
   if (!rec.nodes.length) continue;
   const root = find(rec.nodes[0]);
-  if (!byRoot.has(root)) byRoot.set(root, { names: [], sheetName: '', groups: new Set(), emails: new Set(), scores: {} });
+  if (!byRoot.has(root)) byRoot.set(root, { names: [], sheetName: '', groups: new Set(), emails: new Set(), done: new Set() });
   const s = byRoot.get(root);
   if (rec.email) s.emails.add(rec.email);
   if (rec.group) {
@@ -189,10 +190,7 @@ for (const rec of records) {
     s.sheetName ||= rec.name;
   } else {
     if (rec.name) s.names.push(rec.name);
-    const [got, max] = rec.score;
-    s.scores[rec.quiz] = Math.max(s.scores[rec.quiz] ?? 0, got);
-    const q = quizzes.find((x) => x.weekendId === rec.quiz);
-    q.max = Math.max(q.max, max);
+    s.done.add(rec.quiz);
   }
 }
 
@@ -208,7 +206,7 @@ const students = [...byRoot.values()]
   .map((s) => ({
     name: displayName(s),
     groups: [...s.groups].sort(),
-    scores: s.scores,
+    done: quizzes.filter((q) => s.done.has(q)),
     emails: [...s.emails].map(hashEmail),
   }))
   .filter((s) => s.name)

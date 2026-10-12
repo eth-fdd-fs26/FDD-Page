@@ -1671,3 +1671,16 @@ textarea.field__input {
 .quiz-back {
   margin-bottom: 16px;
 }
+.quiz-dot {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  vertical-align: -1px;
+}
+.quiz-dot--done {
+  background: var(--eth-green);
+}
+.quiz-dot--missing {
+  background: var(--eth-red);
+}

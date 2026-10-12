@@ -4,19 +4,21 @@ import { weekends } from '../data/weekends';
 
 /**
  * Shape of public/quiz-results.json, written by scripts/fetch-quizzes.mjs.
- * `scores` maps a weekend id to the student's best score on that quiz;
- * `emails` holds the SHA-256 of every email the student used.
+ * `done` lists the weekend ids of the quizzes the student completed (scores
+ * are deliberately not published); `emails` holds the SHA-256 of every email
+ * the student used.
  */
 interface Student {
   name: string;
   groups: string[];
-  scores: Record<string, number>;
+  done: string[];
   emails: string[];
 }
 
 interface QuizResults {
   updated: string;
-  quizzes: { weekendId: string; max: number }[];
+  /** Weekend ids of the released quizzes, in course order. */
+  quizzes: string[];
   /** Group id ("Group 07") → assigned TA's name. */
   groups: Record<string, string>;
   students: Student[];
@@ -82,9 +84,9 @@ export function QuizPage() {
           <p className="eyebrow">ETH Zürich · Summer 2026</p>
           <h2 style={{ fontSize: '1.9rem' }}>Quiz progress</h2>
           <p>
-            Search by name, email or group number to see which quizzes have been completed, the
-            score on each, and which ones are still missing. Results are refreshed from the forms
-            about once an hour. If a result looks wrong, contact your TA.
+            Search by name, email or group number to see which quizzes have been completed and
+            which ones are still missing. Results are refreshed from the forms about once an hour.
+            If a result looks wrong, contact your TA.
           </p>
         </div>
 
@@ -146,7 +148,7 @@ export function QuizPage() {
                           <th>Student</th>
                           {!group && <th>Group</th>}
                           {quizzes.map((q, i) => (
-                            <th key={q.weekendId} className="quiz-num">
+                            <th key={q} className="quiz-num">
                               Q{i + 1}
                             </th>
                           ))}
@@ -155,7 +157,7 @@ export function QuizPage() {
                       </thead>
                       <tbody>
                         {matches.map((s) => {
-                          const done = quizzes.filter((q) => q.weekendId in s.scores).length;
+                          const done = s.done.length;
                           return (
                             <tr key={s.name + s.groups.join()}>
                               <td>
@@ -164,13 +166,9 @@ export function QuizPage() {
                                 </button>
                               </td>
                               {!group && <td>{s.groups.join(', ') || '–'}</td>}
-                              {quizzes.map((q) => (
-                                <td key={q.weekendId} className="quiz-num">
-                                  {q.weekendId in s.scores ? (
-                                    s.scores[q.weekendId]
-                                  ) : (
-                                    <span className="quiz-missing">–</span>
-                                  )}
+                              {quizzes.map((q, i) => (
+                                <td key={q} className="quiz-num">
+                                  <Dot done={s.done.includes(q)} label={`Quiz ${i + 1}`} />
                                 </td>
                               ))}
                               <td className="quiz-num">
@@ -214,13 +212,10 @@ function StudentDetail({
   onBack?: () => void;
 }) {
   const rows = quizzes.map((q) => {
-    const weekend = weekends.find((w) => w.id === q.weekendId);
+    const weekend = weekends.find((w) => w.id === q);
     const quizUrl = weekend?.resources.find((r) => r.group === 'Quiz')?.url;
-    return { ...q, weekend, quizUrl, score: student.scores[q.weekendId] };
+    return { id: q, weekend, quizUrl, done: student.done.includes(q) };
   });
-  const done = rows.filter((r) => r.score !== undefined);
-  const points = done.reduce((sum, r) => sum + (r.score ?? 0), 0);
-  const maxPoints = rows.reduce((sum, r) => sum + r.max, 0);
 
   return (
     <>
@@ -240,31 +235,33 @@ function StudentDetail({
         ))}
         <br />
         <strong>
-          {done.length} of {rows.length}
+          {student.done.length} of {rows.length}
         </strong>{' '}
-        quizzes completed · {points} / {maxPoints} points
+        quizzes completed
       </p>
       <table className="quiz-table">
         <thead>
           <tr>
             <th>Weekend</th>
-            <th>Score</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
           {rows.map((r) => (
-            <tr key={r.weekendId}>
+            <tr key={r.id}>
               <td>
-                <Link to={`/weekend/${r.weekendId}`}>
+                <Link to={`/weekend/${r.id}`}>
                   Weekend {r.weekend?.number} · {r.weekend?.title}
                 </Link>
               </td>
               <td>
-                {r.score !== undefined ? (
-                  `${r.score} / ${r.max}`
+                {r.done ? (
+                  <>
+                    <Dot done /> Completed
+                  </>
                 ) : (
                   <span className="quiz-missing">
-                    Missing
+                    <Dot done={false} /> Missing
                     {r.quizUrl && (
                       <>
                         {' · '}
@@ -282,4 +279,9 @@ function StudentDetail({
       </table>
     </>
   );
+}
+
+function Dot({ done, label }: { done: boolean; label?: string }) {
+  const text = `${label ? label + ': ' : ''}${done ? 'completed' : 'missing'}`;
+  return <span className={`quiz-dot ${done ? 'quiz-dot--done' : 'quiz-dot--missing'}`} title={text} aria-label={text} />;
 }
