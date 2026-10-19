@@ -42,6 +42,10 @@ const NAME_ALIASES = {
   'akash c': 'akash chawla',
 };
 
+// ETH logins of students who withdrew from the course. Every record joined to
+// one of them by union-find is left out of the page.
+const WITHDRAWN = ['bnaegel'];
+
 const OUT = new URL('../public/quiz-results.json', import.meta.url);
 
 /** Minimal RFC 4180 parser: quoted fields, escaped quotes, newlines inside quotes. */
@@ -177,11 +181,13 @@ for (const rec of records) {
   for (const n of rec.nodes.slice(1)) union(rec.nodes[0], n);
 }
 
+const withdrawn = new Set(WITHDRAWN.map((login) => find(`l:${login}`)));
 const byRoot = new Map();
 const quizzes = QUIZZES.map((q) => q.weekendId);
 for (const rec of records) {
   if (!rec.nodes.length) continue;
   const root = find(rec.nodes[0]);
+  if (withdrawn.has(root)) continue;
   if (!byRoot.has(root)) byRoot.set(root, { names: [], sheetName: '', groups: new Set(), emails: new Set(), done: new Set() });
   const s = byRoot.get(root);
   if (rec.email) s.emails.add(rec.email);
