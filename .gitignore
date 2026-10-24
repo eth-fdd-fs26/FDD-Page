@@ -18,6 +18,3 @@ pnpm-debug.log*
 
 # python venv used only to read the spreadsheet
 .venv
-
-# generated hourly by scripts/fetch-quizzes.mjs, never committed
-public/quiz-results.json
